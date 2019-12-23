@@ -1,10 +1,10 @@
 lab:
 =======
 kubectl get namespaces
-kubectl get namespaces mynamespace -o yaml
-kubectl describe namespaces mynamespace
+kubectl get namespaces default -o yaml
+kubectl describe namespaces default
 kubectl get namespaces --show-labels
-kubectl edit namespace mynamespace-with-resource-quota
+kubectl edit namespace default
 
 
 we can permanently save the namespace for all subsequent kubectl commands in that context
