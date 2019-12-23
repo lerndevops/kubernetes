@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: alpinejob
+spec:
+  backoffLimit: 4
+  template:
+    metadata:
+      name: alpinejobpod
+      labels:
+         app: test
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: alpinecont
+        image: alpine
+        command: ["sh",  "-c", "sleep 30"]
+
+      
+  

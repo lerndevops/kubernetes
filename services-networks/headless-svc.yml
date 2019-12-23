@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-headless
+spec:
+  selector:
+    app: MyApp
+  clusterIP: None
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginxpod
+  labels:
+    app: MyApp
+spec:
+  containers:
+   - name: nginxpodcont
+     image: nginx
+     ports:
+      - containerPort: 80

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+      - containerPort: 80
+  tolerations:
+#  - key: env
+#    operator: "Exists"
+#    effect: "NoExecute"
+   - key: env
+     operator: "Equal"
+     value: prod
+     effect: "NoSchedule"
+
+
+#    operator: "Exists"/"Equal"
+#    effect: "NoSchedule"/"PreferNoSchedule"/"NoExecute"

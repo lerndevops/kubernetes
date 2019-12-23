@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-cont-ex4
+  labels:
+     app: nginx-tomcat
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+     - containerPort: 80
+  - name: tomcat
+    image: tomcat
+    ports:
+     - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-nodeport
+spec:
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+#    nodePort: 30080
+  selector:
+    app: nginx-tomcat
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tomcat-nodeport
+spec:
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+#    nodePort: 30080
+  selector:
+    app: nginx-tomcat

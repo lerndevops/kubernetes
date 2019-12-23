@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+  labels:
+    name: web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: web
+  template:
+    metadata:
+      labels:
+        name: web
+    spec:
+      containers:
+      - name: web
+        image: node:0.10.40
+        command: ['/bin/sh', '-c']
+        args: ['cd /home && git clone https://github.com/ijason/NodeJS-Sample-App.git demo && cd demo/EmployeeDB/ && npm install && sed -i -- ''s/localhost/mongo/g'' app.js && node app.js']
+        ports:
+        - name: http-server
+          containerPort: 3000

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+  labels:
+    type: local
+spec:
+#  storageClassName: pv-demo
+  capacity:
+    storage: 500Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /pvdata
+
+
+# Access modes
+   # ReadWriteOnce – the volume can be mounted as read-write by a single node ... RWO
+   # ReadOnlyMany – the volume can be mounted read-only by many nodes ... ROX
+   # ReadWriteMany – the volume can be mounted as read-write by many nodes ... RWX
+
+# The Retain reclaim policy allows for manual reclamation of the resource. When the PersistentVolumeClaim is deleted, the PersistentVolume still exists and the volume is considered "released". But it is not yet available for another claim bec ause the previous claimant's data remains on the volume

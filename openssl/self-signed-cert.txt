@@ -1,0 +1,4 @@
+openssl genrsa -out private.pem 2048  -- generate private key/pem
+openssl rsa -in private.key -pubout -out public.key -- generate public key 
+openssl req -new -key private.pem -out server.csr -- generate csr with private key
+openssl x509 -req -days 3650 -in server.csr -signkey private.key -out server.crt -- request a new self-signed cert
