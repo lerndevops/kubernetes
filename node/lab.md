@@ -1,6 +1,5 @@
-lab:
-=====
-
+## Lab
+```
 kubectl get nodes                    # get list of node in the cluster
 kubectl get nodes -o wide            # get list of node in the cluster with wider output
 kubectl describe node kube-node      # describe a node for detailed output
@@ -22,3 +21,4 @@ kubectl drain kube-node              # Drain kube-node in preparation for mainte
 kubectl drain kube-node --ignore-daemonsets --force  
 kubectl uncordon kube-node           # Mark kube-node as schedulable
 kubectl delete node kube-node        # remove node from cluster
+```
