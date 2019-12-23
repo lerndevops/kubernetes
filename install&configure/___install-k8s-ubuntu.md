@@ -1,6 +1,6 @@
 
-Install K8s:  ubuntu 18 LTS WITH 2 CPUS & 4GB RAM
-
+## Install K8s:  ubuntu 18 LTS WITH 2 CPUS & 4GB RAM
+```
 	sudo apt-get update
 	sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 
@@ -15,3 +15,4 @@ Install K8s:  ubuntu 18 LTS WITH 2 CPUS & 4GB RAM
 	curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 	sudo apt-get update ; clear
 	sudo apt-get install -y kubelet kubeadm kubectl
+```
