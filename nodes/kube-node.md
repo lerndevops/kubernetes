@@ -4,7 +4,12 @@ A node is a worker machine in Kubernetes, previously known as a minion.
 A node may be a VM or physical machine, depending on the cluster. 
 Each node contains the services necessary to run pods and is managed by the master components.
 
-Unlike pods and services, a node is not inherently created by Kubernetes: it is created externally by cloud providers like Google Compute Engine, or it exists in your pool of physical or virtual machines. So when Kubernetes creates a node, it creates an object that represents the node. After creation, Kubernetes checks whether the node is valid or not.
+> Unlike pods and services, a node is not inherently created by Kubernetes
+> it is created externally by cloud providers like Google Compute Engine, or it 
+> exists in your pool of physical or virtual machines. So when Kubernetes creates 
+> a node, it creates an object that represents the node. After creation, 
+> Kubernetes checks whether the node is valid or not.
+
 ```
 ```
 A node’s status contains the following information:
