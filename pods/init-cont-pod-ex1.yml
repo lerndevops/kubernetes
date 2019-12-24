@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-cont-demo
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: myvol
+      mountPath: /usr/share/nginx/html
+  # These containers are run during pod initialization
+  initContainers:
+  - name: alpine
+    image: alpine
+    command:
+    - sh 
+    - "-c" 
+    - |
+      mkdir -p /init-cont && \
+      touch "/init-cont/index.html" && \
+      echo "init Cont Demo Works !!" > "/init-cont/index.html"
+      sleep 30
+    volumeMounts:
+    - name: myvol
+      mountPath: "/init-cont"
+  volumes:
+  - name: myvol
+    emptyDir: {}
