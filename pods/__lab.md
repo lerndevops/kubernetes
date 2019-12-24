@@ -4,7 +4,7 @@
 ```
 		ex: pod,replicaset,deployment,service etc..
 ```
-#### Kubernetes API Server provides various APIs ( also called API Versions ) and resource types. 
+#### Kubernetes API Server provides various APIs ( also called API Versions ) and resource types which we can create in kubernetes cluster. 
 ```
 		kubectl api-versions   ## to list all APIs available 
 		kubectl api-resources  ## to see what KIND of resources/objects can be created in kubernetes
