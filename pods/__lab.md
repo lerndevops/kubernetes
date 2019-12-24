@@ -18,7 +18,11 @@
 ```
 #### detailed information about an object / a resource 
 ```
-	kubectl explain pods
+	kubectl explain <resourcetype>
+	Ex:
+	    kubectl explain pod
+	    kubectl explain deployment
+	    etc...
 ```
 
 # Lab
