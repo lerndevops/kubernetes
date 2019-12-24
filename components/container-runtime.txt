@@ -1,0 +1,1 @@
+Kubernetes supported runtimes: Docker, rkt, runc and any OCI runtime-spec implementation.
