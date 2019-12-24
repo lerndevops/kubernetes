@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: mysql
+  labels:
+    app: mysql 
+spec:
+  containers:
+    - image: mysql:5.7
+      name: mysql
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "root"
+      ports:
+        - containerPort: 3306
+          name: mysql
+          #      volumeMounts:
+          #        - name: hostvolume
+          #          mountPath: /var/lib/mysql
+      readinessProbe:
+        tcpSocket:
+          port: 3306
+          #      livenessProbe:
+          #        exec:
+          #          command: ["mysqladmin","-proot","ping"]
+          #        initialDelaySeconds: 5 
+          #        periodSeconds: 2
+          #        timeoutSeconds: 1 
+          #  volumes:
+          #    - name: hostvolume
+          #      hostPath:
+          #        path: /data
+          #        type: DirectoryOrCreate
