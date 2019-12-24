@@ -1,0 +1,19 @@
+lab:
+
+kubectl create namespace myspace                                  # create namespace
+kubectl create -f compute-resources.yml --namespace=myspace       # assing the resource quota to the namespace
+kubectl get resourcequota --namespace=myspace                     # get all quotas assigned to namespace
+kubectl get quota --namespace=myspace                             # get all quotas assigned to namespace
+kubectl describe quota compute-resources-demo --namespace=myspace # view a specific quota details
+kubectl delete quota compute-resources-demo
+
+
+kubectl create namespace myspace1                                  # create namespace
+kubectl create -f object-counts-demo.yml --namespace=myspace1      # assing the object-count-quota to the namespace
+kubectl get resourcequota --namespace=myspace1                     # get all quotas assigned to namespace
+kubectl get quota --namespace=myspace1                             # view all quotas assigned to namespace
+kubectl describe quota compute-resources-demo --namespace=myspace1 # view a specific quota details
+kubectl delete quota object-counts
+
+
+

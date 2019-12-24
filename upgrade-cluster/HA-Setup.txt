@@ -1,0 +1,56 @@
+kubeadm init --upload-certs
+
+To add another control plane (master) node, a user can run the following command.
+
+kubeadm join ${API_SERVER_PROXY_IP}:${API_SERVER_PROXY_PORT} \
+    --control-plane \
+    --certificate-key=${ENCRYPTION_KEY} \
+    --token ${KUBEADM_TOKEN} \
+    --discovery-token-ca-cert-hash ${APISERVER_CA_CERT_HASH}
+
+Setup the Load Balancer
+
+	mkdir /etc/nginx
+	vim /etc/nginx/nginx.conf
+	
+		events { }
+
+		stream {
+			upstream stream_backend {
+				least_conn;
+				# REPLACE WITH master0 IP
+				server 192.168.122.160:6443;
+				# REPLACE WITH master1 IP
+				server 192.168.122.161:6443;
+				# REPLACE WITH master2 IP
+				server 192.168.122.162:6443;
+			}
+
+			server {
+				listen        6443;
+				proxy_pass    stream_backend;
+				proxy_timeout 3s;
+				proxy_connect_timeout 1s;
+			}
+
+		}
+		
+		docker run --name proxy -v /etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro -p 6443:6443 -d nginx
+
+master1
+mkdir /etc/kubernetes/kubeadm
+vim /etc/kubernetes/kubeadm/kubeadm-config.yaml
+
+apiVersion: kubeadm.k8s.io/v1beta1
+kind: ClusterConfiguration
+kubernetesVersion: stable
+# REPLACE with `loadbalancer` IP
+controlPlaneEndpoint: "172.31.10.237:6443"
+networking:
+  podSubnet: 10.244.0.0/16
+  
+kubeadm init --config=/etc/kubernetes/kubeadm/kubeadm-config.yaml --upload-certs
+
+  kubeadm join 172.31.10.237:6443 --token gjlgud.gkyc42ps0jhfq2gf \
+    --discovery-token-ca-cert-hash sha256:25f1ccba123333fc888d28f7b099a2af46434fdd75efb329303c495976c06558 \
+    --control-plane --certificate-key f11f7879e167aafe60c66947061e7eed96289769a550164aca9b201613dd07ae

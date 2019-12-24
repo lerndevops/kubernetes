@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: object-counts
+spec:
+  hard:
+    pods: "4"
+    replicationcontrollers: "20"
+    services: "10"
+    count/deployments.apps: "2"
+    count/replicasets.apps: "2"

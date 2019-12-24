@@ -1,0 +1,33 @@
+check the Versions:
+	kubectl version --short
+	kubeadm version
+	kubelet --version
+	kubectl exec kube-apiserver-kube-master -n kube-system -- kube-apiserver --version
+	kubectl exec etcd-kube-master -n kube-system -- etcd --version
+	kubectl exec kube-controller-manager-kube-master -n kube-system -- kube-controller-manager --version
+	kubectl exec kube-scheduler-kube-master -n kube-system -- kube-scheduler --version
+	kubectl exec kube-proxy-j5xjf -n kube-system -- kube-proxy --version
+
+remove any hold on the packages:
+	sudo apt-mark unhold kubeadm
+
+upgrade the kubeadm & hold:
+	sudo apt install -y kubeadm=1.16.3-00
+	sudo apt-mark hold kubeadm
+
+Plan the upgrade of all the controller components:
+	sudo kubeadm upgrade plan
+	
+Upgrade the controller components:
+	sudo kubeadm upgrade apply v1.16.3
+
+Release the hold on the version of kubectl:
+	sudo apt-mark unhold kubectl
+
+Upgrade kubectl  & hold:
+	sudo apt install -y kubectl=1.16.3
+	sudo apt-mark hold kubectl
+
+Upgrade the version of kubelet & Hold:
+	sudo apt install -y kubelet=1.16.3
+	sudo apt-mark hold kubelet
