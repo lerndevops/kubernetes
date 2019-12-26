@@ -5,6 +5,7 @@ metadata:
   labels:
     app: nginx
 spec:
+  terminationGracePeriodSeconds: 0
   containers:
   - name: nginx
     image: nginx

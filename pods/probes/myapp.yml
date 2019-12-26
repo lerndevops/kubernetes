@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: myapp 
+  labels:
+    app: myapp 
+spec:
+  terminationGracePeriodSeconds: 0
+  containers:
+    - image: lerndevops/samplejavaapp
+      name: sampleapp
+      ports:
+        - containerPort: 8080 
+          name: sampleapp
+      readinessProbe:
+        tcpSocket:
+          port: 8080
+        initialDelaySeconds: 5
+        periodSeconds: 5
+        timeoutSeconds: 3
+      livenessProbe:
+        httpGet:
+           path: /sampleapppp
+           port: 8080
+#        exec:
+#          command: ["curl","localhost:8080","/sampleapp"]
+        initialDelaySeconds: 10
+        periodSeconds: 5
+        timeoutSeconds: 3

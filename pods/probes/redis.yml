@@ -12,6 +12,7 @@ spec:
       labels:
         name: redis
     spec:
+      terminationGracePeriodSeconds: 0
       containers:
       - name: redis
         image: redis
@@ -20,11 +21,11 @@ spec:
         - name: redis
           containerPort: 6379
         livenessProbe:
-#          tcpSocket:
-#              port: redis 
-          httpGet:
-            path: /
-            port: redis
+          tcpSocket:
+              port: redis 
+#          httpGet:
+#            path: /
+#            port: redis
 #          exec:
 #            command:
 #            - redis-cli
