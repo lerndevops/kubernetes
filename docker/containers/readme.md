@@ -30,20 +30,22 @@ docker image prune            # to remove all unused images from local machine
   docker container prune -- to remove all stopped/exited containers
 ```
 ### how to get inside a running container
-
+```
   docker run -d nginx ( creates a new container in detached mode )
   docker ps  -- displays the running containers, note down the container id
   docker exec -it <container id> bash 
-
+```
 ### how to come out of a container
+```
   ctrl pq ( it is mandatory to use this command always )
-	
+```  
 ### how to access the applications running inside the container from external world ( browser )
 	
 > services running inside a container can never be accessed direcltry, we always need to 
 > publish/expose them on to docker host while we create the containers 
 	
 > we need to publish/expose the services using -P (capital) OR -p (small) with in the docker run command  
+
 ```	
 ex: 
   -P ( capital ) -- docker will publish/expose the port number dynamically on docker host & maps with port running inside the cont
