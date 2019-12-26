@@ -33,7 +33,10 @@
 > A Container is the actual instantiation of the image just like how an object is an instantiation or an instance of a class.
 
 
-### Physical vs. Virtual Machines vs. Container
+## Advantages of Containers 
+
+#### Physical vs. Virtual Machines vs. Container
+
 
 | Physical | Virtaul Machines | Containers |
 | :-------- | :-------------- | :---------- |
