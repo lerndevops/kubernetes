@@ -38,10 +38,10 @@
 #### Physical vs. Virtual Machines vs. Container
 
 
-| Physical | Virtaul Machines | Containers |
+| Physical | Virtaul Machines | **Containers** |
 | :-------- | :-------------- | :---------- |
-| No virtualization | H/W level virtualization | OS level Vertualization |
-| Huge Maintenance Cost | Huge Maintenance Cost | No Maintenance Cost |
-| No Scalability | Scalability is Hard | Easily Scalable |
-| Huge Resource Wastage | Better Resource Usage but Dynamic Allocation is NOT Possible | Dynamic Resource Allocation is Possible |
-| Takes Longer Time to Initialize App (boot time) | Almost Same as Physical  | Take Very Less Time to Initialize App (less boot time) |
+| No virtualization | H/W level virtualization | **OS level Vertualization** |
+| Huge Maintenance Cost | Huge Maintenance Cost | **No Maintenance Cost** |
+| No Scalability | Scalability is Hard | **Easily Scalable** |
+| Huge Resource Wastage | Better Resource Usage but Dynamic Allocation is NOT Possible | **Dynamic Resource Allocation is Possible** |
+| Takes Longer Time to Initialize App (boot time) | Almost Same as Physical  | **Take Very Less Time to Initialize App (less boot time)** |
