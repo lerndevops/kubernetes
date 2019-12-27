@@ -8,7 +8,8 @@
 
 ##### While application portability (i.e. being able to run the same application on any Linux host) is still the leading driver for the adoption of Linux Containers, another key advantage is being able to optimize server utilization so that you can use every bit of compute. 
 
-> In DEV/TEST environments, which typically represent the majority of compute resource consumption in an organization, optimizing server utilization can lead to significant cost savings.
+##### In DEV/TEST environments, which typically represent the majority of compute resource consumption in an organization, optimizing server utilization can lead to significant cost savings.
+
 
 ### This all sounds good on paper -- but DevOps Engineers and Infrastructure operators still struggle with Some Questions as below
 
