@@ -1,7 +1,7 @@
-Lab:
+# Lab
 
-Replication Controllers: 
-
+### Replication Controllers 
+```
 create a manifest file with Kind ReplicationController & use kubectl to create the object in k8s API Server.
 
 kubectl create -f rc-ex1.yml                # create replication Controller
@@ -21,9 +21,10 @@ kubectl expose rc <rcname> --port=<external> --target-port=<internal> # expose r
 kubectl expose rc <rcname> --port=<external> --type=NodePort # expose rc as service & assign port on the Node
 kubectl rolling-update tomcatrc -f rc-ex2.yml # roll update rc
 kubectl delete rc <rcname>                  # delete rc & pod under it
-==============================================================================================================================
-ReplicaSets:
+```
 
+### ReplicaSets
+```
 create a manifest file with Kind ReplicaSet & use kubectl to create the object in k8s API Server.
 
 kubectl create -f rs-ex1.yml                # create replica set
@@ -42,9 +43,8 @@ kubectl scale --replicas=x rs <rsname>      # Scale up/down replica set
 kubectl expose rs <rsname> --port=<external> --target-port=<internal> # expose rs as service & assign port on the cluster
 kubectl expose rs <rsname> --port=<external> --type=NodePort # expose rs as service & assign port on the Node
 kubectl delete rs <rsname>                  # delete rs & pod under it
-=============================================================================================================================
-
-Deployments:
+```
+### Deployments
 
 create a manifest file with Kind ReplicaSet & use kubectl to create the object in k8s API Server.
 
@@ -71,11 +71,9 @@ kubectl rollout undo deploy <deployname>         # rollback to the previous revi
 kubectl rollout undo deploy <deployname>  --revision=2     # rollback to a specific revision
 kubectl rollout pause deploy <deployname>        # pause a Deployment before triggering one or more updates
 kubectl rollout resume deploy <deployname>       
-===========================================================================================================================
-
-
-DaemonSet:
-
+```
+### DaemonSet
+```
 create a manifest file with Kind ReplicaSet & use kubectl to create the object in k8s API Server.
 
 kubectl create -f ds-ex1.yml --record      # create daemonset
@@ -92,11 +90,9 @@ kubectl describe ds <myds>                # inspect the daemonset
 kubectl label ds <myds> key=value         # label the daemonset
 kubectl expose ds <myds> --port=<external> --target-port=<internal> # expose rc as service & assign port on the cluster
 kubectl delete ds <myds>                  # delete daemonset & pod under it
-
-=============================================================================================================================
-
-Jobs:
-
+```
+### Jobs
+```
 create a manifest file with Kind ReplicaSet & use kubectl to create the object in k8s API Server.
 
 kubectl create -f job-ex1.yml --record      # create job
@@ -112,11 +108,9 @@ kubectl get jobs myjob -o yaml                # detailed object config
 kubectl describe job <myjob>                # inspect the job
 kubectl label job <myjob> key=value         # label the job
 kubectl delete job <myjob>                  # delete job & pod under it
-
-==============================================================================================================================
-
-Cron Jobs:
-
+```
+### Cron Jobs
+```
 create a manifest file with Kind ReplicaSet & use kubectl to create the object in k8s API Server.
 
 kubectl create -f cronjob-ex1.yml --record      # create cronjob
@@ -132,5 +126,4 @@ kubectl get cj mycj -o yaml                # detailed object config
 kubectl describe cj <mycj>                # inspect the cronjob
 kubectl label cj <mycj> key=value         # label the cronjob
 kubectl delete cj <mycj>                  # delete cronjob & pod under it
-
-==============================================================================================================================
+```
