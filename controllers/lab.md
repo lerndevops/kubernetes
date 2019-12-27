@@ -45,7 +45,7 @@ kubectl expose rs <rsname> --port=<external> --type=NodePort # expose rs as serv
 kubectl delete rs <rsname>                  # delete rs & pod under it
 ```
 ### Deployments
-
+```
 create a manifest file with Kind ReplicaSet & use kubectl to create the object in k8s API Server.
 
 kubectl create -f deployment-ex1.yml --record      # create deployment
