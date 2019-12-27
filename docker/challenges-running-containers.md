@@ -7,14 +7,19 @@
 ```
 
 > While application portability (i.e. being able to run the same application on any Linux host) is still the leading driver for the adoption of Linux Containers, another key advantage is being able to optimize server utilization so that you can use every bit of compute. 
+
 > In DEV/TEST environments, which typically represent the majority of compute resource consumption in an organization, optimizing server utilization can lead to significant cost savings.
 
 ### This all sounds good on paper -- but DevOps engineers and infrastructure operators still struggle with the following questions:
 
 > How can I group servers across different clouds into clusters that map to business groups, development teams, or application projects?
+
 > How do I monitor these clusters and get insight into the resource consumption by different groups or users?
+
 > How do I set up networking across servers in a cluster so that containers across multiple hosts can communicate with each other?
+
 > How do I define my own capacity-based placement policy so that I can use every bit of compute in a cluster?
+
 > How can I automatically scale out the cluster to meet the demands of the developers for new container-based application deployments?
 
 ### Once the application is deployed, there are several requirements for managing them in production?
