@@ -11,7 +11,7 @@
 ##### In DEV/TEST environments, which typically represent the majority of compute resource consumption in an organization, optimizing server utilization can lead to significant cost savings.
 
 
-### This all sounds good on paper -- but DevOps Engineers and Infrastructure operators still struggle with Some Questions as below
+### DevOps Engineers and Infrastructure operators still struggle with Some Questions as below
 
 > **How can I group servers across different clouds OR in a datacenter into clusters that map to business groups, development teams, or application projects ?**
 
