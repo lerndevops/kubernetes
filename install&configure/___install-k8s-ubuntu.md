@@ -7,8 +7,7 @@
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 	sudo apt-get update ; clear
-	apt-cache madison docker-ce | awk '{print $3}'
-	sudo apt-get install -y docker-ce=<version you want to install>
+	sudo apt-get install -y docker-ce
 	sudo service docker start ; clear
 
 	echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
