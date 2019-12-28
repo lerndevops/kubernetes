@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: static-tomcat-pod
+spec:
+  containers:
+  - name: tomcat
+    image: tomcat
+    ports:
+     - containerPort: 8080
