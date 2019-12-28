@@ -1,20 +1,38 @@
 ## Kubernetes Object / Resources 
 
-#### Anything we create in kubernetes is called as an Object OR a Resource
+#### Anything we create in kubernetes is called as Object
 ```
 		ex: pod,replicaset,deployment,service etc..
 ```
-#### Kubernetes API Server provides various APIs ( also called API Versions ) and resource types which we can create in kubernetes cluster. 
+#### Kubernetes API Server provides various APIs ( also called API Versions ) and resource types which we can create in kubernetes cluster
+
+#### The API server implements a RESTful API over HTTP, performs all API operations, and is responsible for storing API objects into a persistent storage backend
+
+#### API request must include that information as JSON in the request body. Most often, we provide the information to kubectl in a .yaml file. kubectl converts the information to JSON when making the API request.
+
+#### Required Fields in a manifest file (".yaml")
+```
+In the .yaml file for the Kubernetes object you want to create, you’ll need to set values for the following fields:
+
+    apiVersion - Which version of the Kubernetes API you’re using to create this object
+    kind - What kind of object you want to create
+    metadata - Data that helps uniquely identify the object, including a name string, UID, and optional namespace
+    spec - What state you desire for the object
+```
+
+#### Every resource is an endpoint in the Kubernetes API that stores a collection of API objects of a certain kind, we should use them appropriatly while creating any resource in kubernetes.
+
 ```
 		kubectl api-versions   ## to list all APIs available 
-		kubectl api-resources  ## to see what KIND of resources/objects can be created in kubernetes
+		kubectl api-resources  ## to see what KIND of resources can be created in kubernetes
 ```
-#### Every Object/Resource has an apiVersion & Kind associated with it, we should use them appropriatly while creating any object/resource in kubernetes.
 
-#### To create pod object/resource, we can use as below in manifest file.  
+#### To create pod resource, we can use as below in manifest file.  
 ```
 		ex: apiVersion: v1
-			Kind: Pod
+		    Kind: Pod
+		    metadata:
+		    spec:
 ```
 #### detailed information about an object / a resource 
 ```
