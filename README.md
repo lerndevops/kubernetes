@@ -5,9 +5,9 @@
 
 > Container orchestration’s market has been rapidly evolving over the past couple of years, and there are now over a dozen mature container orchestration platforms available. However, Kubernetes is increasingly the first choice among container users. For example, Datadog reports Kubernetes usage rising from 22.5% in October 2017 to 32.5% in October 2018.
 
-> Does this mean that Kubernetes is the only game in town as of 2019? We want to answer this question in this article by looking into key pros and cons of the platform.
+> Does this mean that Kubernetes is the only game in town as of 2019? 
 
-> The article is organized as follows. First, we discuss Kubernetes architecture and key features, and then we focus on major advantages and disadvantages of the platform. Let’s get started!
+> Below. First, we discuss Kubernetes architecture and key features, and then we focus on major advantages and disadvantages of the platform. Let’s get started!
 
 
 ## What Is Kubernetes?
@@ -16,11 +16,11 @@
 
 > Kubernetes (K8s in short) is an open-source container orchestration platform introduced by Google in 2014. It is a successor of Borg, Google’s in-house orchestration system that accumulated over a decade of the tech giant’s experience of running large enterprise workloads in production. In 2014, Google decided to further container ecosystem by sharing Kubernetes with the cloud native community. Kubernetes became the first graduated project of the newly created Cloud Native Community Foundation (CNCF), an organization conceived by Google and the Linux Foundation as the main driver of the emerging cloud native movement.
 
-### So, what’s the deal with Kubernetes anyway?
+### So, what’s the deal with Kubernetes ?
 
 > The platform’s main purpose is to automate deployment and management (e.g., update, scaling, security, networking) of containerized application in large distributed computer clusters. To this end, the platform offers a number of API primitives, deployment options, networking, container and storage interfaces, built-in security, and other useful features.
 
-#### To make it sound less complicated, here’s what a basic process of running applications in Kubernetes looks like.
+#### Here’s what a basic process of running applications in Kubernetes looks like.
 
 > First, you package your application with all its dependencies into a Linux container (for example, with Docker).
 
