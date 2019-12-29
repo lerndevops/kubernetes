@@ -1,4 +1,4 @@
-## Session 1
+## Session 1 & 2
 	why containers ? 
 	what is docker ? 
 	what is kubernetes ?
@@ -10,9 +10,8 @@
 	introcution to pods
 	single & multi container pods
 	init containers
-	readiness & liveliness probes
 	
-## Session 2
+## Session 3
 ### Controllers & Services 
 	introcution to controllers
 		replication Controllers
@@ -29,17 +28,8 @@
 		NodePort
 		LoadBalancer
 		ExternalName
-	
-## Session 3
-### Networking
+	readiness & liveliness probes
 
-	Ingress in k8s 
-	Kubernetes Networking 
-	POD networking 
-	pod-scheduling
-	Resource QoS
-	
-		
 ## Session 4
 
 ### persistent storage in kubernetes
@@ -49,20 +39,30 @@
 	storage class
 	secrets & configmaps
 	
-### Running multiple Schedulers
+### Networking
+ 
+	Kubernetes Networking 
+	POD networking 
+	pod-scheduling
+	Resource QoS
+
+
 
 ## Session 5
 
-### Security in kubernetes
+### Ingress in k8s
 
+### Security in kubernetes
 	kubernetes certs 
 	Authentication & authorization 
 	kubernetes security premitives
 	Network policies 
 	Role based Access Control
 	Security Context
-
+	
 ## Session 6
+
+        Running multiple Schedulers
 	Helm
 	Managing ETCD CLuster 
 	statefull sets
