@@ -184,7 +184,7 @@
 
 > Moreover, it’s not just about Kubernetes. It’s about the entire cloud-native ecosystem. Learners should develop skills in a variety of subjects such as networking, cloud computing, distributed applications, distributed logging, services meshes, and many more. Therefore, if you want to get up and running with container orchestration pretty fast, Kubernetes may not be the best option for you.
 
-> However, if you decided to learn Kubernetes or to train your team, the end goal is realistic. There are a number of training courses offered by reputable Kubernetes service providers. For example, Supergiant.io offers training courses for foundational, intermediary, and advanced levels. You can learn more about them here.
+> However, if you decided to learn Kubernetes or to train your team, the end goal is realistic. There are a number of training courses offered by reputable Kubernetes service providers. there are training courses for foundational, intermediary, and advanced levels. You can learn more about them one after the other.
 
 ### Hard to Install and Configure Manually
 > Kubernetes consists of multiple components that should be configured and installed separately to initialize the cluster. If you install Kubernetes manually, you should also configure security, which includes creating a certificate authority and issuing certificates. There are other important pre-installation and post-installation tasks, such as:
