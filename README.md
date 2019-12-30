@@ -1,4 +1,4 @@
-## Containers
+## <code> Containers </code>
 > Containerization is rapidly becoming a standard for managing applications in large production environments. As reported by Datadog, half of the companies that run over 1,000 hosts have already adopted containers.
 
 > To run containers efficiently, more companies are increasingly using container orchestration. According to a CNCF survey, over 80% of companies running containers also used container orchestration at the end of 2018. This is up from 45% reported by the New Stack survey in 2016.
