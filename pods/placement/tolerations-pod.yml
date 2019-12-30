@@ -14,7 +14,7 @@ spec:
 #    effect: "NoExecute"
    - key: env
      operator: "Equal"
-     value: prod
+     value: prod 
      effect: "NoSchedule"
 
 

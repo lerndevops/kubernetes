@@ -3,11 +3,11 @@ kind: Pod
 metadata:
   name: nginx
 spec:
-#  nodeName: kube-node
+# nodeName: node1
   containers:
   - name: nginx
     image: nginx
     ports:
       - containerPort: 80
   nodeSelector:
-    env: prod
+    role: web
