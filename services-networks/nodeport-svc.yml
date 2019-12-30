@@ -8,14 +8,14 @@ spec:
     app: MyApp
   ports:
    - protocol: TCP
-     port: 8080
-     targetPort: 8080
+     port: 80
+     targetPort: 80
 
 ---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginxpod
+  name: nginx-pod
   labels:
     app: MyApp
 spec:
@@ -29,12 +29,12 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: tomcatpod
+  name: httpd-pod
   labels:
     app: MyApp
 spec:
   containers:
-   - name: tomcatpodcont
-     image: tomcat
+   - name: httpd-pod-cont
+     image: httpd
      ports:
-      - containerPort: 8080
+      - containerPort: 80
