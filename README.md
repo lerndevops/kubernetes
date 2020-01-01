@@ -12,8 +12,6 @@
 
 ## What Is Kubernetes?
 
-> If you are new to the Supergiant blog, this might be the first time you’ve heard about Kubernetes. Below is our short non-technical introduction to the platform. For the in-depth review, please consult the official docs.
-
 > Kubernetes (K8s in short) is an open-source container orchestration platform introduced by Google in 2014. It is a successor of Borg, Google’s in-house orchestration system that accumulated over a decade of the tech giant’s experience of running large enterprise workloads in production. In 2014, Google decided to further container ecosystem by sharing Kubernetes with the cloud native community. Kubernetes became the first graduated project of the newly created Cloud Native Community Foundation (CNCF), an organization conceived by Google and the Linux Foundation as the main driver of the emerging cloud native movement.
 
 ### So, what’s the deal with Kubernetes ?
