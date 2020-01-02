@@ -29,5 +29,6 @@
 > container runtime is Docker, but there are other container runtimes in the ecosystem, such as rkt, containerd, and lxd
 
 
-## Kubectl 
+## Kube CLI
+### kubectl
 > Kubernetes objects can be created, updated, and deleted by using the kubectl command-line tool along with an object configuration file written in YAML or JSON.
