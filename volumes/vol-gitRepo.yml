@@ -20,4 +20,4 @@ spec:
       gitRepo:
         repository: https://github.com/lerndevops/nginx.git
         revision: master
-#        directory: .
+        directory: .
