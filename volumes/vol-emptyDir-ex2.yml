@@ -12,10 +12,10 @@ spec:
     - mountPath: /demo1
       name: demo-volume
 
-  - image: alpine
+  - image: ubuntu  
     imagePullPolicy: IfNotPresent
     name: myvolumes-container-2
-    command: ['sh', '-c', 'echo The Bench Container 2 is Running ; sleep 3600']
+    command: ['/bin/bash', '-c', 'echo The Bench Container 2 is Running ; sleep 3600']
     volumeMounts:
     - mountPath: /demo2
       name: demo-volume
@@ -27,7 +27,6 @@ spec:
     volumeMounts:
     - mountPath: /demo3
       name: demo-volume
-	  
   volumes:
   - name: demo-volume
     emptyDir: {}
