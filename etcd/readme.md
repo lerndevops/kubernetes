@@ -1,16 +1,12 @@
 ## Install etcdctl: 
 
-`
+```
    export RELEASE="3.3.13"
-   
    wget https://github.com/etcd-io/etcd/releases/download/v${RELEASE}/etcd-v${RELEASE}-linux-amd64.tar.gz
-   
    tar xvf etcd-v${RELEASE}-linux-amd64.tar.gz
-   
    cd etcd-v${RELEASE}-linux-amd64
-   
    sudo mv etcdctl /usr/local/bin
-`
+````
 ## ETCD Operations 
 
 `kubectl -n kube-system get pods` 
@@ -31,14 +27,14 @@
 
 `ETCDCTL_API=3 etcdctl --endpoints=192.168.198.147:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key watch /naresh`
 
-`
+```
 etcdctl mk     /path/newkey some-data       # Create key
 etcdctl set    /path/newkey some-data       # Create or update key
 etcdctl update /path/key new-data           # Update key
 etcdctl put    /path/key new-data
 etcdctl rm     /path/key
 etcdctl rm     /path --recursive
-`
+```
 
 ## etcd snapshot explanation
 
