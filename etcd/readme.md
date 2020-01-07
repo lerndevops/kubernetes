@@ -10,7 +10,9 @@
 ## ETCD Operations 
 
 `kubectl -n kube-system get pods` 
+
 `kubectl -n kube-system get pod etcd-kube-master -o yaml`
+
 `kubectl -n kube-system exec -it etcd-kube-master -- sh`
 
 `netstat -anp | grep 2379`
