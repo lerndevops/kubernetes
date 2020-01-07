@@ -41,14 +41,14 @@ etcdctl rm     /path --recursive
 > the idea is to create a snapshot of the etcd database. This is done by communicating with the running etcd instance in Kubernetes and asking it to create a snapshot. 
 > in order to communicate with the etcd pod in Kubernetes, we need to:
 
-`
+```
 	Use the host network in order to access 127.0.0.1:2379, where etcd is exposed (--network host)
 	Specify the correct etcd API version as environment variable (--env ETCDCTL_API=3)
 	The actual command for creating a snapshot (etcdctl snapshot save /backup/etcd-snapshot-latest.db)
 		Some flags for the etcdctl command
 		Specify where to connect to (--endpoints=https://127.0.0.1:2379)
 		Specify certificates to use (--cacert=..., --cert=..., --key=...)
-`	
+```	
 
 ## backup ETCD Data:
 
