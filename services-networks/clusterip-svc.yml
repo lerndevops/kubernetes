@@ -1,40 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydeployment
+  labels:
+    app: myapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp-cont
+        image: lerndevops/samplepyapp:v1
+        ports:
+        - containerPort: 3000
+
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service
+  name: myservice
 spec:
   type: ClusterIP  ## this is default if we do not type in service definition
   selector:
-    app: MyApp
+    app: myapp
   ports:
    - protocol: TCP
-     port: 8080
-     targetPort: 8080
+     port: 3000 
 
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginxpod
-  labels:
-    app: MyApp
-spec:
-  containers:
-   - name: nginxpodcont
-     image: nginx
-     ports:
-      - containerPort: 80
-
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: tomcatpod
-  labels:
-    app: MyApp
-spec:
-  containers:
-   - name: tomcatpodcont
-     image: tomcat
-     ports:
-      - containerPort: 8080
