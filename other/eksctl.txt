@@ -1,0 +1,120 @@
+Create IAM role which includes SSM policy AmazonSSMManagedInstanceCore and give permissions - EKS, EC2 Full Access and Cloudformation Full Access, IAM Full Access
+
+Create ubuntu 18.04 instance and attach the policy
+
+ 
+
+Go to AWS SSM and select session manager and start a session to the instance and run following commands:
+
+sudo su -
+apt-get update
+apt-get install -y python3-pip
+pip3 install --user awscli
+# pip3 install --upgrade --user awscli
+
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv /tmp/eksctl /usr/local/bin
+sudo apt-get install -y apt-transport-https
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list
+apt-get update
+apt-get install -y kubectl
+
+kubectl version --short --client
+
+mkdir eksctl && cd eksctl
+vi eksctl.yaml
+Insert the following config into eksctl.yaml:
+
+	apiVersion: eksctl.io/v1alpha5
+	kind: ClusterConfig
+	metadata:
+		name: paoc-test-cluster
+		region: eu-west-2
+	vpc:
+		id: "vpc-0553de1d6bd06aa20" # (optional, must match VPC ID used for each subnet below)
+    subnets:
+    # must provide 'private' and/or 'public' subnets by availibility zone as shown
+        private:
+            eu-west-2a:
+                id: "subnet-04cd6a5024419dd93"
+            eu-west-2b:
+                id: "subnet-09b2557b2945b17ed"
+            eu-west-2c:
+                id: "subnet-0a45266d1c4316814"
+nodeGroups:
+    - name: ng-1
+      instanceType: t2.small
+      desiredCapacity: 3
+      privateNetworking: true # if only 'Private' subnets are given, this must be enabled
+      ssh:
+          publicKeyName: sandpit-key
+
+Second Node group in Cluster:
+	apiVersion: eksctl.io/v1alpha5
+	kind: ClusterConfig
+	metadata:
+		name: paoc-test-cluster
+		region: eu-west-2
+	vpc:
+		id: "vpc-0553de1d6bd06aa20" # (optional, must match VPC ID used for each subnet below)
+    subnets:
+    # must provide 'private' and/or 'public' subnets by availibility zone as shown
+        private:
+            eu-west-2a:
+                id: "subnet-04cd6a5024419dd93"
+            eu-west-2b:
+                id: "subnet-09b2557b2945b17ed"
+            eu-west-2c:
+                id: "subnet-0a45266d1c4316814"
+	nodeGroups:
+    - name: ng-1
+      instanceType: t2.small
+      desiredCapacity: 3
+      privateNetworking: true # if only 'Private' subnets are given, this must be enabled
+      ssh:
+          publicKeyName: sandpit-key
+    - name: ng-mixed
+      minSize: 3
+      maxSize: 5
+      privateNetworking: true # if only 'Private' subnets are given, this must be enabled
+      instancesDistribution:
+          maxPrice: 0.2
+          instanceTypes: ["t2.small", "t3.small"]
+          onDemandBaseCapacity: 0
+          onDemandPercentageAboveBaseCapacity: 50
+      ssh:
+          publicKeyName: sandpit-key     
+ 
+
+To create the cluster run:
+time eksctl create cluster -f eksctl.yaml
+
+Commands to query the cluster:
+
+	eksctl get cluster --region eu-west-2
+	eksctl get nodegroup --cluster paoc-test-cluster --region eu-west-2
+	Scale the cluster:
+		eksctl scale nodegroup --cluster=paoc-test-cluster --nodes=6 --name=ng-1 --region eu-west-2
+	Create Node Group Only (if added a new node group to yaml):
+
+	eksctl create nodegroup --config-file=eksctl.yaml --include='ng-mixed'
+	Delete Node Group Only (if added a new node group to yaml):
+	eksctl delete nodegroup --config-file=eksctl.yaml --include='ng-mixed' --approve
+	Test a deployment:
+
+ 
+
+Follow steps here: https://github.com/kubernetes/kubernetes/issues/29298#issuecomment-274400650 to ensure that the subnets are tagged appropriately:
+
+ 
+
+kubectl run --generator=run-pod/v1 helloworld --image=k8s.gcr.io/echoserver:1.8 --port=8080
+kubectl get pods
+kubectl expose pod helloworld --type=LoadBalancer --target-port=8080 --port=8443
+kubectl annotate svc helloworld service.beta.kubernetes.io/aws-load-balancer-internal=0.0.0.0/0
+kubectl annotate svc helloworld service.beta.kubernetes.io/aws-load-balancer-connection-draining-enabled="true"
+kubectl annotate svc helloworld service.beta.kubernetes.io/aws-load-balancer-connection-draining-timeout="60"
+kubectl get events
+kubectl get svc
+kubectl describe svc helloworld
