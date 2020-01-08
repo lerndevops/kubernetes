@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+# This role binding allows "testuser" to read pods in the "kube-system" namespace.
+kind: RoleBinding
+metadata:
+  name: readonly-binding
+  namespace: kube-system
+subjects:
+- kind: ServiceAccount 
+  name: testuser # Name is case sensitive
+  namespace: kube-system
+roleRef:
+  kind: Role #this must be Role or ClusterRole
+  name: readonly-role # this must match the name of the Role or ClusterRole you wish to bind to
+  apiGroup: rbac.authorization.k8s.io
