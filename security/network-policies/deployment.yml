@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: alpine 
+   labels:
+     tier: frontend
+spec:
+  replicas: 2
+  selector:
+     matchLabels:
+        tier: frontend
+  template:
+    metadata:
+       name: alpine-pod
+       labels: 
+         tier: frontend
+    spec:
+      containers:
+       - name: cont1
+         image: alpine
+         command: ['/bin/sh', '-c', 'sleep 3600']
