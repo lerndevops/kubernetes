@@ -35,7 +35,7 @@ cd certs
 
 * Create a certificate sign request `prod-user.csr` using the private key we just created (prod-user.key in this example). Make sure you specify your username and group in the -subj section (CN is for the username and O for the group).
 
-   `openssl req -new -key prod-user.key -out prod-user.csr -subj "/CN=prod-user/O=devops"
+   `openssl req -new -key prod-user.key -out prod-user.csr -subj "/CN=prod-user/O=devops"`
    
 * Locate Kubernetes cluster certificate authority (CA). This will be responsible for approving the request and generating the necessary certificate to access the cluster API. Its location is normally /etc/kubernetes/pki/ca.crt
 
@@ -56,19 +56,19 @@ cd certs
 
 ### Setp4: Create kubeconfig file for the prod-user
 
-* Add cluster details to configuration file
+* ***Add cluster details to configuration file:***
  
- `kubectl config --kubeconfig=prod-user.conf set-cluster production --server=https://192.168.198.147:6443 --certificate-authority=/etc/kubernetes/pki/ca.crt`
+  `kubectl config --kubeconfig=prod-user.conf set-cluster production --server=https://192.168.198.147:6443 --certificate-authority=/etc/kubernetes/pki/ca.crt`
 
-* Add user details to your configuration file:
+* ***Add user details to your configuration file:***
  
- `kubectl config --kubeconfig=prod-user.conf set-credentials prod-user --client-certificate=/home/prod-user/certs/prod-user.crt --client-key=/home/prod-user/certs/prod-user.key`
+  `kubectl config --kubeconfig=prod-user.conf set-credentials prod-user --client-certificate=/home/prod-user/certs/prod-user.crt --client-key=/home/prod-user/certs/prod-user.key`
 
-* Add context details to your configuration file:
+* ***Add context details to your configuration file:***
  
- `kubectl config --kubeconfig=prod-user.conf set-context prod --cluster=production --namespace=prod --user=prod-user`
+  `kubectl config --kubeconfig=prod-user.conf set-context prod --cluster=production --namespace=prod --user=prod-user`
 
-* validate Aceess to API Server
+* ***validate Aceess to API Server:***
 
   `kubectl --kubeconfig certs/prod-user.conf --context=prod version --short`
 
@@ -77,5 +77,3 @@ cd certs
 	Client Version: v1.17.0
 	Server Version: v1.17.0
   ```
-
-
