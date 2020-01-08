@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: runasuser-pod
+spec:
+  containers:
+  - name: cont1
+    image: ubuntu
+    command: ["/bin/sleep", "1800"]
+    securityContext:
+      runAsUser: 405

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: centos-nonroot
+spec:
+  containers:
+  - name: cont
+    image: centos
+    command: ["/bin/sleep", "999999"]
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: 405
