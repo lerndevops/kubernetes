@@ -80,6 +80,12 @@ spec:
    
    ## label the second pod with app=web
    kubectl lebel pods alpine-66f845d86-s2s97 app=web
+   
+   root@kube-master:/home/educka/security# kubectl get pods --show-labels
+   NAME                     READY   STATUS    RESTARTS   AGE   LABELS
+   alpine-66f845d86-kcjwl   1/1     Running   0          29m   app=db,tier=frontend
+   alpine-66f845d86-s2s97   1/1     Running   0          29m   app=web,tier=frontend
+
    ```
 
    ***as per the network policy, we set ingress rule on app=db labeled pods shold accept the traffic only from the pods which have lables app=web***
