@@ -77,3 +77,51 @@ cd certs
 	Client Version: v1.17.0
 	Server Version: v1.17.0
   ```
+
+## Providing the Authorization to prod-user
+
+### define a Role/ClusterRole -- what can be done 
+
+```
+	apiVersion: rbac.authorization.k8s.io/v1
+	kind: Role
+	metadata:
+	namespace: prod
+	name: prod-user-role
+	rules:
+	- apiGroups: ["*"] # "" indicates the core API group
+	resources: ["pods","deployments", "replicasets"]
+	verbs: ["get", "list", "watch", "create", "update"]
+``` 
+
+### define a rolebinding/clusterrolebinding ( bind role to a user, gives the user set of permmissions )
+
+```
+	apiVersion: rbac.authorization.k8s.io/v1
+	# This role binding allows "testuser" to read pods in the "kube-system" namespace.
+	kind: RoleBinding
+	metadata:
+	name: prod-user-rolebinding
+	namespace: prod
+	subjects:
+	- kind: User
+	  name: prod-user # Name is case sensitive
+	 apiGroup: ""
+	roleRef:
+	kind: Role #this must be Role or ClusterRole
+	name: prod-user-role # this must match the name of the Role or ClusterRole you wish to bind to
+	apiGroup: rbac.authorization.k8s.io
+```
+
+## validate able to list deployments, pods replicasets 
+
+```
+root@kube-master:/home/prod-user# kubectl --kubeconfig prod-user.conf get deploy
+NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+nginx                     1/1     1            1           3d19h
+```
+```
+root@kube-master:/home/prod-user/# kubectl --kubeconfig prod-user.conf get rs
+NAME                                 DESIRED   CURRENT   READY   AGE
+nginx-778676476b                     1         1         1       3d19h
+
