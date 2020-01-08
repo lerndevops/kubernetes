@@ -67,13 +67,17 @@ cd certs
 * ***Add context details to your configuration file:***
  
   `kubectl config --kubeconfig=prod-user.conf set-context prod --cluster=production --namespace=prod --user=prod-user`
+  
+* ***Set prod context for use:***
 
+  `kubectl config --kubeconfig=prod-user.conf use-context prod`
+  
 * ***validate Aceess to API Server:***
 
-  `kubectl --kubeconfig certs/prod-user.conf --context=prod version --short`
+  `kubectl --kubeconfig certs/prod-user.conf version --short`
 
   ``` 
-  root@kube-master:/home/prod-user# kubectl --kubeconfig certs/prod-user.conf --context=prod version --short
+  root@kube-master:/home/prod-user# kubectl --kubeconfig certs/prod-user.conf version --short
 	Client Version: v1.17.0
 	Server Version: v1.17.0
   ```
