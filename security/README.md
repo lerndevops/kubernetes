@@ -79,7 +79,7 @@ that the **Common Name (CN)** field is set correctly as **system:kube-\<COMPONEN
 
 ## Deafult User Facing Roles 
 
-|***Default ClusterRole*** | *** Default ClusterRoleBinding*** | ***Description*** |
+|***Default ClusterRole*** | ***Default ClusterRoleBinding*** | ***Description*** |
 |--------------------------|-----------------------------------|-------------------|
 | cluster-admin | system:masters group	| Allows super-user access to perform any action on any resource. When used in a ClusterRoleBinding, it gives full control over every resource in the cluster and in all namespaces. When used in a RoleBinding, it gives full control over every resource in the rolebinding's namespace, including the namespace itself.|
 | admin | None | Allows admin access, intended to be granted within a namespace using a RoleBinding. If used in a RoleBinding, allows read/write access to most resources in a namespace, including the ability to create roles and rolebindings within the namespace. It does not allow write access to resource quota or to the namespace itself.|
