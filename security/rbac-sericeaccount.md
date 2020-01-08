@@ -86,7 +86,7 @@ users:
 apiVersion: v1
 kind: Config
 clusters:
-- name: default-cluster
+- name: kube-cluster
   cluster:
     certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc
 0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJd01ERXdOREV4TWprME1Wb1hEVE13TURFd01URXhNamswTVZvd0ZURVRNQkVHQTFVRQ
@@ -102,12 +102,12 @@ h4bWhvTVlPd2tSQWRSYU95YmlHdTREcCsxRjFQR0Y4cjNFMU1ZaFRPamVIZW92dzNzVWd5cwpEQWRoSk
 3TThJc01oL2E3SldIdUg0bnE0QjM3dz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
     server: https://192.168.198.147:6443
 contexts:
-- name: default-context
+- name: dev
   context:
-    cluster: default-cluster
+    cluster: kube-cluster
     namespace: kube-system
     user: testuser
-current-context: default-context
+current-context: dev
 users:
 - name: testuser
   user:
