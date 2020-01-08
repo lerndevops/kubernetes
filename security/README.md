@@ -77,7 +77,14 @@ ernetes managed roles are -
 nal user for different components are created by Kubernetes itself. Its the certificate issuers responsibility to ensure
 that the **Common Name (CN)** field is set correctly as **system:kube-\<COMPONENT_NAME\>**.
 
+## Deafult User Facing Roles 
 
+|***Default ClusterRole*** | *** Default ClusterRoleBinding*** | ***Description*** |
+|--------------------------|-----------------------------------|-------------------|
+| cluster-admin | system:masters group	| Allows super-user access to perform any action on any resource. When used in a ClusterRoleBinding, it gives full control over every resource in the cluster and in all namespaces. When used in a RoleBinding, it gives full control over every resource in the rolebinding's namespace, including the namespace itself.|
+| admin | None | Allows admin access, intended to be granted within a namespace using a RoleBinding. If used in a RoleBinding, allows read/write access to most resources in a namespace, including the ability to create roles and rolebindings within the namespace. It does not allow write access to resource quota or to the namespace itself.|
+| edit | None | Allows read/write access to most objects in a namespace. It does not allow viewing or modifying roles or rolebindings. |
+| view | None | Allows read-only access to see most objects in a namespace. It does not allow viewing roles or rolebindings. It does not allow viewing secrets, since those are escalating. |
 
 # Overview of SSL/TLS certificates
 
