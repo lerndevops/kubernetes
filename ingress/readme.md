@@ -8,12 +8,15 @@
 ## Deploy three different Apps on k8s cluster
 
 `kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/ingress/app1.yml`
+
 `kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/ingress/app2.yml`
+
 `kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/ingress/app3.yml`
 
 ## Deploy Ingress Controller 
 
 `kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/ingress/nginx-ing-controller.yaml`
+
 `kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/ingress/service-nodeport.yaml`
 
 ## Deploy Ingress Rule
@@ -26,7 +29,7 @@
 get Ingress Controller Pod NodeIP & Ingress Controller Service NodePort
 
     kubectl get pods -n ingress-nginx -o wide  ## Note the Node IP in which the Ingress Controller Pod is Running
-	kubectl get svc -n ingress-nginx  ## Note the Ingress Servcie NodePort
+    kubectl get svc -n ingress-nginx  ## Note the Ingress Servcie NodePort
 ```
 
 ## validate 
