@@ -15,7 +15,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-    app: mywebapp
+      app: mywebapp
   serviceName: frontend
   replicas: 6
   template:
