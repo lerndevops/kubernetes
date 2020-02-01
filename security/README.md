@@ -1,135 +1,54 @@
-# Kubernetes Secutiry 
+# Kubernetes Security Best Practices
 
-## Controlling access to the Kubernetes API
+## Upgrade to the Latest Version
 
-> As Kubernetes is entirely API driven, controlling and limiting who can access the cluster and what actions they are allowed to perform is the first line of defense.
-
-### Use Transport Layer Security (TLS) for all API traffic
-
-> Kubernetes expects that all API communication in the cluster is encrypted by default with TLS, and the majority of installation methods will allow the necessary certificates to be created and distributed to the cluster components. 
+> New security features — and not just bug fixes — are added in every quarterly update, and to take advantage of them, we recommend you run the latest stable version. The very best thing to do is to run the latest release with its most recent patches, especially in light of the discovery of CVE-2018-1002105. Upgrades and support can become more difficult the farther behind you fall, so plan to upgrade at least once per quarter. Using a managed Kubernetes provider can make upgrades very easy.
 
 
-### API Authentication
+## Enable Role-Based Access Control (RBAC)
 
-> Choose an authentication mechanism for the API servers to use that matches the common access patterns when you install a cluster. For instance, small single user clusters may wish to use a simple certificate or static Bearer token approach. Larger clusters may wish to integrate an existing OIDC or LDAP server that allow users to be subdivided into groups.
+> Control who can access the Kubernetes API and what permissions they have with Role- Based Access Control (RBAC). RBAC is usually enabled by default in Kubernetes 1.6 and beyond (later for some managed providers), but if you have upgraded since then and haven’t changed your configuration, you’ll want to double-check your settings. Because of the way Kubernetes authorization controllers are combined, you must both enable RBAC and disable legacy Attribute-Based Access Control (ABAC).
 
-> All API clients must be authenticated, even those that are part of the infrastructure like nodes, proxies, the scheduler, and volume plugins. These clients are typically service accounts or use x509 client certificates, and they are created automatically at cluster startup or are setup as part of the cluster installation.
+> Once RBAC is being enforced, you still need to use it effectively. Cluster-wide permissions should generally be avoided in favor of namespace-specific permissions. Avoid giving anyone cluster admin privileges, even for debugging — it is much more secure to grant access only as needed on a case-by-case basis.
 
-[More Info about Authentication here](https://kubernetes.io/docs/reference/access-authn-authz/authentication/) 
+`You can explore the cluster roles and roles using `kubectl get clusterrolebinding` or `kubectl get rolebinding –all-namespaces`. Quickly check who is granted the special “cluster-admin” role; in this example, it’s just the “masters” group`
 
+> If your application needs access to the Kubernetes API, create service accounts individually and give them the smallest set of permissions needed at each use site. This is better than granting overly broad permissions to the default account for a namespace.
 
-### API Authorization
-
-> Once authenticated, every API call is also expected to pass an authorization check. Kubernetes ships an integrated ***Role-Based Access Control (RBAC)*** component that matches an incoming user or group to a set of permissions bundled into roles. 
-
-> These permissions combine verbs (get, create, delete) with resources (pods, services, nodes) and can be namespace or cluster scoped.
-
-[More Info about Authorization here](https://kubernetes.io/docs/reference/access-authn-authz/authorization/)
+`Most applications don’t need to access the API at all; `automountServiceAccountToken` can be set to “false” for these`
 
 
-##  Understanding RBAC - Role Based Access Control
+## Use Namespaces to Establish Security Boundaries
 
-> **RBAC** is the implementation of Identity and Access Management (Authorization) in Kubernetes. RBAC uses rbac.authoriz
-ation.k8s.io API to allow admins to dynamically configure policies through API server. Administrator can use RBAC api to
-grant granular roles to different users or resources. A **Role** represents a set of permissions that are applied to diff
-erent resources. RBAC defines 4 top-level types -
+> Creating separate namespaces is an important first level of isolation between components. We find it’s much easier to apply security controls such as Network Policies when different types of workloads are deployed in separate namespaces.
 
-*   **Role**
+## Separate Sensitive Workloads
 
-      A **Role** can be used to grant access to a resource within a single namespace
+> To limit the potential impact of a compromise, it’s best to run sensitive workloads on a dedicated set of machines. This approach reduces the risk of a sensitive application being accessed through a less-secure application that shares a container runtime or host. For example, a compromised node’s kubelet credentials can usually access the contents of secrets only if they are mounted into pods scheduled on that node — if important secrets are scheduled onto many nodes throughout the cluster, an adversary will have more opportunities to steal them.
 
-*   **ClusterRole**
+> You can achieve this separation using node pools (in the cloud or on-premises) and Kubernetes namespaces, taints, tolerations, and other controls.
 
-      A **ClusterRole** is similar to a **Role**, however, a ClusterRole extends across the cluster
+## Secure Cloud Metadata Access
 
-*   **RoleBinding**
+> Sensitive metadata, such as kubelet admin credentials, can sometimes be stolen or misused to escalate privileges in a cluster. For example, a recent Shopify bug bounty disclosure detailed how a user was able to escalate privileges by confusing a microservice into leaking information from the cloud provider’s metadata service. GKE’s metadata concealment feature changes the cluster deployment mechanism to avoid this exposure, and we recommend using it until it is replaced with a permanent solution. Similar countermeasures may be needed in other environments.
 
-      A **RoleBinding** grants permission defined in a **Role** to a **User** or a **Set of Users**
 
-*   **ClusterRoleBinding**
+## Create and Define Cluster Network Policies
 
-      A **ClusterRoleBinding** grants permission defined in a **ClusterRole** at cluster level across namespaces
+> Network Policies allow you to control network access into and out of your containerized applications. To use them, you‘ll need to make sure that you have a networking provider that supports this resource; with some managed Kubernetes providers such as Google Kubernetes Engine (GKE), you‘ll need to opt in. (Enabling network policies in GKE will require a brief rolling upgrade if your cluster already exists.) Once that’s in place, start with some basic default network policies, such as blocking traffic from other namespaces by default.
 
-##    Understanding Subjects
+## Run a Cluster-wide Pod Security Policy
 
-> A **RoleBinding** or **ClusterRoleBinding** will bind the permissions defined in a Role to ***Subjects***. A **Subject*
-* is either a single user or a group of users or ServiceAccounts.  Usernames can be any custom string like "alice", "bob"
-, "alice@example.com".
+> A Pod Security Policy sets defaults for how workloads are allowed to run in your cluster. Consider defining a policy and enabling the Pod Security Policy admission controller — instructions vary depending on your cloud provider or deployment model. As a start, you could require that deployments drop the NET_RAW capability to defeat certain classes of network spoofing attacks.
 
-> Kubernetes clusters have two kinds of Users.
+## Harden Node Security
 
-*     Normal Users
-*     Kubernetes Managed Service Accounts
+> You can follow these three steps to improve the security posture on your nodes:
 
-> A kubernetes managed subject has a special prefix - **system:**. Any username with the prefix **system:** is a kubernet
-es managed user and is maintained & created by api server or manually through api calls. It is your administrators respon
-sibility to ensure that no external user should be prefixed with **system:**. This may lead to system instability or cras
-hes. The **system:** prefix can be added to either a user , group, serviceaccount, Role, ClusterRole. Few examples of kub
-ernetes managed roles are -
+  * Ensure the host is secure and configured correctly. One way to do so is to check your configuration against CIS Benchmarks; many products feature an autochecker that will assess conformance with these standards automatically.
+  * Control network access to sensitive ports. Make sure that your network blocks access to ports used by kubelet, including 10250 and 10255. Consider limiting access to the Kubernetes API server except from trusted networks. Malicious users have abused access to these ports to run cryptocurrency miners in clusters that are not configured to require authentication and authorization on the kubelet API server.
+  * Minimize administrative access to Kubernetes nodes. Access to the nodes in your cluster should generally be restricted — debugging and other tasks can usually be handled without direct access to the node.
+  
+## Turn on Audit Logging
 
-*   system:kube-scheduler - Allows access to resources required by Scheduler
-*   system:kube-controller-manager - Allows access to resources required by controller manager
-*   system:kube-proxy - Allows access to the resources required by the kube-proxy
-
-> More information about RBAC is provided at - https://kubernetes.io/docs/reference/access-authn-authz/rbac/
-
-> While creating client certificates for kubernetes core componenets or admin user, its important to note that that inter
-nal user for different components are created by Kubernetes itself. Its the certificate issuers responsibility to ensure
-that the **Common Name (CN)** field is set correctly as **system:kube-\<COMPONENT_NAME\>**.
-
-## Deafult User Facing Roles 
-
-|***Default ClusterRole*** | ***Default ClusterRoleBinding*** | ***Description*** |
-|--------------------------|-----------------------------------|-------------------|
-| cluster-admin | system:masters group	| Allows super-user access to perform any action on any resource. When used in a ClusterRoleBinding, it gives full control over every resource in the cluster and in all namespaces. When used in a RoleBinding, it gives full control over every resource in the rolebinding's namespace, including the namespace itself.|
-| admin | None | Allows admin access, intended to be granted within a namespace using a RoleBinding. If used in a RoleBinding, allows read/write access to most resources in a namespace, including the ability to create roles and rolebindings within the namespace. It does not allow write access to resource quota or to the namespace itself.|
-| edit | None | Allows read/write access to most objects in a namespace. It does not allow viewing or modifying roles or rolebindings. |
-| view | None | Allows read-only access to see most objects in a namespace. It does not allow viewing roles or rolebindings. It does not allow viewing secrets, since those are escalating. |
-
-# Overview of SSL/TLS certificates
-
-##  What are SSL certificates ?
-
-> SSL certificate enables encrypted transfer of sensitive information between a client and a server. The purpose of encryption is to make sure that only the intended recipient will be able to view the information. SSL certificates are used to enable https connection between browser and websites.
-
-##  How to generate SSL certificates ?
-
-> There are multiple toolkits available in the market to create self signed SSL certificates. Most notable of them are - 
-
-*  openssl
-*  cfssl
-*  easyrsa 
-
-> **Self signed certificates** are useful when you want to enable SSL/TLS envryption for applications that run within your organization. These certificates are not recognized by browsers as the certificate is internal to your organization itself. In order to enable communication with any system outside your organization, you will have to set up MSSL/2 way SSL. 
-
-> There are multiple **third party SSL certificate providers** like Verisign, Symantec, Intouch, Comodo etc. Their Certificate public key is embedded with all major browsers like chrome, IE, safari, mozilla. This enables any external user to connect to your server using a secure HTTPS connection that is recognized by the browser.  
-
-#  Components of SSL certificate 
-
-##  Certificate Authority (CA)
-
-> **CA** are third party trusted entities that issues a **trusted SSL certificate**. Trusted certificate are used to create a secure connection (https) from browser/client to a server that accepts the incoming request. When you create a self-signed certificate for your organization, __**YOU**__ become the CA. 
-
-##  Private/Public key(CSR) & Certificate
-
-> SSL uses the concept of **private/public key pair** to authenticate, secure and manage connection between client and server. They work together to ensure TLS handshake takes place, creating a secure connection (https)
-
-> **Private key** creates your digital signature which will eventually be trusted by any client that tries to connect to your server. With help of private key, you generate a **CSR (certificate signing request)**. Private key is kept on the server and the security of the private key is the sole responsibility of your organization. The private key should never leave your organization. 
-
-> In contrast to private key, a **Public Key** can be distributed to multiple clients. Public Key or CSR is usually submitted to a CA like Comodo/Verisign/Entrust etc, and the CSR (formerly created by your private key) is then signed by the CA. This process generates a SSL/TLS certificate that can now be distributed to any client application. Since this certificate is signed by a trusted CA, your end users can now connect securely to your server (which contains the private key) using their browser. 
-
-> Some third party CA also takes care of generating the private/public key pair for you. This, sometimes, is a good option in case you lose your private key or your private key is compromised. The CA provider takes care of re-keying your certificate with a new private key, and the new private key is then handed over to you. 
-
-> When dealing with self signed certificate, its usually the organization that generates the root CA certificate and acts as the sole CA provider. Any subsequent CSR will be then signed by the root CA. This enables organizations to ensure TLS communication for applications which runs internal to them. 
-
-##  Steps to generate a self signed certificate 
-
-*     Choose a toolkit of your choice (openssl / easyrsa / cfssl ) -- We will use cfssl 
-*     Generate root CA private key 
-*     Generate a root certificate and self-sign it using the CA private key 
-*     Distribute the root CA certificate on ALL the machines who wants to trust you
-*     For each application/machine create a new private key 
-*     Use the private key to generate a public key (CSR)
-*     Ensure the Common Name Field (CN) is set accurately as per your IP address / service name or DNS
-*     Sign the CSR with root CA private key and root CA certificate to generate the client certificate
-*     Distribute the Client certificate to the corresponding application 
+> Make sure you have audit logs enabled and are monitoring them for anomalous or unwanted API calls, especially any authorization failures — these log entries will have a status message “Forbidden.” Authorization failures could mean that an attacker is trying to abuse stolen credentials. Managed Kubernetes providers, including GKE, provide access to this data in their cloud console and may allow you to set up alerts on authorization failures.
