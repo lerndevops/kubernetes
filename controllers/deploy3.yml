@@ -90,8 +90,9 @@ kubectl rollout history deployment kubeserve
 Roll back to a certain revision:
 
 kubectl rollout undo deployment kubeserve --to-revision=2
-Pause the rollout in the middle of a rolling update (canary release):
 
+Pause the rollout in the middle of a rolling update (canary release):
+edit yml file with image version 'v4'
 kubectl rollout pause deployment kubeserve
 Resume the rollout after the rolling update looks good:
 
