@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: inventory-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: inventory
+  policyTypes:
+  - Ingress
+  - Egress
+  egress:
+  - ports:
+    - port: 80
+      protocol: TCP
+    to:
+    - podSelector:
+        matchLabels:
+          inventory-access: "true"
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          inventory-access: "true"
+    ports:
+    - port: 80
+      protocol: TCP

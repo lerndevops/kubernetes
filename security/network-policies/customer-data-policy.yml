@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: customer-data-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: customer-data
+  policyTypes:
+  - Ingress
+  - Egress
+  egress:
+  - ports:
+    - port: 80
+      protocol: TCP
+    to:
+    - podSelector:
+        matchLabels:
+          customer-data-access: "true"
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          customer-data-access: "true"
+    ports:
+    - port: 80
+      protocol: TCP
+

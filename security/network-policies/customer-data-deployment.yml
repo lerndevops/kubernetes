@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-data-deployment
+  namespace: default
+spec:
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: customer-data
+  template:
+    metadata:
+      labels:
+        app: customer-data
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: nginx
+        image: nginx
+        imagePullPolicy: Always 
+        ports:
+        - containerPort: 80
+          protocol: TCP
+      
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: customer-data-svc
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: customer-data
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+
+
