@@ -1,4 +1,4 @@
-## Container-based applications brings many challenges to IT & DevOps teams mostly 
+## Container-based applications brings many challenges to IT & DevOps teams
 
 ### There are two types of challenges 
 ``` 
