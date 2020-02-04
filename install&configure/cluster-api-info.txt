@@ -7,5 +7,5 @@ kubectl api-resources -o name                # All resources with simple output 
 kubectl api-resources -o wide                # All resources with expanded (aka "wide") output
 kubectl api-resources --verbs=list,get       # All resources that support the "list" and "get" request verbs
 kubectl api-resources --api-group=extensions # All resources in the "extensions" API group
-
 kubectl api-versions                         # List api group
+kubectl explain resourcename .  # kubectl explain pod
