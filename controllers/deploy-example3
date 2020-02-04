@@ -68,7 +68,7 @@ kubectl get services — copy service IP
 
 Run this curl look while the update happens:
 
-while true; do curl http://serviceIP; done
+while true; do curl http://serviceIP; done    # Run this on Node -- DO NOT ON MASTER
 
 Open another window, Perform the rolling update:
 
@@ -91,9 +91,4 @@ Roll back to a certain revision:
 
 kubectl rollout undo deployment kubeserve --to-revision=2
 
-Pause the rollout in the middle of a rolling update (canary release):
-edit yml file with image version 'v4'
-kubectl rollout pause deployment kubeserve
-Resume the rollout after the rolling update looks good:
 
-kubectl rollout resume deployment kubeserve
