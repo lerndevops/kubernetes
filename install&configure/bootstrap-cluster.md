@@ -65,7 +65,7 @@ kubeadm token create "$token" --print-join-command --ttl=0
 
 ## Flannel pod network
 ```
-	sudo kubeadm init --apiserver-advertise-address=<master ip> --pod-network-cidr=10.244.0.0/16
+	sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 	
 	sudo mkdir -p $HOME/.kube
 	sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
