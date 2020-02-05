@@ -1,0 +1,8 @@
+apiVersion: crd.projectcalico.org/v1  # projectcalico.org/v3
+kind: IPPool
+metadata:
+  name: ippool-ipip-1
+spec:
+  cidr: 192.168.0.0/16
+  ipipMode: Always
+  natOutgoing: true
