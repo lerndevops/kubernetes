@@ -9,10 +9,8 @@ namespace/prod created
 ### Setp2: create a user prod-user
 
 ```
-useradd -m prod-user
-cd /home/prod-user
-mkdir certs
-cd certs
+mkdir -p /home/prod-user/certs
+cd /home/prod-user/certs
 ```
 
 ### Setp3: Create The User Credentials
