@@ -11,3 +11,6 @@ kube_namespace_status_phase
 kube_endpoint_info
 kube_deployment_status_replicas
 apiserver_request_total
+
+
+Import the dashboard: 6417
