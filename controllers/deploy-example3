@@ -18,7 +18,7 @@ spec:
         app: kubeserve
     spec:
       containers:
-      - image: linuxacademycontent/kubeserve:v1
+      - image: leaddevops/kubeserve:v1
         name: app
         
         
@@ -72,7 +72,7 @@ while true; do curl http://serviceIP; done    # Run this on Node -- DO NOT ON MA
 
 Open another window, Perform the rolling update:
 
-kubectl set image deployments/kubeserve app=linuxacademycontent/kubeserve:v2 --v 6
+kubectl set image deployments/kubeserve app=leaddevops/kubeserve:v2 --v 6
 
 Describe a certain ReplicaSet:
 
@@ -80,7 +80,7 @@ kubectl describe replicasets
 
 Apply the rolling update to version 3 (buggy):
 
-kubectl set image deployment kubeserve app=linuxacademycontent/kubeserve:v3
+kubectl set image deployment kubeserve app=leaddevops/kubeserve:v3
 Undo the rollout and roll back to the previous version:
 
 kubectl rollout undo deployments kubeserve
