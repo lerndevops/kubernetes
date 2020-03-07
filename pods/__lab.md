@@ -83,7 +83,6 @@ kubectl get pod <podname> -o json      # detailed manifest file from apiserver j
 ```
 kubectl describe pod <podname>              # detailed output about a pod in current namespace
 kubectl describe pod <podname> -n namespace # detailed output about a pod in current namespace
-kubectl describe pod <podname> -o wide      # detailed output about a pod wider output
 
 ```
 ### add / remove Lables for a POD
