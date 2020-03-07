@@ -76,14 +76,15 @@ kubectl get pods --selector="app=nginx"  # list pods which have selector key,val
 kubectl get pods -o='custom-columns=PODS:.metadata.name,Images:.spec.containers[*].image' #  list pods and images
 kubectl get pods -o='custom-columns=PODS:.metadata.name,CONTAINERS:.spec.containers[*].name' # List pods and containers
 kubectl get pods --sort-by='.status.containerStatuses[0].restartCount'   #List pods Sorted by Restart Count
+kubectl get pod <podname> -o yaml      # detailed manifest file from apiserver yaml format
+kubectl get pod <podname> -o json      # detailed manifest file from apiserver json format
 ```
 ### describe / inspect a POD
 ```
 kubectl describe pod <podname>              # detailed output about a pod in current namespace
 kubectl describe pod <podname> -n namespace # detailed output about a pod in current namespace
 kubectl describe pod <podname> -o wide      # detailed output about a pod wider output
-kubectl describe pod <podname> -o yaml      # detailed manifest file from apiserver yaml format
-kubectl describe pod <podname> -o json      # detailed manifest file from apiserver json format
+
 ```
 ### add / remove Lables for a POD
 ```
