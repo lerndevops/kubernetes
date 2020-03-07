@@ -37,3 +37,6 @@ kubectl describe nodes
 View detailed information about the pods:
 
 kubectl describe pods
+
+
+All Kube Commands: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-strong-getting-started-strong-
