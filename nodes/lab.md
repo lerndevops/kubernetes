@@ -16,8 +16,8 @@ kubectl taint nodes node1 key:NoSchedule-  # to remove the taint
 kubectl get node kube-node -o yaml   # view the node configuration yaml
 kubectl edit node kube-node          # edit & apply the node configuration 
 
-kubectl cordon kube-node             # Mark kube-node as unschedulable
-kubectl drain kube-node              # Drain kube-node in preparation for maintenance
+kubectl cordon kube-node             # Mark kube-node as unschedulable & doesn't disturb the existing workloads
+kubectl drain kube-node              # Drain kube-node in preparation for maintenance, removes all the pods from drained node
 kubectl drain kube-node --ignore-daemonsets --force  
 kubectl uncordon kube-node           # Mark kube-node as schedulable
 kubectl delete node kube-node        # remove node from cluster
