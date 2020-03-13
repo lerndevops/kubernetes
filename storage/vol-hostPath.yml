@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: hostpath-vol-pod
+  name: hostpath-vol-pod1
 spec:
   containers:
    - name: test-container
@@ -13,5 +13,5 @@ spec:
   volumes:
    - name: hostpath-volume
      hostPath:
-       path: /data      # directory location on host
+       path: /tmp/data      # directory location on host
        type: Directory  # this field is optional
