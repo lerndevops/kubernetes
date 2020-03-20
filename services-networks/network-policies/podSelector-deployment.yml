@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: webapp
+spec:
+  replicas: 2
+  selector:
+     matchLabels:
+        app: web
+  template:
+    metadata:
+       name: alpine
+       labels: 
+         app: web
+    spec:
+      containers:
+       - name: cont1
+         image: lerndevops/alpine:latest
+         command: ['/bin/sh', '-c', 'sleep 3600']
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: db
+spec:
+  replicas: 1
+  selector:
+     matchLabels:
+        app: db
+  template:
+    metadata:
+       name: netshoot
+       labels:
+         app: db
+    spec:
+      containers:
+       - name: cont1
+         image: nicolaka/netshoot
+         command: ['/bin/sh', '-c', 'sleep 3600']
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+   name: alpine
+   labels:
+     app: test
+spec:
+  containers:
+     - name: cont1
+       image: lerndevops/alpine:latest
+       command: ['/bin/sh', '-c', 'sleep 3600']

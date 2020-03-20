@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
    name: alpine 
    labels:
-     tier: frontend
+     app: test
 spec:
   replicas: 2
   selector:
      matchLabels:
-        tier: frontend
+        app: test
   template:
     metadata:
        name: alpine-pod
        labels: 
-         tier: frontend
+         app: test
     spec:
       containers:
        - name: cont1
-         image: alpine
+         image: lerndevops/alpine:latest
          command: ['/bin/sh', '-c', 'sleep 3600']

@@ -1,22 +1,29 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-headless
+  name: headless-svc
 spec:
   selector:
-    app: MyApp
+    app: myapp
   clusterIP: None
 
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: nginxpod
-  labels:
-    app: MyApp
+  name: headless-svc-demo
 spec:
-  containers:
-   - name: nginxpodcont
-     image: nginx
-     ports:
-      - containerPort: 80
+  replicas: 2
+  selector:
+    matchLabels:
+        app: myapp
+  template:
+    metadata:
+      name: headless-svc-demo
+      labels:
+        app: myapp
+    spec:
+      containers:
+       - name: alpine
+         image: nicolaka/netshoot
+         command: ["/bin/bash", "-c", "sleep 3600"]

@@ -2,17 +2,15 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mydeployment
-  labels:
-    app: myapp
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: myapp
+      app: myapp1
   template:
     metadata:
       labels:
-        app: myapp
+        app: myapp1
     spec:
       containers:
       - name: myapp-cont
@@ -24,11 +22,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: myservice
+  name: clusterip-svc-demo
 spec:
   type: ClusterIP  ## this is default if we do not type in service definition
   selector:
-    app: myapp
+    app: myapp1
   ports:
    - protocol: TCP
      port: 3000 
