@@ -60,10 +60,10 @@ etcdctl rm     /path --recursive
 
 ## restore ETCD Data:
 
-` ETCDCTL_API=3 etcdctl snapshot restore /etcd-backup/etcd-snapshot-latest.db \
+``` ETCDCTL_API=3 etcdctl snapshot restore /etcd-backup/etcd-snapshot-latest.db \
   --data-dir /var/lib/etcd \
   --name etcd-master \
   --initial-cluster "master-0.example.com=https://192.168.55.8:2380" \
   --initial-cluster-token "etcd-cluster-1" \
   --initial-advertise-peer-urls https://192.168.55.8:2380 \
-  --skip-hash-check=true`
+  --skip-hash-check=true ```
