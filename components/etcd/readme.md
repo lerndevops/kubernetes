@@ -7,37 +7,6 @@
    cd etcd-v${RELEASE}-linux-amd64
    sudo mv etcdctl /usr/local/bin
 ````
-## ETCD Operations 
-
-`kubectl -n kube-system get pods` 
-
-`kubectl -n kube-system get pod etcd-kube-master -o yaml`
-
-`kubectl -n kube-system exec -it etcd-kube-master -- sh`
-
-`netstat -anp | grep 2379`
-
-`ETCDCTL_API=3 etcdctl --endpoints=192.168.198.147:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key member list`
-
-`ETCDCTL_API=3 etcdctl --endpoints=192.168.198.147:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key get / --prefix --keys-only`
-
-`ETCDCTL_API=3 etcdctl --endpoints=192.168.198.147:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key get /registry/serviceaccounts/default/default`
-
-`ETCDCTL_API=3 etcdctl --endpoints=192.168.198.147:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key put /naresh/mykey myvalue`
-
-`ETCDCTL_API=3 etcdctl --endpoints=192.168.198.147:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key get /naresh --prefix --keys-only`
-
-`ETCDCTL_API=3 etcdctl --endpoints=192.168.198.147:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key watch /naresh`
-
-```
-etcdctl mk     /path/newkey some-data       # Create key
-etcdctl set    /path/newkey some-data       # Create or update key
-etcdctl update /path/key new-data           # Update key
-etcdctl put    /path/key new-data
-etcdctl rm     /path/key
-etcdctl rm     /path --recursive
-```
-
 ## etcd snapshot explanation
 
 > the idea is to create a snapshot of the etcd database. This is done by communicating with the running etcd instance in Kubernetes and asking it to create a snapshot. 
@@ -69,3 +38,34 @@ ETCDCTL_API=3 etcdctl snapshot restore /etcd-backup/etcd-snapshot-latest.db \
   --initial-advertise-peer-urls https://192.168.55.8:2380 \
   --skip-hash-check=true 
   ```
+
+# ETCD Operations 
+
+`kubectl -n kube-system get pods` 
+
+`kubectl -n kube-system get pod etcd-kube-master -o yaml`
+
+`kubectl -n kube-system exec -it etcd-kube-master -- sh`
+
+`netstat -anp | grep 2379`
+
+`ETCDCTL_API=3 etcdctl --endpoints=192.168.198.147:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key member list`
+
+`ETCDCTL_API=3 etcdctl --endpoints=192.168.198.147:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key get / --prefix --keys-only`
+
+`ETCDCTL_API=3 etcdctl --endpoints=192.168.198.147:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key get /registry/serviceaccounts/default/default`
+
+`ETCDCTL_API=3 etcdctl --endpoints=192.168.198.147:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key put /naresh/mykey myvalue`
+
+`ETCDCTL_API=3 etcdctl --endpoints=192.168.198.147:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key get /naresh --prefix --keys-only`
+
+`ETCDCTL_API=3 etcdctl --endpoints=192.168.198.147:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key watch /naresh`
+
+```
+etcdctl mk     /path/newkey some-data       # Create key
+etcdctl set    /path/newkey some-data       # Create or update key
+etcdctl update /path/key new-data           # Update key
+etcdctl put    /path/key new-data
+etcdctl rm     /path/key
+etcdctl rm     /path --recursive
+```
