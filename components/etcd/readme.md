@@ -58,3 +58,12 @@ etcdctl rm     /path --recursive
 
 `ETCDCTL_API=3 etcdctl --endpoints=192.168.198.147:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key snapshot save /etcd-backup/etcd-snapshot-latest.db`
 
+## restore ETCD Data:
+
+` ETCDCTL_API=3 etcdctl snapshot restore /etcd-backup/etcd-snapshot-latest.db \
+  --data-dir /var/lib/etcd \
+  --name etcd-master \
+  --initial-cluster "master-0.example.com=https://192.168.55.8:2380" \
+  --initial-cluster-token "etcd-cluster-1" \
+  --initial-advertise-peer-urls https://192.168.55.8:2380 \
+  --skip-hash-check=true`
