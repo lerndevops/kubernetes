@@ -7,11 +7,8 @@
 
 ## Deploy three different Apps on k8s cluster
 
-`kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/ingress/app1.yml`
+`kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/ingress/deploy-app.yml`
 
-`kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/ingress/app2.yml`
-
-`kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/ingress/app3.yml`
 
 ## Deploy Ingress Controller 
 
