@@ -119,23 +119,23 @@ docker login
 Build the docker image 
 
 ```
-docker build . -t YOUR_DOCKER_ID/my-kube-scheduler
+docker build . -t YOUR_DOCKER_ID/kube:my-schedular
 
 # In my case it is - 
 
-docker build . -t lerndevops/my-kube-scheduler
+docker build . -t lerndevops/kube:my-schedular
 ```
 
 Push the image to dockerhub
 
 ```
-docker push YOUR_DOCKER_ID/my-kube-scheduler
+docker push YOUR_DOCKER_ID/kube:my-schedular
 
 # In my case it is 
 
-docker push lerndevops/my-kube-scheduler:1.0
+docker push lerndevops/kube:my-schedular
 
-The push refers to repository [docker.io/lerndevops/my-kube-scheduler]
+The push refers to repository [docker.io/lerndevops/kube:my-schedular]
 6c7a72d53921: Pushed 
 1da8e4c8d307: Mounted from library/busybox 
 1.0: digest: sha256:b124f38ea2bc80bf38175642e788952be1981027a5668e596747da3f4224c299 size: 739
