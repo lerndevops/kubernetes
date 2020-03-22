@@ -1,0 +1,23 @@
+
+    List top utilized pods ( metrics server ) 
+    Etcd snapshot
+    Create a cluster master and worker node 
+    Kubelet is down on worker node, troubleshoot
+    Daemonset to run nginx pod on all the worker nodes
+    Increase the replicas from 2 to 3 of nginx
+    Create a pod with pv with hostpath type
+    Broken cluster nothing is running master nor worker fix it
+    Create a mongodb pod
+    Assign a pod to the node with disk=ssd
+  ---  Make the worker node unavailable and reschedule the pod running on it to another node
+    Create a init container to create a file with the given pod spec file, where the other container will run and verify whether the file is existing or not
+    Create a static pod - place the pod spec in the /etc/kubelet/manifest/ and restart the kubelet on the worker node
+    Create a secret of user and use it in a pod and also expose to a pod as a env variable
+    List the pods in kube-system namespace which are using baz service
+    List the top cpu utilization pod under the namespace
+    Assign a pod to the node where particular pod is running
+
+
+    Sort the pods of namespace in alphabetical order
+    Sort the pv's according to the storage capacity
+    Create a nginx pod to show the dns is working
