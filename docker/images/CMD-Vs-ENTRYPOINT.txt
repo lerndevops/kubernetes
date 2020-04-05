@@ -1,0 +1,20 @@
+CMD   executable arg1 arg2
+        here executable & args can be overridden from command line 
+
+       ex: the default command for ubuntu image is /bin/bash 
+            docker run -d ubuntu sleep 10  -- this will overrde /bin/bash with sleep 10
+
+
+ENTRYPOINT executable arg1 arg2
+
+        here executbale is permanent with image & agrs can be overriden from commandline 
+
+        ex:  vi dockerfile
+             FROM ubuntu 
+             ENTRYPOINT ["sleep", "10"]
+
+             docker build -f dockerfile -t myubuntu:v1 .
+            
+            here the default command for ubuntu is set as ENTRYPOINT & sleep 10
+            docker run -d ubunut sleep 10  -- this will add sleep 10 as args for default sleep 10
+            command field looks like "sleep 10 sleep 10"

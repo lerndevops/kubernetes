@@ -1,0 +1,8 @@
+view content of a .crt
+	openssl x509 -in apiserver.crt --text
+	
+view content of a .key/.pem
+	openssl rsa -noout -text -in apiserver.key
+	
+gen public key wiht .key/.pem
+	openssl rsa -in server.key -pubout -out key.pub
