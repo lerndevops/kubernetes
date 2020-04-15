@@ -41,11 +41,13 @@
 
 ### Step1: `On All Machines ( Master & All nodes ):`
 
-   ### Set SELinux in permissive mode (effectively disabling it)
+     ### Set SELinux in permissive mode (effectively disabling it)
+     
      setenforce 0
      sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
-   ### Install Docker
+     ### Install Docker
+     
      sudo yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine docker-ce docker-ce-cli containerd.io
      sudo yum install -y yum-utils device-mapper-persistent-data lvm2
      sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
@@ -53,7 +55,8 @@
      systemctl enable --now docker
      systemctl start docker
 
-   ### Install kubeadm,kubelet,kubectl
+     ### Install kubeadm,kubelet,kubectl
+     
      cat <<EOF > /etc/yum.repos.d/kubernetes.repo
      [kubernetes]
      name=Kubernetes
