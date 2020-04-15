@@ -1,4 +1,4 @@
-## Install Kubernets on Ubuntu 18.04 LTS 
+## Install Kubernetes on Ubuntu 18.04 LTS 
 
 ### Step1: `On All Machines ( Master & All nodes ):`
 
@@ -36,8 +36,10 @@
     Ex: kubeadm join 10.128.15.231:6443 --token mks3y2.v03tyyru0gy12mbt \
            --discovery-token-ca-cert-hash sha256:3de23d42c7002be0893339fbe558ee75e14399e11f22e3f0b34351077b7c4b56
 
+#
 
-## Install K8s: CentOS WITH 2 CPUS & 4GB RAM
+
+## Install Kubernetes on CENTOS 
 
 ### Step1: `On All Machines ( Master & All nodes ):`
 
@@ -89,3 +91,12 @@
 
     Ex: kubeadm join 10.128.15.231:6443 --token mks3y2.v03tyyru0gy12mbt \
            --discovery-token-ca-cert-hash sha256:3de23d42c7002be0893339fbe558ee75e14399e11f22e3f0b34351077b7c4b56
+
+
+
+
+## how to find kubeadm join token later
+```
+token=`kubeadm token generate`
+kubeadm token create "$token" --print-join-command --ttl=0
+```
