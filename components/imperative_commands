@@ -1,18 +1,4 @@
-    1  git clone http://github.com/lerndevops/educka
-    2  cd educka/
-    3  ls
-    4  cd install/
-    5  ls
-    6  ./setup-user.sh
-    7  ls -l
-    8  ./install-k8s-v17-ubuntu.sh
-    9  kubectl get pods
-   10  sudo kubeadm init --pod-network-cidr=10.244.0.0/16
-   11  sudo mkdir -p $HOME/.kube
-   12  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-   13  sudo chown $(id -u):$(id -g) $HOME/.kube/config
-   14  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
-   15  kubectl get nodes
+
    16  kubectl get all --all-namespaces
    17  kubectl get nodes
    18  kubectl componentStatus
