@@ -1,3 +1,5 @@
+# works with GKE
+
 helm search hub awx
  helm pull hub adwerx/awx
 helm pull https://hub.helm.sh/charts/adwerx/awx
