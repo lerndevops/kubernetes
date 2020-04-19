@@ -12,3 +12,6 @@ helm install adwerx/awx --version 2.2.1 --generate-name
 helm list
 kubectl get pods
 kubectl get svc
+
+# edit the service awx-1587279178 with type NodePort
+kubectl get svc # note the NodePort and access the app with Node IP
