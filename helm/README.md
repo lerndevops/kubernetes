@@ -53,7 +53,7 @@ v3.0.2+g19e47ee
 #### Common actions for Helm:
 
 ```
-- helm search:    search for charts
+- helm search:    search for charts (helm search hub awx)
 - helm pull:      download a chart to your local directory to view
 - helm install:   upload the chart to Kubernetes
 - helm list:      list releases of charts
