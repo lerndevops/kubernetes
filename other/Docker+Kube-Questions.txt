@@ -1,0 +1,541 @@
+1. Where does the docker daemon persist images on docker host?
+	
+	A. /var/lib/docker-ce/images
+	B. /etc/docker/images
+	C. /usr/lib/docker/images
+	D. /var/lib/docker/images
+
+Correct Answer: D
+
+2. How a running container can be interpreted on a docker host? 
+
+	A. an application 
+	B. a process
+	C. a program
+	D. a file
+
+Correct Answer: B
+
+3. How to run docker commands with a user called "testuser" ?
+
+	A.  Have the testuser log in as the docker user.
+	B.  Give the testuser the ability to run docker commands with sudo
+	C.  Add the testuser to the docker group
+	D.  Give the testuser root user credentials so they can run docker commands as root.
+
+Correct Answer: C
+
+4. Which Docker edition would we choose for obtaining the latest Docker Engine updates?
+
+	A. Docker Developer Edition (DE)
+	B. Docker Community Edition (CE)
+	C. Either Docker CE or Docker EE
+	D. Docker Enterprise Edition (EE)
+
+Correct Answer: C
+
+5. Which of the following namespaces is not enabled by default?
+
+	A.  mnt
+	B.  uts
+	C.  pid
+	D.  user
+
+Correct Answer: D
+
+6. karthik wants to run a container using an image called mynginx. he wants to publish the container's port 4000 to port 9080 on the host. Which of the following commands will accomplish this?
+
+	A. docker run -d -p 9080:4000 mynginx
+	B. docker run --port 9080:4000 mynginx
+	C. docker run -d -p 4000:9080 mynginx
+	D. docker run mynginx -p 9080:4000
+
+Correct Answer: A
+
+7. We have a Docker host that is running low on storage. What command could help us identify how the host is using storage?
+
+	A. docker system df
+	B. docker container ls
+	C. docker image inspect
+	D. docker image prune
+
+Correct Answer: A
+
+8. Which of the following commands will run a busybox container and automatically delete it once it exits?
+
+	A. docker run --restart no busybox
+	B. docker run --rm busybox
+	C. docker run --rm --restart on-failure busybox
+	D. docker container rm busybox
+
+Correct Answer: B
+
+9. Amanda wants to execute a one-time job using a Docker container. However, occasionally, this job fails and needs to restart. Amanda doesn't want to restart it manually if it fails. Which command should she use to make sure that the container executes the one-time job successfully?
+
+	A. docker run --recover-failure cleanup-job
+	B. docker run --restart failure-only cleanup-job
+	C. docker run --restart unless-stopped cleanup-job
+	D. docker run --restart on-failure cleanup-job
+
+Correct Answer: D
+
+10. Which of the following command helps to get inside a running container
+
+	A. docker run -it contid /bin/bash
+	B. docker exec -it contid /bin/bash
+	C. docker exec contid
+	D. all of the above
+
+Correct Answer: B
+
+11. What command would we use to locate the layered file system data for an image on a machine?
+
+	A. docker layer inspect
+	B. docker pull history
+	C. docker image inspect
+	D. docker image layers
+
+Correct Answer: C
+
+12. What does the EXPOSE directive do?
+
+	A. It documents ports intended for publishing at the time of running a container.
+	B. It makes a container's port accessible externally.
+	C. It causes the container to listen on a port.
+	D. It automatically publishes ports when running a container.
+
+Correct Answer: A
+
+13. What is the use of  “docker commit”  command ?
+
+	A.	To create a new container from existing container
+	B.	To save the container changes to existing image
+	C.	To save the container changes as a new image
+	D.	To create a new image by using Dockerfile
+	
+Correct Answer:  C
+
+14. What does the CMD directive do?
+
+	A. It sets the default command for the image that runs if no other command is specified.
+	B. It runs a command on the host when the container starts.
+	C. It runs a command within the image and commits it to the result.
+	D. It executes a command during the build process.
+
+Correct Answer: A
+
+15. Which of the following commands will build an image from a dockerfile called 'mydockerfile" located in the current directory and tag it as my-image:v1?
+
+	A. docker build -f mydockerfile -t my-image:v1 .
+	B. docker build -f dockerfile -t my-image:v1 .
+	C. docker build -f mydockerfile -tag my-image:v1 .
+	D. docker build -f dockerfile -tag my-image:v1
+
+Correct Answer: A
+
+16. Which of the following commands would we use to automatically identify and delete images that are not being used?
+
+	A. docker image prune
+	B. docker image rm --all
+	C. docker image rm
+	D. docker image rm -a
+
+Correct Answer: A
+
+17. How would we create a volume called new-volume without running a container?
+
+	A. docker volume create new-volume
+	B. docker run -v new-volume:/tmp nginx.
+	C. docker run --rm -v new-volume:/tmp nginx.
+	D. docker create volume new-volume.
+
+Correct Answer: A
+
+18. Which of the following commands would we use to locate the data for a volume on the host?
+
+	A. docker volume locate <volume>
+	B. docker volume navigate <volume>
+	C. docker volume inspect <volume>
+	D. docker volume logs <volume>
+
+Correct Answer: C
+
+19. which of the follwing command is used create docker swarm manager node
+
+	A. docker swarm setup
+	B. docker swarm run
+	C. docker swarm init
+	D. docker swarm create
+
+Correct Answer: C
+
+20. Which of the following commands helps node to leave the swarm manager.  
+
+	A. docker node leave
+	B. docker swarm leave
+	C. docker node rm 
+	D. docker swarm rm
+
+Correct Answer: B
+
+21. Which of the following scenarios would still allow the quorum to have maintenance in a swarm cluster? (Choose two)
+
+	A. A 3-node cluster with 2 nodes down.
+	B. A 4-node cluster with 2 nodes down.
+	C. A 7-node cluster with 3 nodes down.
+	D. A 3-node cluster with 1 node down.
+
+Correct Answer: C,D
+
+22. which of the following command can be used to create a tomcat service in replicated mode & 8080 published port in cluster
+
+	A. docker service run replicate 4 -p 8080:8080 tomcat:latest
+	B. docker service run --name tomcat --replicas 4 -P tomcat:latest
+	C. docker service create --replicas 4 -p 8080:8080 tomcat:latest
+	D. docker service create --name tomcat replicate 4 -p 8080:8080 tomcat:latest
+
+Correct Answer: C
+
+23. What is the limitation of docker service scale command in swarm mode? 
+
+	A. it can only scale UP the service
+	B. i can only be applied on replicated services
+	C. it can only scale one service at a time 
+	D. all of the above
+
+Correct Answer: B
+
+24. Which of the following commands would we use to view a container's logs?
+
+	A. docker logs <container>
+	B. docker service logs <service>
+	C. docker container get-log
+	D. sudo journalctl -u docker
+
+Correct Answer: A
+
+25. which of below command will help check the cpu,memory utiliztion of container named mycont 
+
+	A. docker container stats mycont
+	B. docker container top mycont
+	C. docker container exec -it top mycont
+	D. none of the above
+
+Correct Answer: A
+
+26. Which of the following commands will create a new bridge network?
+
+	A. docker network create --network-driver bridge my-net
+	B. docker network create --driver bridge my-net
+	C. docker network create --driver overlay my-net
+	D. docker network create --network bridge my-net
+
+Correct Answer: B
+
+27. Which network driver connects containers directly to a network stack on the host machine without any isolation?
+
+	A. none
+	B. bridge
+	C. macvlan
+	D. host
+
+Correct Answer: D
+
+28. Which of the following commands will attach the tasks of a new service to an existing overlay network called my-overlay?
+
+	A. docker service create --network-driver overlay nginx
+	B. docker service create --n my-overlay nginx
+	C. docker service create --network my-overlay nginx
+	D. docker service create --attach my-overlay nginx
+
+Correct Answer: C
+
+29. Which of the following statements about the overlay network driver is accurate?
+
+	A. The network is set up on every node in the cluster as soon as the network faces creation.
+	B. Networking components are created on nodes dynamically when tasks get scheduled on the node.
+	C. The overlay driver only allows communication between containers running on the same host.
+	D. The network must be set up manually on each node.
+
+Correct Answer: B
+
+30. which of the following command will remove all unused networks on docker host
+
+	A. docker newtork rm --all
+	B. docker network prune
+	C. docker network delete --all
+	D. none of the above
+
+Correct Answer: B
+
+========================================================================================================
+
+Kubernetes
+
+1. which of following is kubernetes agent that runs on all nodes ?
+
+	A. Kubelet
+	B. Etcd
+	C. Scheduler
+	D. Pod
+
+Correct Answer: A
+
+2. which kubernetes component responsible for assigning nodes to pods ?
+
+	A. Etcd
+	B. Kubectl
+	C. Scheduler
+	D. Flanneld
+
+Correct Answer: C
+
+3. As soon a service starts, daemon running on each node add a set of environment variables on the pod for each active service.
+
+	A. Kubectl
+	B. Kubelet
+	C. Kubeadm
+	D. Service discovery
+	
+Correct Answer: B
+
+4. which of the below component tries to maintain the desired state of controllers ?  
+
+	A. API Server
+	B. Etcd manager
+	C. Controller Manager
+	D. Kubeadm
+
+Correct Answer: C 
+
+5. Kubernetes is written in
+
+	A. C++
+	B. Go
+	C. Python
+	D. Java spring framework
+	
+Correct Answer: B
+
+6. An abstraction in kubernetes which defines a logical set of pods to access them.
+
+	A. Kubelet
+	B. Service
+	C. Node
+	D. Container
+
+Correct Answer: B
+
+7. To create a new deployment in kubernetes, use the command
+
+	A. Kubernetes set deployment
+	B. Kubernetes get deployment
+	C. Kubectl create deploy 
+	D. Kubectl run deploy 
+
+Correct Answer: C
+
+8. The command to create Kubernetes service is
+
+	A. Kubectl expose
+	B. Kubectl set service
+	C. Kubectl run
+	D. Kubectl deploy
+
+Correct Answer: A
+
+9. Kube-apiserver on kubernetes master is designed to scale. 
+
+	A. Vertically
+	B. Horizontally
+
+Correct Answer: B
+
+10. which of following k8s resources do not associate with any namespace.
+
+	A. DaemonSets
+	B. Nodes
+	C. ReplicaSet
+	D. Services
+
+Correct Answer: B
+
+11. what is the servicetype that allows you to access the pod using nodeip ?
+
+	A. ClusterIP
+	B. NodePort
+	C. LoadBalancer
+	D. ExternalName
+	
+Correct Answer: B
+
+12. This volume type can be used to share contents within containers in a pod, but will not persist beyond the life of a pod.
+
+	A. EmptyDir
+	B. FlexVolume
+	C. ConfigMap
+	D. Local
+
+Correct Answer: A
+
+13. _____ is responsible for health check of the pods running on individual nodes
+
+	A. Kubectl
+	B. Kube controller manager
+	C. Kube scheduler
+	D. Kubelet
+
+Correct Answer: D
+
+14. _______ service is automatically created for you k8s cluster creation and takes care of the internal routing of the cluster.
+
+	A. NodePort
+	B. ClusterIP
+	C. Headless
+	D. Load Balancer
+
+Correct Answer: B
+
+15. Which of these statements is true about a pod?
+
+	A. A pod is the simplest deployment unit in kubernetes
+	B. A pod can just have a single container
+	C. Pods can only run on docker container runtime
+	D. Pod can only run on worker nodes of the cluster
+
+Correct Answer: A
+
+16. Which of the following commands can be used to see what system pods are there in the cluster?
+
+	A. kubectl get pods
+	B. kubectl get pods --namespace=system
+	C. kubectl get pods -n kube-system
+	D. kubectl get pods system
+
+Correct Answer: C 
+
+17. Which command can be used to create a ConfigMap from file /etc/myweb-app/app.config?
+
+	A. kubectl create configmap configmap-myweb-app /etc/myweb-app/app.config
+	B. kubectl create configmap configmap-myweb-app --from=/etc/myweb-app/app.config
+	C. kubectl create configmap configmap-myweb-app --from-file=/etc/myweb-app/app.config
+	D. kubectl create configmap configmap-myweb-app --file=/etc/myweb-app/app.config
+
+Correct Answer: C
+
+18. murali has deployed a POD with two containers with names app & web respectively, now he would like to get inside web container to check the logs, which command he need to use to get in. 
+
+	A. kubectl exec -it podname 
+	B. kubectl exec -it podname web
+	C. kubectl exec -it podname -c web -- /bin/bash
+	D. kubectl exec podname -c web -- /bin/bash
+	
+Correct Answer: C
+
+19. Which command we use to increase the replica count from 3 to 5 for a deployment controller called mydeployment ?
+
+	A. kubectl scale deploy mydeployment --replicas=5
+	B. kubectl scale deploy mydeployment --count=5
+	C. kubectl scale mydeployment --replicas=5
+	D. kubectl scale mydeployment --count=5
+
+Correct Answer: A
+
+20. What command should be used to check logs of a container running inside a pod?
+
+	A. kubectl get logs <container_name> -p <pod_name>
+	B. kubectl logs <container_name> -p <pod_name>
+	C. kubectl logs -p <pod_name> -c <container_name>
+	D. kubectl logs <pod_name> -c <container_name>
+
+Correct Answer: D
+
+21. How do you list pods in a kubernetes cluster which is labelled with run=nginx and running inside namespace prod?
+
+	A. kubectl get pods -l run=nginx --namespace prod
+	B. kubectl get pods -l run=nginx
+	C. kubectl get pods -l run=nginx --namespace prod --cpu
+	D. kubectl get pods -l run=nginx --namespace=all
+	
+Correct Answer: A
+
+22. Who performs probe operatons (liveness or readiness) on a container?
+
+	A. kube-scheduler
+	B. kubelet
+	C. kubectl
+	D. Pods manage probing on their own
+
+Correct Answer: B
+
+23. What is the default protocol of a newly created service object?
+
+	A. tcp
+	B. http
+	C. udp
+	D. sctp
+
+Correct Answer: A
+
+24. Two microservices named A and B are to be deployed in a Kubernetes cluster and are not to be exposed outside the cluster i.e all traffic for these microservices will be from within the cluster nodes. How will you expose these services?
+
+	A. Using ClusterIP
+	B. Using NodePort
+	C. Using LoadBalancer
+	D. Using ExternalName
+
+Correct Answer: A
+
+25. What is the default restartPolicy for a pod?
+
+	A. Never
+	B. OnFailure
+	C. Always
+	D. There is no default RestartPolicy
+	
+Correct Answer: C
+
+26. how do we upload/install a chart called demo with a name demochart to Kubernetes ?
+
+	A. helm upload demo demochart
+	B. helm install demochart demo
+	C. hell install demo demochart
+	D. hell apply demochart demo
+
+Correct Answer: B
+
+27. which command helps to list the helm charts/releases running in kubernetes cluster
+
+	A. helm list 
+	B. helm get charts
+	C. helm show charts
+	D. none of the above
+
+Correct Answer: A
+
+28. Lifetime of a volume is bound to:
+	
+	A. Lifetime of the cluster
+	B. Lifetime of the pod using it
+	C. Lifetime of the container using it
+	D. Volume lifetime is not dependent on kubernetes cluster
+
+Correct Answer: B
+
+29. what are kubernetes operators ?
+
+	A. operators helps maintain the kubernetes cluster componentes. 
+	B. operators helps upgrade kubernetes cluster
+	C. Operators are clients of the Kubernetes API that act as controllers for a Custom Resource
+	D. All of the above
+
+Correct Answer: C
+	
+30. You have a pod that requires a username and password for database running inside it. Username and password for database are stored in file /etc/secrets/username and /etc/secrets/password respectively. How would you create secret from these files?
+
+	A. kubectl create secret webapp-credential /etc/secrets/username /etc/secrets/password
+	B. kubectl create secret webapp-credential --from-file=/etc/secrets/username, /etc/secrets/password
+	C. kubectl create secret webapp-credential --from-file=/etc/secrets/username --from-file=/etc/secrets/passwordYour Answer
+	D. kubectl create secret generic webapp-credential --from-file=/etc/secrets/username --from-file=/etc/secrets/password
+
+Correct Answer: D
