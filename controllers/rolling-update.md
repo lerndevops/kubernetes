@@ -42,7 +42,7 @@
 ## Step3: Now, edit the version of image back to ‘v1’ in yml file & apply
 
 ```
-   kubectl apply -f kubeserve-deployment.yaml --record
+   kubectl apply -f deployment-ex3.yml --record
    
    cotinue to watch the application output node 
 ```
