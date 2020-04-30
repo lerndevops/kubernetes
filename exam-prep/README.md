@@ -53,7 +53,7 @@ kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run -o
 kubectl create service clusterip nginx --tcp=80:80 --dry-run -o yaml ## generate a service yaml with type: ClusterIP
 ```
 
-## `Generate Service yaml for run pods/deployment`
+## `Generate Service yaml for to expose/access running pods/deployment`
 
 ```
 ## Note: to use below commands, the pod/deployment must be created first
