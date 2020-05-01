@@ -1,0 +1,21 @@
+kind: CertificateSigningRequest
+apiVersion: certificates.k8s.io/v1beta1
+metadata:
+   name: naresh
+spec:
+  groups:
+    - system:authenticated
+  request: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ1p6Q0NBVThDQVFBd0lqRVBNQTBHQTFVRUF3d0dibUZ5WlhOb01ROHdEUVlEVlFRS0RBWmtaWFp2Y0hNdwpnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFET1MySkx3aGNaZExIa1JjWmRzeEdaCnIyZGhGdXY3dHdkdUxXNS8xOCtkWnpyc2FDdk5sTG5WYWlPTVpZT3BSMWZMK1VmZkVCbTlVQkJwRjhSQWlOVk0KQmZqMEtlUHJYRmN0d2RpaThHb0RVajEzTWprNXN6UGpTa3lSdlVVM21VdEFBSWlrMEV1aHZrbWRUalkwTUpjVwpKTEJkelZoYUM2ZlVXN1plejJHNC9sWEY2eTU0MTdobnFLS1ZnckMyOXBzbzU0SWw4Qm1Gci8xVGJvcW9lbnJoClVYSTNMa2tCYi9BOE9GK0dnVUxDcFdDTGFBb29YaWRpcXZydmZlZ3JiK0orVWZmaWwvdkxmSlNCRFJabFhZcVEKblJISzJLWWlOQXpUM0I4OTAyWG5IZ2h4L3I0djZNMjE2aU9zcXhyclZBaXFsc29qbk1xaUFYNjJUeDd4dGQvbgpBZ01CQUFHZ0FEQU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFEVzlwZ005US9XMlRrdWtFNkJJQWxSM3QwWmZFCjduUytHczlLcEEzczdUL1MreWZqdEJkemR4WVdSYTRURXhPZ1RlSUpQdEpwZllaVmk4MDdrWUhmQnF5QlF2RmsKbnVjUHllSy9wcHlOdzRveG5Ed0pFaDduR2ZhNk91REYvb1p5Yi8yNFR4U3ZJWVVvUENDU1NVMkVzNzlsR3dETwpwZENtVmFUdHVYVXdmTGxzaEdqbk1WK25BRDhOYTduMkl0VVJoVXRCaEswYU5hMG00OUpUbjFuTGVzOFdBaU9wCk5Da21QTlJ0YlNQa2tibVZHTlVLMzZ4a21pOC8wOHhkZkNIZFhyV0dGd3IvOWNzenVESEVaWTNqdnd2Yzdab3kKTWNnL1hBRUFhcXREUHkrYU9yQ3RBWUY1bXdFc1lXU20wV29ObkZTQUsrbGdraVQzM3BqWXZqcUZMdz09Ci0tLS0tRU5EIENFUlRJRklDQVRFIFJFUVVFU1QtLS0tLQo=
+  usages:
+  - digital signature
+  - key encipherment
+  - server auth
+  - client auth
+
+# openssl gen rsa -out naresh.key 2048
+# openssl req -config csr.conf -new -key naresh.key -nodes -out naresh.csr
+# cat naresh.csr | base64 | tr -d '\n'
+# kubectl apply -f nareshcsr.yml
+# kubectl get csr ; kubectl certificate approve naresh
+# kubectl get csr naresh -o jsonpath="{.status.certificate}" | base64 --decode > naresh.crt
+# modify kubeconfig with naresh.key & naresh.crt
