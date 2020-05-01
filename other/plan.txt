@@ -1,0 +1,76 @@
+day1
+=====
+intro -- physica/vm/docker
+create vm on google
+installation 
+containers 
+images 
+	
+	## crete 3 vm / 2cpu 8gbram
+
+day2
+=====
+volumes
+docker swarm
+	CNM
+
+docker swarm vs kube
+	CNI  -- flannel / calico / weave / canal
+
+kube installation 
+	kubectl get nodes
+	kubectl get pods --all-namespaces
+
+
+day 3
+=====
+Architecutre
+Namespaces ( imperative ) kubectl create namespace naresh
+kubectl api-resources
+kubectl explain resource (pod)
+create pod ( imperative )
+declarative model (yaml)
+PODS (single/multi/static/init)
+
+day4
+=====
+services (clusterip/nodeport)
+controller (rc/rs/deploy/deemonset/job/cronjob)
+
+
+day5
+=====
+create GCP cluster 
+service (network loadbalancer)
+volumes / pv / pvc / configmaps / secrets / storage class
+    
+day6
+=====
+security / namespaces (quotas) / resource limits / security contexts
+rbac (create user key/csr ) upload csr to cluster 
+kubecte get csr
+kubectl approve csr nameofcsr
+
+day7
+=====
+kubeconfig 
+service accouts
+etcd backup / multi schedular
+
+day8
+=====
+scheduling -- pod priority /  taints & tolerations / affinity / nodeselecotr (nodename/labels)
+probes -- readiness/liveness
+networking / network policies
+
+day9
+=====
+statefull sets / headless service
+DNS
+troubleshooting -- cluster validation
+
+day10
+=====
+imperative (filters / slectors / jsonpath / sort)
+monitoring ( metrics server / prom-grafana )
+upgrade cluster
