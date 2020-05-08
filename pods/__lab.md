@@ -131,10 +131,11 @@ kubectl delete pod <pod-name> --grace-period=0 --force  # delete pod forcefully
 
 
 ### Imperative commands to generate yaml files
-
+```
 kubectl run nginx --image=nginx --dry-run=client -o yaml  ## generate pod yaml file
 kubectl run nginx --image=nginx --restart=Never --dry-run=client -o yaml  ## generate pod yaml file with restartPolicy: Never
 kubectl run nginx --image=nginx -l="app=web,env=dev" --dry-run=client -o yaml  ## generate pod yaml file with labels provided
 kubectl run nginx --image=nginx --env="hello=world" --env="me=naresh" --dry-run=client -o yaml ## generate pod yaml with env variables
 kubectl run nginx --image=nginx --restart=OnFailure --env='hello=world' -l='app=web' --limits='cpu=100m,memory=150Mi' --dry-run=client -o yaml ## generate pod yaml with various parametes
 kubectl run nginx --image=nginx --port=80 --expose --dry-run=client -o yaml ## generate pod yaml file & Service yaml file together
+```
