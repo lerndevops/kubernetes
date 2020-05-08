@@ -56,6 +56,7 @@ kubectl apply -f https://git.io/vPieo          # create resource(s) from url
 
 ### Run a POD command line
 ```
+kubectl run nginx --image=nginx  # create a pod 
 kubectl run -i --tty busybox --image=busybox -- sh  # Run pod as interactive shell
 kubectl run nginx --image=nginx --restart=Never -n mynamespace   # Run pod nginx in a specific namespace
 kubectl run nginx --image=nginx --restart=Never --dry-run -o yaml > pod.yaml     # Run pod nginx and write its spec into a file called pod.yaml
@@ -127,3 +128,13 @@ kubectl delete pods -l env=test                  # delete pods matching labels
 kubectl delete pods --all                        # delete all pods 
 kubectl delete pod <pod-name> --grace-period=0 --force  # delete pod forcefully
 ```
+
+
+### Imperative commands to generate yaml files
+
+kubectl run nginx --image=nginx --dry-run=client -o yaml  ## generate pod yaml file
+kubectl run nginx --image=nginx --restart=Never --dry-run=client -o yaml  ## generate pod yaml file with restartPolicy: Never
+kubectl run nginx --image=nginx -l="app=web,env=dev" --dry-run=client -o yaml  ## generate pod yaml file with labels provided
+kubectl run nginx --image=nginx --env="hello=world" --env="me=naresh" --dry-run=client -o yaml ## generate pod yaml with env variables
+kubectl run nginx --image=nginx --restart=OnFailure --env='hello=world' -l='app=web' --limits='cpu=100m,memory=150Mi' --dry-run=client -o yaml ## generate pod yaml with various parametes
+kubectl run nginx --image=nginx --port=80 --expose --dry-run=client -o yaml ## generate pod yaml file & Service yaml file together
