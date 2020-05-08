@@ -59,7 +59,7 @@ kubectl apply -f https://git.io/vPieo          # create resource(s) from url
 kubectl run nginx --image=nginx  # create a pod 
 kubectl run -i --tty busybox --image=busybox -- sh  # Run pod as interactive shell
 kubectl run nginx --image=nginx --restart=Never -n mynamespace   # Run pod nginx in a specific namespace
-kubectl run nginx --image=nginx --restart=Never --dry-run -o yaml > pod.yaml     # Run pod nginx and write its spec into a file called pod.yaml
+kubectl run nginx --image=nginx --restart=Never --dry-run=client -o yaml > pod.yaml     # Run pod nginx and write its spec into a file called pod.yaml
 ```
 
 ### get POD information 
