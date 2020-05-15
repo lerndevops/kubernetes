@@ -14,4 +14,4 @@ spec:
   volumes:
    - name: pv
      persistentVolumeClaim:
-       claimName: naresh-pvc
+       claimName: my-pvc
