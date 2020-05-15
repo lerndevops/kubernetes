@@ -3,10 +3,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: my-pvc
 spec:
-  storageClassName: local-storage
+  storageClassName: fast
 #  volumeName: my-pv
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 500Mi
+      storage: 2000Mi
