@@ -6,11 +6,6 @@ data:
   # Configuration values can be set as key-value properties
   database: mongodb
   database_uri: mongodb://localhost:27017
-  
-  # Or set as complete file contents (even JSON!)
-  keys: | 
-    image.public.key=771 
-    rsa.public.key=42
 
 ---
 
