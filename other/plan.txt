@@ -59,7 +59,7 @@ etcd backup / multi schedular
 
 day8
 =====
-scheduling -- pod priority /  taints & tolerations / affinity / nodeselecotr (nodename/labels)
+scheduling -- taints & tolerations / affinity / nodeselecotr (nodename/labels)
 probes -- readiness/liveness
 networking / network policies
 
