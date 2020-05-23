@@ -1,0 +1,332 @@
+    1  git clone https://github.com/lerndevops/educka
+    2  educka/install/setup-user.sh 
+    3  clear
+    4  echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+    5  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+    6  sudo apt-get update ; clear
+    7  sudo apt-get install -y kubectl 
+    8  kubectl --version 
+    9  kubectl version --short
+   10  mkdir -p $HOME/.kube
+   11  hostname -i
+   12  cd .kube/
+   13  ls -ltrh
+   14  cp /tmp/admin.conf config
+   15  ls -ltrh
+   16  vi config 
+   17  kubectl get nodes 
+   18  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
+   19  kubectl config get-context
+   20  kubectl config get-contexts
+   21  vi config 
+   22  kubectl get nodes
+   23  vi config 
+   24  kubectl get nodes
+   25  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
+   26  kubectl config get-contexts
+   27  kubectl config use-context cluster1-admin@kubernetes
+   28  kubectl get nodes
+   29  kubectl config use-context cluster2-admin@kubernetes
+   30  kubectl get nodes
+   31  free -m
+   32  kubectl config get-contexts
+   33  kubectl config use-context cluster1-admin@kubernetes
+   34  kubectl run --help 
+   35  kubectl create --help 
+   36  kubectl create deployment --help 
+   37  kubectl create service nodeport nginx --tcp=80:80 --dry-run -o yaml
+   38  kubectl create service nodeport nginx --tcp=80:80 --dry-run=client -o yaml
+   39  kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run=client -o yaml
+   40  kubectl create service clusterip nginx --tcp=80:80 --dry-run=client -o yaml
+   41  kubectl expose pod mypod --port=80 --target-port=8080 --type=NodePort --dry-run=client -o yaml
+   42  kubectl run mypod --image=nginx 
+   43  kubectl expose pod mypod --port=80 --target-port=8080 --type=NodePort --dry-run=client -o yaml
+   44  kubectl create service nodeport nginx --tcp=80:80 --dry-run=client -o yaml
+   45  kubectl create service 
+   46  kubectl create service nodeport nginx --tcp=80:80
+   47  kubectl get svc 
+   48  kubectl delete svc nginx 
+   49  kubectl config get-contexts
+   50  clear
+   51  kubectl config get-contexts
+   52  vi .kube/config 
+   53  kubectl config get-contexts
+   54  kubectl config use-context cluster2-admin
+   55  kubectl config get-contexts
+   56  kubectl get nodes
+   57  kubectl describe node c2master
+   58  kubectl taint node c2master node-role.kubernetes.io/master:NoSchedule-
+   59  clear
+   60  free -m
+   61  lscpu 
+   62  clear
+   63  ip link
+   64  ip addr 
+   65  ifconfig 
+   66  kubectl get nodes
+   67  kubectl config get-contexts
+   68  kubectl config use-context cluster1-admin
+   69  kubectl get nodes
+   70  kubectl get pods
+   71  kubectl expose pod mypod --port=80 --type=NodePOrt
+   72  kubectl expose pod mypod --port=80 --type=NodePort
+   73  kubectl get svc 
+   74  curl 104.197.100.201:32091
+   75  clear
+   76  kubectl get svc 
+   77  kubectl get pods 
+   78  kubectl get pods -n kube-system 
+   79  kubectl get pods -n kube-system -o wide 
+   80  kubectl get pods 
+   81  kubectl exec mypod -- cat /etc/resolv.conf
+   82  kubectl exec mypod -- ping 10.96.0.10
+   83  kubectl run dnstest --image=lerndevops/netshoot -- sleep 3600
+   84  kubectl get pods
+   85  kubectl get svc 
+   86  kubectl get ep 10.96.0.1
+   87  kubectl get ep kubernetes
+   88  kubectl svc -n kube-system 
+   89  kubectl get svc -n kube-system 
+   90  kubectl get ep kube-dns
+   91  kubectl get ep kube-dns -n kube-system 
+   92  kubectl get pods -n kube-system -o wide 
+   93  kubectl describe pod coredns-66bff467f8-8pjdd -n kube-system 
+   94  kubectl get pods 
+   95  kubectl exec dnstest -- cat /etc/resolv.conf
+   96  kubectl get pods -n kube-system 
+   97  kubectl edit coredns-66bff467f8-8pjdd -n kube-system 
+   98  kubectl edit pod coredns-66bff467f8-8pjdd -n kube-system 
+   99  kubectl get sa
+  100  kubectl get secrets 
+  101  kubectl describe secret default-token-xrbkh
+  102  kubectl get roles 
+  103  kubectl get rolebindings
+  104  kubectl get clusterroles
+  105  kubectl get clusterrolebindings 
+  106  clear
+  107  cat /etc/nsswitch.conf 
+  108  cat /etc/resolv.conf 
+  109  kubectl get pods 
+  110  kubectl exec dnstest -- dig www.google.com
+  111  kubectl get nodes
+  112  kubectl get pods
+  113  kubectl get pods -o wide 
+  114  kubectl exec dnstest -- dig 10.244.1.3
+  115  kubectl exec dnstest -- nslookup 10.244.1.3
+  116  ip netns list
+  117  kubectl get pods 
+  118  kubectl delete pods --all
+  119  clear
+  120  kubectl config get-contexts
+  121  kubectl get nodes 
+  122  kubectl config use-context cluster2-admin
+  123  kubectl get nodes
+  124  cd .kube/
+  125  ls -l
+  126  vi config 
+  127  docker -v 
+  128  cd 
+  129  kubectl config get-contexts
+  130  kubectl config use-context cluster1-admin
+  131  kubectl get nodes 
+  132  ls -l
+  133  kubectl cluster-info 
+  134  cd educka/
+  135  cd dashboard/
+  136  ls -ltrh
+  137  vi dashboard-v2-insecure.yml
+  138  kubectl get nodes 
+  139  kubectl apply -f dashboard-v2-insecure.yml 
+  140  kubectl get sa -n kubernetes-dashboard
+  141  kubectl describe sa kubernetes-dashboard -n kubernetes-dashboard
+  142  kubectl get secretes kubernetes-dashboard-token-ln6b9 -n kubernetes-dashboard
+  143  kubectl get secrets kubernetes-dashboard-token-ln6b9 -n kubernetes-dashboard
+  144  kubectl describe secret kubernetes-dashboard-token-ln6b9 -n kubernetes-dashboard
+  145  kubectl get all -n kubernetes-dashboard
+  146  kubectl get pods 
+  147  ls -l
+  148  history 
+  149  ls -ltrh
+  150  vi dashboard-v2-insecure.yml
+  151  clear
+  152  kubectl get pods 
+  153  kubectl run nginx --image=nginx 
+  154  kubectl get pods 
+  155  clear
+  156  kubectl exec nginx -- top 
+  157  kubectl exec nginx -- id
+  158  kubectl exec nginx -- /bin/bash 
+  159  kubectl exec nginx -it -- /bin/bash 
+  160  clear 
+  161  cd ..
+  162  cd security/
+  163  ls -l
+  164  cd security-context/
+  165  ls -ltrh
+  166  vi runAsUser-Pod.yml
+  167  kubectl apply -f runAsUser-Pod.yml 
+  168  kubectl get pdos 
+  169  kubectl get pods 
+  170  kubectl exec runasuser-pod -- id 
+  171  kubectl exec runasuser-pod -it -- /bin/bash 
+  172  ls -ltrh
+  173  more group-context.yml
+  174  ls -l
+  175  more sec-context-pod.yml
+  176  cd ..
+  177  ls -l
+  178  cd dashboard/
+  179  ls -ltrh
+  180  vi dashboard-v2-insecure.yml
+  181  clear
+  182  cd ..
+  183  cd security/
+  184  cd security-context/
+  185  ls -ltrh
+  186  cd ..
+  187  ls -ltrh
+  188  cd pods/
+  189  ls -ltrh
+  190  cd probes/
+  191  ls -l
+  192  ls -ltrh
+  193  vi lp-nginx-pod.yml 
+  194  kubectl apply -f lp-nginx-pod.yml 
+  195  kubectl get pods 
+  196  kubectl describe pod lp-nginx-demo
+  197  kubectl get pods 
+  198  kubectl describe pod lp-nginx-demo
+  199  kubectl get pods 
+  200  kubectl get pods -o wide 
+  201  kubectl edit pod lp-nginx-demo
+  202  kubectl get pods lp-nginx-demo -o yaml 
+  203  kubectl get pods lp-nginx-demo -o yaml > /tmp/pod.yml
+  204  kubectl get pdos 
+  205  kubectl get pods
+  206  kubectl delete pod lp-nginx-demo
+  207  vi /tmp/pod.yml
+  208  kubectl apply -f /tmp/pod.yml 
+  209  kubectl get pods 
+  210  kubectl describe pod lp-nginx-demo
+  211  ls -l
+  212  vi myapp.yml
+  213  ls -ltrh
+  214  vi myapp.yml 
+  215  kubectl apply -f myapp.yml 
+  216  kubectl get pods 
+  217  kubectl describe pod myapp
+  218  kubectl get pods 
+  219  kubectl delete pod myapp
+  220  ls -l
+  221  vi myapp.yml 
+  222  kubectl apply -f myapp.yml 
+  223  kubectl get pods 
+  224  kubectl describe pod myapp
+  225  kubectl get pods 
+  226  kubectl expose pod myapp --port=8080 --type=NodePort
+  227  kubectl get svc 
+  228  kubectl get ep myapp
+  229  kubectl get pods -o wide 
+  230  ls -ltrh
+  231  vi myapp.yml 
+  232  kubectl apply -f myapp.yml 
+  233  kubectl get pods 
+  234  kubectl delete pod myapp
+  235  kubectl apply -f myapp.yml 
+  236  vi myapp.yml 
+  237  kubectl apply -f myapp.yml 
+  238  kubectl get pods 
+  239  kubectl describe pods Running
+  240  kubectl describe pods myapp
+  241  kubectl get pods 
+  242  kubectl get svc
+  243  kubectl get ep myapp 
+  244  kubectl get pods 
+  245  kubectl get ep 
+  246  kubectl get svc 
+  247  kubectl get deploy 
+  248  kubectl delete deploy sampleapp-deployment
+  249  kubectl get pods -n kube-system 
+  250  cd ..
+  251  ls -ltrh
+  252  cd placement/
+  253  ls -ltrh
+  254  vi tolerations-pod.yml
+  255  kubectl get nodes
+  256  kubectl taint node c1node1 size=large:NoSchedule
+  257  kubectl describe node c1node1
+  258  ls -ltrh
+  259  vi tolerations-pod.yml 
+  260  kubectl apply tolerations-pod.yml 
+  261  kubectl apply -f tolerations-pod.yml 
+  262  kubectl get pods 
+  263  vi tolerations-pod.yml
+  264  kubectl apply -f tolerations-pod.yml 
+  265  kubectl get pods 
+  266  kubectl describe pod nginx1
+  267  ls -ltrh
+  268  vi tolerations-pod.yml 
+  269  kubectl get pods 
+  270  kubectl delete pod nginx1
+  271  kubectl apply -f tolerations-pod.yml
+  272  kubectl get pods 
+  273  kubectl get pods -o wide 
+  274  kubectl get nodes 
+  275  kubectl describe node c1master
+  276  kubectl taint node c1master node-role.kubernetes.io/master:NoSchedule-
+  277  kubectl taint node c1node1 size=large:NoSchedule-
+  278  kubectl run testpod --image=nginx 
+  279  kubectl get pods -o wide 
+  280  vi tolerations-pod.yml 
+  281  kubectl describe node c1master
+  282  vi tolerations-pod.yml 
+  283  kubectl get pods -o wide 
+  284  kubectl taint node c1node1 node=db:NoExecute
+  285  kubectl get pods -o wide 
+  286  vi tolerations-pod.yml 
+  287  kubectl apply -f tolerations-pod.yml
+  288  kubectl get pods 
+  289  kubectl get pods -o wide 
+  290  kubectl taint node c1master node-role.kubernetes.io/master:NoSchedule-
+  291  kubectl taint node c1master node-role.kubernetes.io/master:NoSchedule
+  292  kubectl get pods 
+  293  vi tolerations-pod.yml 
+  294  kubectl apply -f tolerations-pod.yml
+  295  kubectl get podds 
+  296  kubectl get pods
+  297  kubectl describe pod nginx2
+  298  vi tolerations-pod.yml 
+  299  kubectl apply -f tolerations-pod.yml 
+  300  kubectl get pods
+  301  kubectl get pods -o wide 
+  302  kubectl descirbe node c1node1
+  303  kubectl describe node c1node1
+  304  clear
+  305  ls -ltrh
+  306  vi nodeSelector-pod.yml
+  307  kubectl get nodes
+  308  kubectl apply -f nodeSelector-pod.yml
+  309  kubectl get pods 
+  310  kubectl apply -f nodeSelector-pod.yml
+  311  kubectl get pods 
+  312  kubectl taint node c1node1 node=db:NoExecute-
+  313  kubectl apply -f nodeSelector-pod.yml
+  314  kubectl get pods 
+  315  kubectl describe pod nginx
+  316  kubectl 
+  317  vi nodeSelector-pod.yml 
+  318  kubectl label node c1node1 node=db
+  319  vi nodeSelector-pod.yml 
+  320  kubectl apply -f nodeSelector-pod.yml 
+  321  vi nodeSelector-pod.yml 
+  322  kubectl apply -f nodeSelector-pod.yml 
+  323  kubectl get pods 
+  324  vi nodeSelector-pod.yml 
+  325  kubectl apply -f nodeSelector-pod.yml 
+  326  kubectl get pods -o wide 
+  327  kubectl run alpine --image=alpine -- sleep 3600
+  328  kubectl get pods 
+  329  kubectl get pods -o wide 
+  330  cd 
+  331  history 
+  332  history > day7.txt
