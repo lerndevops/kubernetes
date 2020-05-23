@@ -1,0 +1,31 @@
+Try to use imperative commands only for all below scenarios 
+
+POD Scenarios
+
+1) create a pod named redis using image radis:alpha
+
+2) create a pod using image tomcat & assign label app with value web 
+
+3) create a pod named kual203 using image lerndevops/alpine:beta, find the errors in the logs, write the error messages to a file /opt/kual203.txt
+
+4) Deploy a messaging pod using the redis:alpine image with the labels set to tier=msg & app=web
+
+5) list all the pods with label app=web & write the output to a file /opt/webpods.txt
+
+6) deploy pod using https://raw.githubusercontent.com/lerndevops/educka/master/exam-prep/app-redis.yml 
+   if there are any errors try to fix them and ensure the pod status is running. DO NOT delete the pod. 
+   
+7) Create a POD in the finance namespace named red-bus with the image redis:alpine
+
+8) deploy a pod with forex name using lerndevops/tomcat:8.5.3 in finance namespace with label env=qa
+
+9) list all pods with running status in finance namespace and write the output to /opt/kufinpods.txt
+
+10) deploy a pod named envpod using image nginx & apply env variables username=dbuser password=dbpass
+
+11) deploy a pod named dbpod using image lerndevops/alpine:sleep with label app=testapp, env variable uname=appuser & set the restart policy to never
+
+12) genereate pod definition file with pod named apppod with application contianers using nginx,tomcat,redis then save the definition file to /opt/apppod.yml. then deploy the pod & ensure it is running state. 
+
+
+
