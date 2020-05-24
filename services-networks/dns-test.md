@@ -6,7 +6,7 @@
 # create
 
 kubectl create namespace testns  ## creates testns namespace 
-kubectl -n testns run --generator=run-pod/v1 nginx --image=nginx --expose --port=80 ## create a pod & service called nginx in testns namespace
+kubectl -n testns run nginx --image=nginx --expose --port=80 ## create a pod & service called nginx in testns namespace
 ```
 ```
 #validate 
@@ -25,7 +25,7 @@ service/nginx   ClusterIP   10.102.75.3   <none>        80/TCP    66s   run=ngin
 # create
 
 kubectl create namespace default  ## creates testns namespace 
-kubectl -n default run --generator=run-pod/v1 mynginx --image=nginx --expose --port=80 ## create a pod & service called nginx in testns namespace
+kubectl -n default run mynginx --image=nginx --expose --port=80 ## create a pod & service called nginx in testns namespace
 ```
 ```
 # validate
@@ -44,7 +44,7 @@ service/mynginx      ClusterIP   10.102.183.125   <none>        80/TCP   10m    
 ```
 # Create
 
-kubectl -n testns run --generator=run-pod/v1 dnstest --image=lerndevops/netshoot --rm -it -- /bin/bash
+kubectl -n testns run dnstest --image=lerndevops/netshoot --rm -it -- /bin/bash
 
 the above command will create new pod called dnstest in testns namespace & get you insideit, from inside pod we can try accessing pods using their service dns & pod dns 
 ```
