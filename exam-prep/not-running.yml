@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: not-running
+  name: not-running
+spec:
+  containers:
+  - image: redi
+    name: not-running
+    ports:
+    - containerPort: 2379
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
