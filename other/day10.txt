@@ -1,0 +1,550 @@
+    1  git clone https://github.com/lerndevops/educka
+    2  educka/install/
+    3  cd educka/install/
+    4  vi install-k8s-v17-ubuntu.sh 
+    5  git config --global user.name lerndevops
+    6  git config --global user.email lerndevops@gmail.com
+    7  git add .
+    8  git commit -m "install"
+    9  git push 
+   10  ./install-k8s-v17-ubuntu.sh 
+   11  kubeadm init --ignore-preflight-errors=all
+   12  mkdir -p $HOME/.kube
+   13  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   14  kubectl get nodes
+   15  kubectl get pods -n kube-system 
+   16  kubectl get pods -n kube-system -o wide 
+   17  curl https://docs.projectcalico.org/manifests/calico.yaml -O
+   18  kubectl apply -f calico.yaml 
+   19  kubectl get pods -n kube-system 
+   20  kubectl get pods -n kube-system -o wide 
+   21  kubectl exec coredns-66bff467f8-8n5b4 -- ping 192.168.219.67   
+   22  kubectl -n kube-system exec coredns-66bff467f8-8n5b4 -- ping 192.168.219.67   
+   23  kubectl get pods 
+   24  kubectl get nodes
+   25  kubectl describe node master 
+   26  kubectl taint master node-role.kubernetes.io/master:NoSchedule-
+   27  kubectl taint node master node-role.kubernetes.io/master:NoSchedule-
+   28  kubectl get pods 
+   29  kubectl run pod1 --image=alpine -- sleep 3200
+   30  kubectl run pod2 --image=alpine -- sleep 3200
+   31  kubectl get pods 
+   32  kubectl get pods -o wide 
+   33  kubectl exec pod1 -- ping 192.168.219.69   
+   34  kubectl exec pod2 -- ping 192.168.219.68
+   35  kubectl exec pod2 -- ping 192.168.219.69
+   36  kubectl taint node master node-role.kubernetes.io/master:NoSchedule
+   37  kubectl get pods 
+   38  kubectl delete pods --all
+   39  kubeadm token list
+   40  kubectl token create ryq7gn.q9ty9kvf1twzglj3 --print-join-command
+   41  kubeadm token create ryq7gn.q9ty9kvf1twzglj3 --print-join-command
+   42  kubectl token create --print-join-command
+   43  kubeadm token create --print-join-command
+   44  kubectl get nodes
+   45  kubectl get pods -n kube-system 
+   46  clear
+   47  kubectl run pod1 --image=alpine -- sleep 3200
+   48  kubectl run pod2 --image=alpine -- sleep 3200
+   49  kubectl get pods -o wide 
+   50  kubectl exec pod1 -- ping 192.168.166.129
+   51  kubectl exec pod2 -- ping 192.168.104.1
+   52  route 
+   53  kubectl get pods -o wide 
+   54  kubectl get pods -o wide -n kube-sytem 
+   55  kubectl get pods -o wide -n kube-system 
+   56  kubectl get all -n kube-system
+   57  kubectl get pods -o wide 
+   58  route 
+   59  ficonfig 
+   60  ifconfig 
+   61  kubectl get pods 
+   62  kubectl get pods -o wide 
+   63  ./setup-user.sh 
+   64  clear
+   65  kubectl get pods 
+   66  kubectl get pods -o wide 
+   67  kubectl exec pod1 -- ping 192.168.166.129   
+   68  kubectl exec pod2 -- ping 192.168.104.1     
+   69  clear
+   70  cd educka/install/
+   71  ls -ltrh
+   72  git status 
+   73  git add .
+   74  git commit -m "install"
+   75  git push 
+   76  kubectl get pods 
+   77  kubectl create deployment --image=nginx 
+   78  kubectl create deployment mydep --image=nginx 
+   79  kubectl get deployment 
+   80  kubectl scale deployment mydep --replicas=4
+   81  kubectl get deployment 
+   82  kubectl get pods 
+   83  kubectl get pods -o wide 
+   84  kubectl delete pod mydep-6c599788b-flkhx
+   85  kubectl get pods -o wide 
+   86  kubectl get svc 
+   87  cd educka/controllers/statefulsets/
+   88  ls -ltrh
+   89  vi statefulset-ex1.yml
+   90  kubectl apply -f statefulset-ex1.yml 
+   91  watch kubectl get pods 
+   92  kubectl get pods 
+   93  kubectl delete pod db-3
+   94  kubectl get pods 
+   95  kubectl run dnstest --image=lerndevops/netshoot -- sleep 3600
+   96  kubectl get pods
+   97  kubectl get pods -o wide 
+   98  kubectl get svc 
+   99  kubectl exec -it dnstest -- /bin/bash 
+  100  ls -ltrh
+  101  vi statefulset-ex3.yml
+  102  ls -ltrh
+  103  vi statefulset-ex2.yml
+  104  ls -ltrh
+  105  kubectl exec -it dnstest -- /bin/bash 
+  106  kubectl get pod -n kube-system
+  107  kubectl get pods -o wide 
+  108  clear
+  109  kubectl get sts 
+  110  kubectl delete pod db
+  111  kubectl delete sts db
+  112  kubectl get deploy 
+  113  kubectl delete dep mydep
+  114  kubectl delete deploy mydep
+  115  free -m
+  116  cd ..
+  117  ls -ltrh
+  118  cd security/
+  119  ls -ltrh
+  120  cd namespaces/
+  121  ls -ltrh
+  122  cd resource-quotas/
+  123  ls -ltrh
+  124  vi object-counts-demo.yml
+  125  kubectl get ns
+  126  kubectl create ns prod
+  127  kubectl create ns dev
+  128  kubectl apply -f object-counts-demo.yml
+  129  kubectl get resourcequota
+  130  kubectl get resourcequota -n dev
+  131  kubectl create deploy dep1 --image=nginx -n dev 
+  132  kubectl create deploy dep2 --image=nginx -n dev 
+  133  kubectl create deploy dep3 --image=nginx -n dev 
+  134  more object-counts-demo.yml
+  135  kubectl get pods -n dev
+  136  kubectl scale depoly dep1 --replicas=5
+  137  kubectl scale deploy dep1 --replicas=5
+  138  kubectl scale deploy dep1 --replicas=5 -n dev
+  139  kubectl get pods -n dev
+  140  kubectl scale deploy dep2 --replicas=5
+  141  kubectl scale deploy dep2 --replicas=5 -n dev
+  142  kubectl get deploy -n dev
+  143  kubectl get rs -n dev
+  144  kubectl describe rs dep2-8594b9ff9b -n dev 
+  145  kubectl get resourcequota -n dev
+  146  kubectl describe resourcequota object-counts -n dev
+  147  kubectl edit resourcequota object-counts -n dev
+  148  kubectl describe resourcequota object-counts -n dev
+  149  kubectl get rs -n dev 
+  150  kubectl describe rs dep2-8594b9ff9b -n dev
+  151  kubectl get rs -n dev 
+  152  history 
+  153  ls -ltrh
+  154  vi compute-resources-demo.yml
+  155  kubectl create compute-resources-demo.yml -n prod
+  156  kubectl create -f compute-resources-demo.yml -n prod
+  157  kubectl get resourcequota -n prod
+  158  kubectl describe resourcequota compute-resources-demo -n prod
+  159  kubectl run pod1 --image=nginx -n prod
+  160  kubectl run -h
+  161  kubectl run pod1 --image=nginx --requests=cpu=100m,memory=50Mi --limits=cpu=200m,memory=100Mi -n prod --dry-run=client -o yaml
+  162  kubectl run pod1 --image=nginx --requests=cpu=100m,memory=50Mi --limits=cpu=200m,memory=100Mi -n prod 
+  163  kubectl run -h
+  164  kubectl get pods 
+  165  kubectl run pod3 --image=nginx
+  166  kubectl run pod3 --image=nginx --limts=cpu=100m,memory=50Mi
+  167  kubectl run pod3 --image=nginx --limits=cpu=100m,memory=50Mi
+  168  kubectl run pod4 --image=nginx --limits=cpu=100m,memory=50Mi
+  169  kubectl describe pod pod4
+  170  pod/pod4
+  171  history 
+  172  kubectl create -h 
+  173  clear
+  174  cd 
+  175  clear
+  176  kubectl get pods 
+  177  kubectl delete pods --all
+  178  clear
+  179  kubectl get nodes 
+  180  kubectl get nodes -o wide 
+  181  clear
+  182  kubectl get nodes
+  183  kubectl describe node node2
+  184  kubectl get nodes
+  185  kubectl describe node node2
+  186  clear
+  187  cd /root/.kube/
+  188  ls -ltrh
+  189  vi config 
+  190  clar
+  191  cd 
+  192  celar
+  193  clear
+  194  kubect get nodes
+  195  kubectl get nodes
+  196  kubectl get pods 
+  197  docker ps | grep apiserver
+  198  cd /etc/kubernetes/manifests/
+  199  ls -l
+  200  vi kube-apiserver.yaml
+  201  cd ..
+  202  ls -ltrh
+  203  vi admin.conf 
+  204  cd 
+  205  cd /home/.kube
+  206  cd $HOME
+  207  cd $HOME/.kube
+  208  ls -l
+  209  vi config 
+  210  kubectl get nodes
+  211  pwd
+  212  vi config 
+  213  kubectl get nodes
+  214  vi config 
+  215  kubectl get nodes
+  216  vi config 
+  217  kubectl get nodes
+  218  cd 
+  219  clear
+  220  kubectl get nodes
+  221  kubectl run --help 
+  222  clear
+  223  kubectl run --help 
+  224  clear
+  225  kubectl run nginx-node2 --image=nginx --dry-run=client -o yaml 
+  226  kubectl get pods 
+  227  kubectl get pods -n kube-system
+  228  kubectl get pods 
+  229  kubectl run -h 
+  230  kubectl run alpine --image=alpine -- sleep 3600 --dry-run=client -o yaml 
+  231  kubectl delete pod alpine 
+  232  kubectl run alpine --image=alpine --dry-run=client -o yaml -- sleep 3600 
+  233  clear
+  234  kubectl get pods 
+  235  kubectl get pods --all-namespaces 
+  236  kubectl get pods 
+  237  vi pod.yml
+  238  kubectl apply -f pod.yml 
+  239  kubectl get pods 
+  240  kubectl get pods -o wide 
+  241  clear
+  242  cd /var/lib/kubelet/
+  243  ls -ltrh
+  244  vi config.yaml 
+  245  service kubelet restart
+  246  clear
+  247  cd 
+  248  ckear
+  249  clear
+  250  kubectl get nodes
+  251  service kubelet status 
+  252  cd $HOME/.kube
+  253  ls -ltrh
+  254  vi config 
+  255  cd /etc/kubernetes/manifests/
+  256  ls -ltrh
+  257  vi  kube-apiserver.yaml
+  258  kubectl get nodes
+  259  netstat -nap | grep 6443
+  260  docker ps | grep apiserver
+  261  docker ps 
+  262  ls -l
+  263  service kubelet status 
+  264  ps -ef|grep kubelet 
+  265  cd /var/lib/kubelet/
+  266  ls -l
+  267  vi config.yaml 
+  268  service kubelet restart
+  269  kubectl get pods 
+  270  docker ps | grep apiserver
+  271  clear
+  272  kubectl get pods 
+  273  kubectl delete pods --all
+  274  kubectl create deployment mydep --image=lerndevops/netshoot
+  275  kubectl get deployment 
+  276  kubectl get pdos 
+  277  kubectl get pods
+  278  kubectl delete deploy mydep
+  279  kubectl create deployment mydep --image=lerndevops/netshoot -- sleep 3600
+  280  kubectl get pods 
+  281  kubectl describe pod mydep-8755f654c-qq4bc
+  282  kubectl get pods 
+  283  kubectl get rs
+  284  kubectl get delete deploy mydep
+  285  kubectl delete deploy mydep
+  286  kubectl get pods
+  287  kubectl create deployment mydep --image=lerndevops/netshoot -- sleep 3600
+  288  kubectl get pods
+  289  kubectl delete deploy mydep
+  290  kubectl run pod1 --image=lerndevops/netshoot -- sleep 3600
+  291  kubectl get pods 
+  292  kubectl run pod2 --image=lerndevops/netshoot -- sleep 3600
+  293  kubectl get pods -o wide 
+  294  kubectl exec pod1 -- ping 192.168.104.27
+  295  kubectl exec pod2 -- ping 192.168.104.26
+  296  kubectl exec pod2 -- ping 192.168.166.146
+  297  kubectl exec pod2 -- nslookup 192.168.166.146
+  298  kubectl exec pod2 -- ping 192-168-166-146.pod.cluster.local
+  299  kubectl exec pod2 -- ping 192-168-166-146.default.pod.cluster.local
+  300  kubectl get ns
+  301  kubectl get pods -n prod 
+  302  kubectl get pods -n prod -o wide 
+  303  kubectl exec pod2 -- ping 192-168-166-142.default.pod.cluster.local
+  304  kubectl exec pod2 -- ping 192-168-166-142.prod.pod.cluster.local
+  305  clear
+  306  cd educka/services-networks/
+  307  l
+  308  cd network-policies/
+  309  ls -ltrh
+  310  vi deny-all-ingress.yml
+  311  kubectl apply -f deny-all-ingress.yml 
+  312  kubectl get netpol
+  313  kubectl describe netpol deny-all
+  314  clear
+  315  kubectl get pods 
+  316  kubectl get pods -o wide 
+  317  kubectl exec pod1 -- ping 192.168.104.27
+  318  kubectl exec pod2 -- ping 192.168.104.26
+  319  ls -ltrh
+  320  kubectl get svc
+  321  more allow-all-egress.yml
+  322  vi customer-data-deployment.yml
+  323  kubectl create -f customer-data-deployment.yml 
+  324  ls -ltrh
+  325  kubectl get deploy 
+  326  vi customer-data-policy.yml
+  327  more customer-data-deployment.yml
+  328  more deployment.yml
+  329  ls -ltrh
+  330  more inventory-deployment.yml
+  331  ls -ltrh
+  332  more podSelector-deployment.yml
+  333  ls -ltrh
+  334  cp customer-data-deployment.yml
+  335  cp customer-data-deployment.yml customer-data-access.yml
+  336  vi customer-data-access.yml
+  337  kubectl apply -f customer-data-access.yml
+  338  vi customer-data-access.yml
+  339  kubectl apply -f customer-data-access.yml
+  340  vi customer-data-access.yml
+  341  kubectl apply -f customer-data-access.yml
+  342  vi customer-data-access.yml
+  343  kubectl apply -f customer-data-access.yml
+  344  vi customer-data-access.yml
+  345  kubectl apply -f customer-data-access.yml
+  346  kubectl get pods 
+  347  ls -ltrh
+  348  vi customer-data-policy.yml
+  349  kubectl apply -f customer-data-policy.yml 
+  350  vi customer-data-policy.yml
+  351  kubectl explain NetworkPolicy
+  352  ls -ltrh
+  353  vi customer-data-policy.yml 
+  354  kubectl apply -f customer-data-policy.yml 
+  355  kubectl get get netpol
+  356  kubectl get netpol
+  357  kubectl get pods -o wide 
+  358  kubectl exec pod1 -- ping 192.168.104.28
+  359  kubectl exec pod1 -- ping 192.168.166.148
+  360  kubectl exec pod1 -- curl 192.168.166.148:80
+  361  kubectl exec customer-data-deployment-5f5666456c-cqqvx -- curl 192.168.166.148:80
+  362  kubectl exec customer-data-deployment-5f5666456c-cqqvx -- apt-get install curl 
+  363  kubectl exec customer-data-deployment-5f5666456c-cqqvx -- apt-get update
+  364  ls -ltrh
+  365  vi customer-data-policy.yml
+  366  kubectl apply -f customer-data-policy.yml
+  367  kubectl exec customer-data-deployment-5f5666456c-cqqvx -- apt-get update
+  368  kubectl exec customer-data-deployment-5f5666456c-cqqvx -- apt-get install curl -y
+  369  kubectl get pods 
+  370  kubectl get pods -o wide 
+  371  kubectl exec customer-data-deployment-5f5666456c-cqqvx -- curl 192.168.166.148:80
+  372  ls -ltrh
+  373  vi customer-data-policy.yml
+  374  kubectl get pods -o wide 
+  375  kubectl exec customer-data-access-b659d469f-fzf28 -- apt-get update 
+  376  kubectl exec customer-data-access-b659d469f-fzf28 -- apt-get install -y curl 
+  377  kubectl get pods -o wide 
+  378  kubectl exec customer-data-access-b659d469f-fzf28 -- curl 192.168.104.28:80
+  379  kubectl exec customer-data-access-b659d469f-fzf28 -- curl 192.168.104.28:8080
+  380  kubectl exec customer-data-access-b659d469f-fzf28 -- curl 192.168.104.28:80
+  381  ls -ltrh
+  382  vi customer-data-policy.yml
+  383  clear
+  384  kubectl get pod -n kube-system
+  385  cd 
+  386  ckear
+  387  clear
+  388  kubectl get pods --sort-by='.status.containerStatuses[0].restartCount'
+  389  kubectl get pods 
+  390  kubectl get services --sort-by=.metadata.name
+  391  kubectl get pods --sort-by=.metadata.name
+  392  kubectl run pod2 --image=test --dry-run=client -o yaml 
+  393  kubectl run pod2 --image=test --dry-run=client -o json
+  394  kubectl get pods 
+  395  kubectl get pod customer-data-access-b659d469f-fzf28 -o yaml 
+  396  kubectl get pod customer-data-access-b659d469f-fzf28 -o json 
+  397  kubectl get pods --sort-by=.metadata
+  398  kubectl get pods --jsonpath='{.metadata}'
+  399  kubectl get pods --help 
+  400  kubectl get pods -o jsonpath='{.metadata}'
+  401  clear
+  402  kubectl get pods --all-namespaces -o jsonpath="{..image}"
+  403  kubectl get pods 
+  404  kubectl get pod pod1 -o jsonpath="{..image}"
+  405  kubectl get pod -o json 
+  406  kubectl get pod pod1 -o jsonpath="{.status}"
+  407  kubectl get pod pod1 -o jsonpath="{.status.containerStatuses}"
+  408  kubectl get pod pod1 -o jsonpath="{.status.containerStatuses.name}"
+  409  kubectl get pod pod1 -o jsonpath="{.status.podIP}"
+  410  kubectl get pods -o jsonpath="{.status.hostIP}"
+  411  kubectl get pods pod1 -o jsonpath="{.status.hostIP}"
+  412  kubectl get pods 
+  413  clear
+  414  kubectl get pods -o jsonpath="{.status.hostIP}"
+  415  kubectl get pods -o json 
+  416  kubectl get pods -o jsonpath="{.items.status.hostIP}"
+  417  kubectl get pods -o jsonpath="{.items.status.phase}"
+  418  kubectl get pods -o jsonpath="{.items[*].status.phase}"
+  419  kubectl get pods -o jsonpath="{.items[*].status.podIP}"
+  420  kubectl get pods 
+  421  kubectl get deployments 
+  422  kubectl get deployment -o jsonpath="{.items[*].status.podIP}"
+  423  kubectl get deployment -o json 
+  424  kubectl get deployment 
+  425  kubectl get deployment customer-data-access
+  426  kubectl get deployment customer-data-access -o json
+  427  kubectl get deployment -o jsonpath="{.items[*].spec.replicas}"
+  428  kubectl get pods -o jsonpath="{.items[*].metada.name}"
+  429  kubectl get pod pod1 -o json 
+  430  kubectl get pods pod1 -o jsonpath="{.metada.{e}"
+  431  clear
+  432  kubectl get pods pod1 -o jsonpath="{.metada.labels}"
+  433  kubectl get pods pod1 -o jsonpath="{.metada.labels[*]}"
+  434  kubectl get pods pod1 -o jsonpath="{.metadata.labels}"
+  435  kubectl get pods pod1 -o jsonpath="{.metadata.labels.run}"
+  436  kubectl get pods pod1 -o jsonpath="{.spec.containers.image}"
+  437  kubectl get pods pod1 -o jsonpath="{.spec.containers[*].image}"
+  438  kubectl get pods 
+  439  kubectl get pods customer-data-access-b659d469f-fzf28 -o json 
+  440  kubectl get pods pod1 -o jsonpath="{.metadat.name}"
+  441  kubectl get pods pod1 -o jsonpath="{.metadata.name}"
+  442  kubectl get pods pod1 -o jsonpath="{.items[*].metadata.name}"
+  443  kubectl get pods -o jsonpath="{.items[*].metadata.name}"
+  444  kubectl get pods -o jsonpath="{.items[*].metadata.name}" | tr -d "\n"
+  445  kubectl get pods -o jsonpath="{.items[*].metadata.name}"
+  446  kubectl get pods -o jsonpath="{.items[*].metadata.name}" | tr " " "\n"
+  447  kubectl get pods -o jsonpath="{.items[*].metadata.name}" | tr " " "\n" > /tmp/pods.txt
+  448  more /tmp/pods.txt
+  449  kubectl get nodes -o jsonpath="{.items[*].metadata.name}" 
+  450  kubectl get nodes -o jsonpath="{.items[*].metadata.name}" | tr " " "\n"
+  451  kubectl get nodes -o jsonpath="{.items[*].metadata.name}" | tr " " "\n" | echo " "
+  452  kubectl get nodes -o jsonpath="{.items[*].metadata.name}" | tr " " "\n" 
+  453  kubectl get nodes -o jsonpath="{.items[*].metadata.name}" | tr " " "\n" > /opt/nodetest.txt
+  454  more /opt/nodetest.txt 
+  455  kubectl get nodes -o jsonpath="{.items[*].metadata.name}"
+  456  kubectl get nodes -o jsonpath="{.items[*].metadata.name}" | tr " " "\n"
+  457  kubectl get pods 
+  458  kubectl get pods --show-labels 
+  459  kubectl get pods 
+  460  kubectl get pods -l customer-data-access=test
+  461  kubectl get pods -l customer-data-access=test -n prod
+  462  clear
+  463  kubectl get deploy 
+  464  kubectl delete deploy --all
+  465  kubectl delete pods --all
+  466  clear
+  467  cd educka/controllers/
+  468  ls -ltrh
+  469  vi deployment-ex1.yml
+  470  ls -ltrh
+  471  kubectl apply -f deployment-ex1.yml 
+  472  vi deployment-ex2.yml
+  473  kubectl apply -f deployment-ex2.yml
+  474  kubectl get pods --show-labels 
+  475  clear
+  476  kubectl get pods 
+  477  kubectl get svc 
+  478  kubectl get pods 
+  479  clear
+  480  kubectl get pods 
+  481  kubectl get svc 
+  482  kubectl describe svc sampleapp-service
+  483  kubectl get pods -l app=sampleapp
+  484  kubectl get pods -l app=sampleapp -o jsonpath="{.items[*].metadata.name}"
+  485  kubectl get pods -l app=sampleapp -o jsonpath="{.items[*].metadata.name}" | tr " " "\n"
+  486  kubectl get pods -l app=sampleapp -o jsonpath="{.items[*].metadata.name}" | tr " " "\n" > /tmp/sampleapp-service-pod.txt
+  487  more /tmp/sampleapp-service-pod.txt
+  488  kubectl run nginx --image=nginx:1.17.4 --port=80 --dry-run=client -o yaml
+  489  kubectl run nginx --image=nginx:1.17.4 --port=80
+  490  kubectl get pods 
+  491  kubectl run nginx --image=nginx:1.17.4 --port=80
+  492  kubectl get pods 
+  493  kubectl describe pod nginx 
+  494  kubectl get pods 
+  495  kubectl edit pod nginx
+  496  kubectl get pods 
+  497  kubectl describe pod nginx
+  498  kubectl get pods 
+  499  kubectl set image nginx nginx=nginx:1.15-alpine
+  500  kubectl set image pod nginx nginx=nginx:1.15-alpine
+  501  kubectl describe pod nginx 
+  502  kubectl run pod1 --image=nginx --dry-run=client -o yaml 
+  503  vi /tmp/pod.yml
+  504  kubectl apply -f /tmp/pod.yml 
+  505  kubectl get pods 
+  506  kubectl describe pod pod1
+  507  kubectl set image pod pod1 mycont=tomcat
+  508  kubectl describe pod pod1
+  509  kubectl get pods 
+  510  kubectl describe pod pod1
+  511  kubectl get deploy 
+  512  kubectl get deploy -o wide 
+  513  kubectl get pods 
+  514  kubectl describe pod mydeployment-57b8d984d4-4ghpn
+  515  kubectl set image deploy mydeployment myapp-cont=lerndevops/samplepyapp:v2
+  516  kubectl get pods -o wde 
+  517  kubectl get pods -o wie
+  518  kubectl get pods -o wide
+  519  kubectl get deploy -o wide
+  520  kubectl run nginx --image=nginx
+  521  kubectl run nginx2 --image=nginx
+  522  kubectl exec pod/nginx2 -- ls
+  523  kubectl exec pod/nginx2 -- ls > /tmp/shell.txt
+  524  more /tmp/shell.txt 
+  525  clear
+  526  kubectl run labletestpod --image=nginx -l=env=prod
+  527  kubectl run labletestpod1 --image=nginx -l=env=prod
+  528  kubectl run labletestpod2 --image=nginx -l=env=prod
+  529  kubectl run labletestpod3 --image=nginx -l=env=dev
+  530  kubectl run labletestpod4 --image=nginx -l=env=dev
+  531  kubectl get pods 
+  532  kubectl get pods -l env=prod
+  533  kubectl get pods -l env=dev
+  534  kubectl label pod labletestpod3 app=db
+  535  kubectl label pod labletestpod4 app=db
+  536  kubectl get pods -l app=db
+  537  kubectl get pods --show-labels 
+  538  kubectl label pod labletestpod4 app-
+  539  kubectl label pod labletestpod3 app-
+  540  kubectl get pods --show-labels 
+  541  clear
+  542  kubectl run kual203 --image=lerndevops/alpine:beta 
+  543  kubectl get pods 
+  544  kubectl logs kual203
+  545  kubectl logs kual203 | grep ERROR
+  546  kubectl logs kual203 | grep ERROR > /opt/kual203.txt
+  547  ll /opt/kual203.txt 
+  548  more /opt/kual203.txt
+  549  history
+  550  history > day10.txt
