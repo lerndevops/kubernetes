@@ -1,28 +1,29 @@
 # deploy insecure dashboard
 ```
-   kubectl apply -f dashboard-v2-insecure.yml
+   kubectl apply -f dashboard-insecure.yml
 ```
 ### validate
 ```
    ensure dashboard deployment is available & pod in running state
 
-       kubectl get deploy -n kubernetes-dashboard
-       kubectl get pods -n kubernetes-dashboard
+       kubectl get deploy 
+       kubectl get pods 
 ```
 ### Access UI
 ```
-   kubectl get svc -n kubernetes-dashboard ( note port number ex: 30605)
+   kubectl get svc ( note port number ex: 30605)
    
-   open the broser and hit -- http://ip:port  (if deployed in aws use publicip)
+   open the browser and hit -- http://ip:port  (if deployed in aws use publicip)
       ex: http://3.14.249.66:30605/
    
    skip the login to get in !!     
 ```
 
+
 # deploy Secure dashboard
 
 ```
-   kubectl apply -f dashboard-v2-secure.yml
+   kubectl apply -f dashboard-secure.yml
 ```
 
 ### Create Service Account & Get token to login to UI
@@ -42,7 +43,7 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IjJBNzB4bFZDbFN1cVRkd3N4VkxSVTdmVS1ROGlyR2l5WVl4ZHZ0
 ### Get the Service & Node Port of dashbaord 
 
 ```
-root@kube-master:~# kubectl get svc kubernetes-dashboard -n kubernetes-dashboard
+root@kube-master:~# kubectl get svc kubernetes-dashboard 
 NAME                   TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)         AGE
 kubernetes-dashboard   NodePort   10.96.56.222   <none>        443:31003/TCP   5m54s
 ```
