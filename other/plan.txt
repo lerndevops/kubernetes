@@ -1,76 +1,79 @@
-day1
-=====
-intro -- physica/vm/docker
-create vm on google
-installation 
-containers 
-images 
-	
-	## crete 3 vm / 2cpu 8gbram
+Day1
+======
+Intro to Containers - what & why
+Physical vs Virtual machines vs Containers
+docker instalation 
+docker home directory & docker engine/deamon 
+docker hub
+run containers from existing images
+various docker container commands
 
-day2
+Day2
 =====
-volumes
+prepare docker images
+push images to docker hub
 docker swarm
-	CNM
+docker swarm vs kubernetes
 
-docker swarm vs kube
-	CNI  -- flannel / calico / weave / canal
+Day3
+======
+kuberenetes installation (kubeadm )
+kuberenetes architechture
+understand master & node components
+understand namespace
+list resouces in all namespaces & validate
+intro to Yaml
+understand kubernetes yaml objects
+    kubectl api-resources
+	kubectl explain
+pods -- what are pods
+    single cont pods
+	multi cont pods
+	init cont pods
 
-kube installation 
-	kubectl get nodes
-	kubectl get pods --all-namespaces
-
-
-day 3
+Day4
 =====
-Architecutre
-Namespaces ( imperative ) kubectl create namespace naresh
-kubectl api-resources
-kubectl explain resource (pod)
-create pod ( imperative )
-declarative model (yaml)
-PODS (single/multi/static/init)
-
-day4
-=====
+Static Pods
 services (clusterip/nodeport)
-controller (rc/rs/deploy/deemonset/job/cronjob)
-
+controller (rs/deploy/deemonset/job/cronjob)
 
 day5
 =====
-create GCP cluster 
-service (network loadbalancer)
-volumes / pv / pvc / configmaps / secrets / storage class
-    
-day6
-=====
-security / namespaces (quotas) / resource limits / security contexts
+
+security 
 rbac (create user key/csr ) upload csr to cluster 
 kubecte get csr
 kubectl approve csr nameofcsr
-
-day7
+  
+day6
 =====
 kubeconfig 
 service accouts
-etcd backup / multi schedular
+Networking 
+DNS
+networking / network policies
+
+day7
+=====
+
+create GCP cluster 
+volumes / pv / pvc / configmaps / secrets / storage class
+service (network loadbalancer)
 
 day8
 =====
-scheduling -- taints & tolerations / affinity / nodeselecotr (nodename/labels)
+namespaces (quotas) / resource limits / security contexts
+scheduling -- taints & tolerations / nodeselecotr (nodename/labels)
 probes -- readiness/liveness
-networking / network policies
 
 day9
 =====
 statefull sets / headless service
-DNS
+etcd backup / multi schedular
 troubleshooting -- cluster validation
 
 day10
 =====
-imperative (filters / slectors / jsonpath / sort)
 monitoring ( metrics server / prom-grafana )
+imperative (filters / slectors / jsonpath / sort / cheat sheet)
 upgrade cluster
