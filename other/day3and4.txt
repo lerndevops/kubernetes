@@ -1,0 +1,417 @@
+    1  git clone https://github.com/lerndevops/educka
+    2  educka/install/setup-user.sh 
+    3  clear
+    4  ls -l
+    5  cd educka/install/
+    6  ls -ltrh
+    7  ./install-k8s-ubuntu.sh
+    8  clear
+    9  docker -v 
+   10  kubeadm version -o short
+   11  kubelet --version
+   12  kubectl version --short --client 
+   13  kubeadm init --pod-network-cidr=10.244.0.0/16
+   14  kubeadm init --pod-network-cidr=10.244.0.0/16 --ignore-preflight-errors=all
+   15  kubectl get nodes
+   16  mkdir -p $HOME/.kube
+   17  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   18  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   19  kubectl get nodes
+   20  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
+   21  kubectl get nodes
+   22  kubeadm token list 
+   23  clear
+   24  kubectl get nodes
+   25  vi /etc/hostname 
+   26  clear
+   27  kubectl get nodes
+   28  kubectl get pods --all-namespaces
+   29  docker images 
+   30  service kubelet status 
+   31  clear
+   32  kubectl get pods 
+   33  cd educka/in
+   34  cd educka/install/
+   35  ls -ltrh
+   36  clear
+   37  kubectl get pods 
+   38  kubectl get namespace 
+   39  kubectl get all --all-namespaces
+   40  kubectl get all -n kube-system
+   41  kubectl get all -n default 
+   42  clear
+   43  kubectl get pods -n default 
+   44  kubectl get pods -n kube-system
+   45  history 
+   46  clear
+   47  cd 
+   48  kubectl run nginx --image=nginx 
+   49  kubectl get pods 
+   50  kubectl get pods -o wide 
+   51  kubectl describe pod nginx
+   52  kubectl get pods
+   53  kubectl run nginx --image=nginx 
+   54  kubectl run nginx1 --image=nginx 
+   55  kubectl get pods 
+   56  kubectl run nginx1 --image=nginx
+   57  kubectl run nginx1 --image=nginx -n kube-system
+   58  kubectl get pods -n kube-system 
+   59  kubectl get pods 
+   60  kubectl create namespace prod 
+   61  kubectl get namespace 
+   62  clear
+   63  kubectl get pods 
+   64  kubectl get pods -o wide 
+   65  curl 10.244.2.2
+   66  clear
+   67  kubectl get pods 
+   68  kubectl delete pods nginx 
+   69  kubectl delete pods --all
+   70  clear
+   71  kubectl api-resources
+   72  clear
+   73  kubectl explain pod
+   74  kubectl explain deployment
+   75  clear
+   76  kubectl explain pods 
+   77  clear
+   78  kubectl explain pods.metadata
+   79  kubectl explain pods.spec
+   80  vi pod.yml
+   81  clear
+   82  kubectl apply -f pod.yml 
+   83  kubectl get pods 
+   84  kubectl get pods mypod -o yaml 
+   85  clear
+   86  kubectl get pdos 
+   87  kubectl get pods
+   88  kubectl create -f pod.yml 
+   89  kubectl apply -f pod.yml 
+   90  vi pod.yml 
+   91  kubectl apply -f pod.yml 
+   92  kubectl describe pod mypod
+   93  kubectl get pods 
+   94  vi pod.yml 
+   95  kubectl apply -f pod.yml 
+   96  kubectl get pods 
+   97  kubectl get pods -n prod 
+   98  more pod.yml
+   99  kubectl get nodes
+  100  kubectl get pods -o wide 
+  101  cd educka/
+  102  ls -ltrh
+  103  cd pods/
+  104  ls -ltrh
+  105  vi single-cont-pod-ex1.yml
+  106  cd single-cont-pod-ex2.yml
+  107  vi single-cont-pod-ex2.yml
+  108  ls -ltrh
+  109  vi multi-cont-pod-ex2.yml
+  110  kubectl apply -f multi-cont-pod-ex2.yml
+  111  kubectl get pods 
+  112  kubectl get pods -o wide 
+  113  ls -ltrh
+  114  vi multi-cont-pod-ex3.yml
+  115  kubectl apply -f multi-cont-pod-ex3.yml
+  116  kubectl get pods 
+  117  ls -l
+  118  ls -ltrh
+  119  vi init-cont-pod-ex1.yml
+  120  vi initContainer-ex2.yml
+  121  kubectl apply -f initContainer-ex2.yml 
+  122  vi initContainer-ex2.yml
+  123  kubectl apply -f initContainer-ex2.yml 
+  124  kubectl getpods 
+  125  kubectl get pods 
+  126  clear
+  127  docker run -d -P lerndevop/samplejavaapp
+  128  docker run -d -P lerndevops/samplejavaapp
+  129  docker ps 
+  130  docker ps | grep lern
+  131  clear
+  132  kubectl get nodes
+  133  docker ps | grep lern
+  134  docker rm -f 22d7f0a7af7f
+  135  kubectl run sampleapp --image=lerndevops/samplejavaapp 
+  136  kubectl expose pod sampleapp --port 8080 --type NodePort --nodeport 32768
+  137  kubectl expose --help | grep -i nodeport
+  138  kubectl expose --help 
+  139  kubectl expose pod sampleapp --port 8080 --type NodePort --nodePort 32768
+  140  kubectl expose pod sampleapp --port=8080 --type=NodePort --nodePort=32768
+  141  kubectl expose pod sampleapp --port=8080 --type=NodePort
+  142  kubectl get pods 
+  143  kubectl get svc 
+  144  kubectl delete pods --all
+  145  kubectl delete svc sampleapp
+  146  kubectl get pods 
+  147  ls -ltrh
+  148  vi pod.yml 
+  149  kubectl apply -f pod.yml 
+  150  kubectl get pods 
+  151  kubectl get svc 
+  152  kubectl delete pod all
+  153  kubectl delete pod --all
+  154  kubectl delete svc sampleapp-svc
+  155  clear
+  156  kubectl get nodes
+  157  git clone https://github.com/lerndevops/labs
+  158  cd labs/kube/controllers/
+  159  ls -ltrh
+  160  clear
+  161  kubectl get nodes 
+  162  ls -ltrh
+  163  vi rs.yml 
+  164  kubectl create -f rs.yml 
+  165  kubectl get rs 
+  166  kubectl get pods 
+  167  kubectl describe rs myrs
+  168  ls -ltrh
+  169  vi deployment.yml
+  170  kubectl create -f deployment.yml 
+  171  kubectl get deployment 
+  172  kubectl get pods 
+  173  kubectl get deployment 
+  174  cd 
+  175  clear
+  176  cd -
+  177  kubectl get deploy -o wide 
+  178  ls -ltrh
+  179  vi deployment.yml 
+  180  kubectl get svc kubeserve-svc
+  181  vi deployment.yml 
+  182  kubectl apply -f deployment.yml 
+  183  kubectl rollout status deploy kubeserver
+  184  kubectl rollout status deploy kubeserve
+  185  vi deployment.yml 
+  186  kubectl apply -f deployment.yml 
+  187  kubectl rollout status deploy kubeserve
+  188  ls -ltrh
+  189  vi deployment.yml 
+  190  kubectl apply -f deployment.yml 
+  191  kubectl rollout status deploy kubeserve
+  192  vi deployment.yml 
+  193  kubectl apply -f deployment.yml 
+  194  kubectl rollout --help 
+  195  kubectl rollout pause deploy kubeserve
+  196  kubectl rollout resume deploy kubeserve 
+  197  ls -ltrh
+  198  vi deployment.yml
+  199  vi deployment.yml 
+  200  kubectl explain deployment.spec
+  201  kubectl explain deployment.spec.strategy
+  202  kubectl explain deployment.spec.template
+  203  kubectl explain deployment.spec.template.spec
+  204  vi deployment.yml 
+  205  clear
+  206  cd 
+  207  vi pod.yml 
+  208  kubectl create -f pod.yml 
+  209  vi pod.yml 
+  210  kubectl apply -f pod.yml 
+  211  kubectl get pods 
+  212  kubectl get svc 
+  213  kubectl get pods 
+  214  kubectl get nodes
+  215  kubectl get pods 
+  216  kubectl get deploy 
+  217  kubectl delete deplo kubeserve
+  218  kubectl delete deploy kubeserve
+  219  kubectl delete rs myrs
+  220  kubectl delete pod sampleapp
+  221  kubectl get svc 
+  222  kubectl delete svc kubeserve-svc mysvc sampleapp-svc
+  223  clear
+  224  kubectl get pods 
+  225  kubectl get svc 
+  226  kubectl get pods -n prod 
+  227  kubectl delete pod mypod -n prod 
+  228  kubectl get pods -n kube-system
+  229  kubectl delete pod nginx1 -n kube-system
+  230  clear
+  231  history 
+  232  kubectl get nodes
+  233  clear
+  234  kubectl get nodes
+  235  clear
+  236  ls -l
+  237  more pod.yml 
+  238  clear
+  239  kubectl get pods 
+  240  kubectl delete pod sampleapp-node2
+  241  kubectl get pods 
+  242  kubectl get pods --all-namespaces 
+  243  cd /etc/kubernetes/manifests/
+  244  ls -l
+  245  vi kube-apiserver.yaml
+  246  cd /root/educka/pods/
+  247  ls -ltrh
+  248  kubectl get pods 
+  249  kubectl get pods --all-namespaces 
+  250  ls -l
+  251  history 
+  252  kubectl get pods 
+  253  cd /var/lib/kubelet/
+  254  ll config.yaml 
+  255  clear
+  256  cd 
+  257  clear
+  258  cd educka/pods/
+  259  ls -ltrh
+  260  clear
+  261  kubectl run nginx --image=nginx 
+  262  kubectl get pods 
+  263  kubectl get pods -o wide 
+  264  curl 10.244.1.21:80
+  265  clear
+  266  kubectl expose pod nginx --name mysvc --port 80 --type NodePort
+  267  kubectl get service 
+  268  kubectl get svc
+  269  kubectl delete svc mysvc 
+  270  kubectl expose pod nginx --name=mysvc --port=80 --type=NodePort
+  271  kubectl get svc 
+  272  lcear
+  273  clear
+  274  vi svc.yml
+  275  more svc.yml 
+  276  kubectl get pods --show-labels
+  277  kubectl apply -f svc.yml 
+  278  kubectl get svc 
+  279  kubectl get pods 
+  280  kubectl get pods -o wide 
+  281  curl 10.244.1.21
+  282  kubectl get pods -o wide 
+  283  kubectl get svc 
+  284  curl 10.107.239.158
+  285  kubectl get pods 
+  286  kubectl run nginx1 --image=nginx
+  287  kubectl get pods 
+  288  kubectl get pods --show-lables 
+  289  kubectl get pods --show-labels 
+  290  kubectl delete pod nginx1
+  291  vi pod1.yml
+  292  kubectl apply -f pod1.yml 
+  293  vi pod1.yml
+  294  kubectl apply -f pod1.yml 
+  295  kubectl get pods 
+  296  kubectl get pods --show-labels
+  297  kubectl get svc 
+  298  kubectl get pods 
+  299  kubectl exec -it nginx1 -- /bin/bash 
+  300  kubectl get pods -o wide 
+  301  curl 10.244.1.21
+  302  curl 10.244.2.25
+  303  kubectl get svc 
+  304  curl 10.107.239.158
+  305  vi pod1.yml 
+  306  kubectl apply -f pod1.yml 
+  307  kubectl get pods 
+  308  more pod1.yml 
+  309  vi svc.yml 
+  310  kubectl apply -f svc.yml 
+  311  vi svc.yml 
+  312  kubectl apply -f svc.yml 
+  313  kubectl get svc 
+  314  kubectl get pods -o wide 
+  315  kubectl get ep dbsvc
+  316  kubectl get ep mysvc1
+  317  clear
+  318  kubectl get pods 
+  319  kubectl explain ReplicaSet
+  320  clear
+  321  kubectl get pods --show-labels 
+  322  vi myrs.yml
+  323  kubectl apply -f myrs.yml 
+  324  kubectl get replicaset
+  325  kubectl get replicaset -n prod 
+  326  kubectl get pods -n prod 
+  327  ls -ltrh
+  328  vi myrs.yml 
+  329  kubectl apply -f myrs.yml 
+  330  kubectl get pods 
+  331  kubectl delete pod nginx 
+  332  kubectl get pods 
+  333  kubectl scale rs myrs --replicas=6
+  334  kubectl get pods 
+  335  cd ..
+  336  ls -ltrh
+  337  cd controllers/
+  338  ls -ltrh
+  339  vi rs-ex1.yml
+  340  more rs-ex2.yml
+  341  ls -ltrh
+  342  vi rs-ex3.yml
+  343  more /root/educka/pods/myrs.yml 
+  344  ls -ltrh
+  345  more deployment-ex3.yml
+  346  ls -ltrh
+  347  more rs-ex3.yml
+  348  ls -ltrh
+  349  clear
+  350  ls -ltrh
+  351  vi ds-ex1.yml
+  352  kubectl apply -f ds-ex1.yml 
+  353  kubectl get ds 
+  354  kubectl scale ds mydaemonset --replicas 4
+  355  kubectl get pods -n kube-system 
+  356  kubectl get ds -n kubesystem 
+  357  kubectl get ds -n kube-system 
+  358  clear
+  359  ls -ltrh
+  360  kubectl get ds
+  361  kubectl delete ds mydaemonset
+  362  kubectl get rs -n prod 
+  363  kubectl delete rs myrs -n prod 
+  364  kubectl delete rs myrs
+  365  kubectl get pods 
+  366  kubectl delete pod db
+  367  clear
+  368  ls -ltrh
+  369  vi deployment-ex1.yml
+  370  kubectl apply -f rs-ex1.yml
+  371  kubectl get rs
+  372  kubectl describe rs frontend
+  373  ls -ltrh
+  374  kubectl apply -f deployment-ex1.yml
+  375  kubectl get deployment 
+  376  kubectl describe deployment mydeployment
+  377  kubectl get rs 
+  378  ls -ltrh
+  379  kubectl get deploy 
+  380  kubectl delete deploy mydeployment
+  381  kubectl get rs 
+  382  kubectl delete rs frontend
+  383  vi deployment-ex3.yml
+  384  clear
+  385  vi deployment-ex
+  386  vi deployment-ex3.yml 
+  387  kubectl apply -f deployment-ex3.yml --record
+  388  kubectl rollout status deployment kubeserve
+  389  kubectl get deploy 
+  390  kubectl get svc 
+  391  ls -ltrh
+  392  vi deployment-ex3.yml
+  393  kubectl apply -f deployment-ex3.yml
+  394  kubectl get rs
+  395  kubectl rollout status deployment kubeserve
+  396  vi deployment-ex3.yml 
+  397  kubectl get rs
+  398  kubectl apply -f deployment-ex3.yml --record 
+  399  kubectl get rs
+  400  kubectl rollout status deployment kubeserve
+  401  kubectl rollout history deploy kubeserve
+  402  vi deployment-ex3.yml 
+  403  kubectl apply -f deployment-ex3.yml --record 
+  404  kubectl rollout pause deploy kubeserve
+  405  kubectl get rs 
+  406  kubectl rollout undo deployment kubeserve --to-revision=2
+  407  kubectl rollout resume deployment/kubeserve
+  408  kubectl rollout undo deployment kubeserve --to-revision=2
+  409  kubectl rollout status deployment kubeserve
+  410  kubectl rollout history deploy kubeserve
+  411  clear
+  412  ls -ltrh
+  413  vi deployment-ex3.yml 
+  414  cd 
+  415  kubectl set image deployment kubeserve app=leaddevops/kubeserve:v1
+  416  history 
+  417  history > day3and4.txt
