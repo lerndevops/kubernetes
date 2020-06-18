@@ -4,7 +4,7 @@ metadata:
   name: nginx-html
 data:
   index.html: |
-      <h1> Hello ConfigMap </h1>
+      <H1> Hello ConfigMap </H1>
 
 ---
 kind: Pod 
