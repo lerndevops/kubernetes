@@ -12,7 +12,7 @@ spec:
   - server auth
   - client auth
 
-# openssl gen rsa -out naresh.key 2048
+# openssl genrsa -out naresh.key 2048
 # openssl req -config csr.conf -new -key naresh.key -nodes -out naresh.csr
 # cat naresh.csr | base64 | tr -d '\n'
 # kubectl apply -f nareshcsr.yml
