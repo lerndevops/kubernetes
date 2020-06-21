@@ -1,0 +1,228 @@
+ 1014  kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/dashboard/dashboard-insecure.yml
+ 1015  kubectl get pods
+ 1016  kubectl get svc
+ 1017  kubectl get rs
+ 1018  kubectl get pods -o wide
+ 1019  clear
+ 1020  kubectl get sa
+ 1021  kubectl create sa naresh
+ 1022  kubectl get sa
+ 1023  kubectl describe sa kubernetes-dashboard
+ 1024  kubectl get secrets
+ 1025  kubectl get secret kubernetes-dashboard-token-qrbtk -o json
+ 1026  cd educka/dashboard/
+ 1027  ls -ltrh
+ 1028  vi dashboard-insecure.yml
+ 1029  kubectl apply -f dashboard-insecure.yml
+ 1030  kubectl delete clusterrole.rbac.authorization.k8s.io/kubernetes-dashboard
+ 1031  kubectl apply -f dashboard-insecure.yml
+ 1032  kubectl delete clusterrolebiding kubernetes-dashboard
+ 1033  kubectl delete clusterrolebinding kubernetes-dashboard
+ 1034  kubectl apply -f dashboard-insecure.yml
+ 1035  kubectl get pods
+ 1036  kubectl get --all-namespaces
+ 1037  kubectl get pods --all-namespaces
+ 1038  history
+ 1039  kubectl get pods
+ 1040  kubectl run netutils --image=lerndevops/netshoot -- sleep 3600
+ 1041  kubectl get pods -o wide
+ 1042  kubectl exec -it netutils -- bash
+ 1043  clear
+ 1044  cd
+ 1045  ifconfig
+ 1046  clear
+ 1047  ifconfig | grep -A 10 cni0
+ 1048  kubectl get pods -o wide
+ 1049  kubectl exec -it netutils -- bash
+ 1050  iptables -L
+ 1051  iptables -t nat -L -n
+ 1052  clear
+ 1053  ip route
+ 1054  route
+ 1055  cat /run/flannel/subnet.env
+ 1056  clear
+ 1057  clear
+ 1058  kubectl get pods
+ 1059  clear
+ 1060  history
+
+    1  git clone https://github.com/lerndevops/educka
+    2  educka/install/setup-user.sh
+    3  clear
+    4  cd educka/install/
+    5  ls -ltrh
+    6  vi install-k8s-v17-ubuntu.sh
+    7  mv install-k8s-v17-ubuntu.sh install-k8s-v18.1-ubuntu.sh
+    8  more install-k8s-v18.1-ubuntu.sh
+    9  ./install-k8s-v18.1-ubuntu.sh
+   10  wget kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+   11  wget "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+   12  kubeadm vesion -o short
+   13  kubeadm version -o short
+   14  clear
+   15  kubeadm init
+   16  kubeadm init  --ignore-preflight-errors=all
+   17  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+   18  ifconfig
+   19  ip route
+   20  route
+   21  kubectl get nodes
+   22  kubectl get pods --all-namespaces
+   23  kubectl get pods
+   24  kubectl run nginx --image=nginx
+   25  kubectl get pods -o wide
+   26  scp /etc/kubernetes/admin.conf devops@10.128.0.62:/tmp
+   27  clear
+   28  kubectl get nodes
+   29  cd /etc/kubernetes/
+   30  ls -l
+   31  cat admin.conf
+   32  clear
+   33  route
+   34  ifconfig
+   35  kubectl get nodes
+   36  kubectl get pods
+   37  kubectl run test --image=lerndevops
+   38  kubectl get pods
+   39  kubectl delete pod test
+   40  kubectl run test --image=lerndevops/netshoot
+   41  kubectl get pods
+   42  kubectl get pods -o wide
+   43  kubectl delete pod test
+   44  kubectl run test --image=lerndevops/netshoot -- sleep 3600
+   45  kubectl delete pod test
+   46  kubectl run test --image=lerndevops/netshoot -- sleep 3600
+   47  kubectl get pods -o wide
+   48  kubectl exec -it test -- /bin/bash
+   49  kubectl get pods -n kube-system
+   50  kubectl get pods -n kube-system -o wide
+   51  kubectl exec -it test -- /bin/bash
+   52  route
+   53  iptables -t nat -L -n
+   54  iptables -L
+   55  clear
+   56  cd /etc/cni/
+   57  ll
+   58  cd net.d/
+   59  ll
+   60  more 10-weave.conflist
+   61  route
+   62  ifconfig
+   63  clear
+   64  kubectl get pods
+   65  kubectl exec -it test -- bash
+   66  kubectl get pods -n kube-system
+   67  kubectl get pods -n kube-system -o wide
+   68  exit
+   69  clear
+   70  ifconfig
+   71  exit
+   72  clear
+   73  kubectl get pods --all-namespaces
+   74  clear
+   75  ifconfig
+   76  clear
+   77  kubectl get pods
+   78  kubectl delete pods --all
+   79  kubectl run pod1 --image=lerndevops/netshoot -- sleep 3600
+   80  kubectl run pod2 --image=lerndevops/netshoot -- sleep 3600
+   81  kubectl run pod3 --image=lerndevops/netshoot -- sleep 3600
+   82  kubectl get pods -o wide
+   83  kubectl exec  pod1  -- ping 10.44.0.2
+   84  kubectl exec  pod2  -- ping 10.44.0.1
+   85  kubectl exec  pod2  -- ping 10.44.0.3
+   86  vi denyall.yml
+   87  kubectl apply -f denyall.yml
+   88  kubectl get netpol
+   89  kubectl describe netpol denyall-ingress
+   90  kubectl exec  pod2  -- ping 10.44.0.3
+   91  kubectl exec  pod2  -- ping 10.44.0.1
+   92  kubectl exec  pod1  -- ping 10.44.0.2
+   93  kubectl exec  pod1  -- ping 10.44.0.3
+   94  kubectl run nginx1 --image=nginx --lable app=web
+   95  kubectl run nginx1 --image=nginx --labels app=web
+   96  kubectl get pods --show-labels
+   97  kubectl run nginx2 --image=nginx --labels app=nginx
+   98  kubectl get pods -o wide
+   99  kubectl exec nginx1 -- ping 10.44.0.5
+  100  kubectl get pods --show-labels
+  101  vi mynginx.yml
+  102  kubectl apply -f mynginx.yml
+  103  kubectl get netpol
+  104  kubectl get pods -o wide
+  105  kubectl exec pod1 -- ping 10.44.0.4
+  106  kubectl exec pod1 -- ping 10.44.0.5
+  107  kubectl exec pod2 -- ping 10.44.0.4
+  108  kubectl exec pod1 -- curl 10.44.0.4
+  109  vi mynginx.yml
+  110  kubectl apply -f mynginx.yml
+  111  vi mynginx.yml
+  112  kubectl apply -f mynginx.yml
+  113  kubectl exec pod1 -- curl 10.44.0.4
+  114  kubectl exec pod1 -- telnet 10.44.0.4:80
+  115  kubectl exec pod1 -- telnet 10.44.0.4:8080
+  116  kubectl exec pod1 -- curl 10.44.0.4
+  117  kubectl run tomcat --image=tomcat --labels app=web
+  118  kubectl get pods -o wide
+  119  more mynginx.yml
+  120  kubectl exec pod1 -- ping 10.44.0.6
+  121  kubectl exec pod1 -- curl 10.44.0.6:8080
+  122  vi mynginx.yml
+  123  kubectl apply -f mynginx.yml
+  124  kubectl exec pod1 -- curl 10.44.0.6:8080
+  125  kubectl exec pod1 -- curl 10.44.0.4:80
+  126  ls -ltrh
+  127  vi mynginx.yml
+  128  kubectl apply -f mynginx.yml
+  129  kubectl exec pod1 -- curl 10.44.0.4:80
+  130  clear
+  131  vi /etc/hosts
+  132  ping dbhost
+  133  cat /etc/resolv.conf
+  134  ping dbhost
+  135  vi /etc/hosts
+  136  ping dbhost
+  137  kubectl get pods --all-namespaces
+  138  kubectl exec pod1 -- cat /etc/resolv.conf
+  139  kubectl get pods -n kube-system -o wide
+  140  kubectl get svc -n kube-system
+  141  kubectl get ep 10.96.0.10
+  142  kubectl get ep kube-dns
+  143  kubectl get ep kube-dns -n kube-system
+  144  kubectl get netpod
+  145  kubectl get netpol
+  146  kubectl delete netpol denyall-ingress nginx-ingress
+  147  kubectl get pods
+  148  kubectl get pods -o wide
+  149  kubectl exec pod1 -- nslookup 10.44.0.4
+  150  kubectl exec pod1 -- nslookup 10.44.0.1
+  151  kubectl exec pod1 -- ping 10.44.0.4
+  152  kubectl expose pod nginx1 --name mysvc --port 80
+  153  kubectl get svc
+  154  kubectl exec pod1 -- ping mysvc.deafult.svc.cluster.local
+  155  kubectl exec pod1 -- ping mysvc.default.svc.cluster.local
+  156  kubectl exec pod2 -- ping mysvc.default.svc.cluster.local
+  157  kubectl exec pod2 -- curl  mysvc.default.svc.cluster.local
+  158  kubectl get svc
+  159  curl 10.102.82.126
+  160  kubectl get ep mysvc
+  161  kubec
+  162  kubectl delete pod tomcat
+  163  curl 10.102.82.126
+  164  kubectl exec pod2 -- curl  mysvc.default.svc.cluster.local
+  165  kubectl exec pod2 -- nslookup mysvc.default.svc.cluster.local
+  166  kubectl get svc
+  167  kubectl get ns
+  168  kubectl exec pod2 -- cat /etc/resolv.conf
+  169  kubectl create ns prod
+  170  kubectl run nginx --image=nginx -n prod
+  171  kubectl -n prod exec nginx -- cat /resolv.conf
+  172  kubectl -n prod exec nginx -- cat /etc/resolv.conf
+  173  kubectl get pods -o wide
+  174  kubectl exec pod2 -- nslookup 10.44.0.2
+  175  kubectl exec pod2 -- nslookup 10-44-0-2.default.pod.cluster.local
+  176  kubectl exec pod2 -- nslookup 10-44-0-4.default.pod.cluster.local
+  177  kubectl exec pod2 -- nslookup 10-44-0-4.default.pod.cluster.local > poddns.txt
+  178  more poddns.txt
+  179  kubectl get pods
+  180  kubectl get svc
