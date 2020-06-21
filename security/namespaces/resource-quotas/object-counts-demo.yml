@@ -5,7 +5,7 @@ metadata:
 spec:
   hard:
     pods: "4"
-    replicationcontrollers: "20"
+    replicationcontrollers: "2"
     services: "10"
     count/deployments.apps: "2"
     count/replicasets.apps: "2"

@@ -24,7 +24,7 @@ service/nginx   ClusterIP   10.102.75.3   <none>        80/TCP    66s   run=ngin
 ```
 # create
 
-kubectl create namespace default  ## creates testns namespace 
+
 kubectl -n default run mynginx --image=nginx --expose --port=80 ## create a pod & service called nginx in testns namespace
 ```
 ```

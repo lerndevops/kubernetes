@@ -11,7 +11,7 @@ spec:
     image: nginx
     ports:
     - containerPort: 80
-    livenessProbe:      #this block performs readiness probes
+    livenessProbe:     
 #      httpGet:
 #        path: /
 #        port: 80

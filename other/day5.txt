@@ -1,0 +1,240 @@
+    1  git clone https://github.com/lerndevops/educka
+    2  educka/install/setup-user.sh 
+    3  clear
+    4  apt-get install kubectl 
+    5  apt install kubectl
+    6  apt-get update
+    7  apt install kubectl
+    8  echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+    9  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+   10  sudo apt-get update ; clear
+   11  sudo apt-get install -y kubectl 
+   12  kubectl version 
+   13  kubectl version --short --client 
+   14  kubectl version --short
+   15  hostname -i
+   16  ls -ltrh
+   17  cp /tmp/admin.conf mykubecluster.conf
+   18  ls -ltrh
+   19  mv mykubecluster.conf mykubeclusters.conf
+   20  vi mykubeclusters.conf 
+   21  kubectl get nodes
+   22  kubectl --kubeconfig=mykubeclusters.conf get nodes
+   23  vi mykubeclusters.conf
+   24  kubectl config get-contexts 
+   25  kubectl --kubeconfig=mykubeclusters.conf config get-contexts 
+   26  ls -l
+   27  vi mykubeclusters.conf 
+   28  kubectl --kubeconfig=mykubeclusters.conf config get contexts 
+   29  kubectl --kubeconfig=mykubeclusters.conf config get-contexts 
+   30  ls -ltrh
+   31  vi mykubeclusters.conf 
+   32  kubectl --kubeconfig=mykubeclusters.conf config get-contexts 
+   33  kubectl --kubeconfig=mykubeclusters.conf get nodes
+   34  kubectl --kubeconfig=mykubeclusters.con use-context kubernetes-admin@useast
+   35  kubectl --kubeconfig=mykubeclusters.conf config use-context kubernetes-admin@useast
+   36  kubectl --kubeconfig=mykubeclusters.conf get nodes
+   37  mkdir .kube
+   38  cd .kube/
+   39  ll
+   40  cp ../mykubeclusters.conf config
+   41  ls -l
+   42  kubectl get nodes
+   43  kubectl config get contexts
+   44  kubectl config get context
+   45  kubectl config get-contexts
+   46  kubectl config use-context kubernetes-admin@uscentral
+   47  kubectl get nodes
+   48  kubectl config use-context kubernetes-admin@useast
+   49  kubectl get nodes
+   50  cd 
+   51  kubectl get nodes
+   52  kubectl config use-context kubernetes-admin@uscentral
+   53  kubectl get nodes
+   54  kubectl get pods 
+   55  kubectl get deploy 
+   56  kubectl get all 
+   57  kubectl get ns
+   58  kubectl get all -n prod
+   59  kubectl delete ns prod 
+   60  clear
+   61  docker -v
+   62  kubeadm version 
+   63  kubectl version 
+   64  cd .kube/
+   65  ll
+   66  rm config 
+   67  cd ..
+   68  rm -r .kube/
+   69  ls -ltrh
+   70  kubectl version 
+   71  hostname -i
+   72  kubectl --kubeconfig=/tmp/admin.conf get nodes
+   73  ls -l
+   74  la -l
+   75  mkdir .kube/
+   76  cd .kube/
+   77  ls -l
+   78  cp /tmp/admin.conf config
+   79  ls -l
+   80  kubectl get nodes
+   81  cd 
+   82  kubectl run nginx --image=nginx
+   83  kubectl get pods -o wide 
+   84  ls -ltrh
+   85  cd .kube/
+   86  ls -ltrh
+   87  vi config
+   88  kubectl get nodes
+   89  vi config 
+   90  kubectl get nodes
+   91  kubectl config get-contexts
+   92  kubectl get pods 
+   93  kubectl get nodes
+   94  kubectl config use-context kubernetes-admin@uscentral
+   95  kubectl config get-contexts
+   96  kubectl get nodes
+   97  cd 
+   98  openssl 
+   99  openssl gen rsa -out naresh.key 2048
+  100  openssl gen-rsa -out naresh.key 2048
+  101  openssl --help 
+  102  openssl genrsa -out prod-user.key 2048
+  103  ls -l
+  104  mv prod-user.key naresh.key
+  105  ls -ltrh
+  106  cd educka/security/
+  107  ls -ltrh
+  108  cd rbac/
+  109  ls -ltrh
+  110  more csr.conf 
+  111  openssl req -config csr.conf -new -key naresh.key -nodes -out naresh.csr
+  112  openssl req -config csr.conf -new -key /root/naresh.key -nodes -out naresh.csr
+  113  ls -l
+  114  vi CertificateSigningRequest.yml
+  115  cat csr.conf
+  116  cat naresh.csr
+  117  cat naresh.csr | base64
+  118  cat naresh.csr | base64 | tr -d '\n'
+  119  ls -l
+  120  vi CertificateSigningRequest.yml 
+  121  kubectl get nodes 
+  122  kubectl apply -f CertificateSigningRequest.yml
+  123  kubectl get csr 
+  124  kubectl certificate approve naresh
+  125  kubectl get csr 
+  126  kubectl describe csr naresh
+  127  kubectl get nodes 
+  128  kubectl get nodes --as naresh
+  129  kubectl get pod --as naresh
+  130  kubectl run nginx4 --image=nginx  --as naresh
+  131  kubectl get csr naresh -o jsonpath="{.status.certificate}"
+  132  kubectl descibe csr naresh
+  133  kubectl describe csr naresh
+  134  kubectl get csr 
+  135  kubectl get csr naresh
+  136  kubectl get csr naresh -o yaml 
+  137  clear
+  138  kubectl get csr naresh
+  139  kubectl get csr naresh -o json 
+  140  clear
+  141  kubectl get csr naresh -o jsonpath="{.status.certificate}" | base64 --decode > naresh.crt
+  142  ls -l
+  143  cat naresh.crt
+  144  cd 
+  145  ll
+  146  cp educka/security/rbac/naresh.crt .
+  147  ls -ltrh
+  148  pwd 
+  149  vi .kube/config 
+  150  kubectl config get-contexts 
+  151  kubectl config use-context naresh@uscentral
+  152  kubectl get version --shourt 
+  153  kubectl get version --short
+  154  kubectl version --short
+  155  vi .kube/config 
+  156  kubectl version --short
+  157  vi .kube/config 
+  158  kubectl get nodes
+  159  kubectl get pods 
+  160  clear
+  161  kubectl api-resources
+  162  naresh" cannot list resource "nodes" in API group "" at the cluster scope
+  163  clear
+  164  kubectl create role myrole --verb=get,create --resources=pods,services --namespace default
+  165  kubectl create role myrole --verb=get,create --resource=pods,services --namespace default
+  166  kubectl config get-contexts 
+  167  kubectl config use-context kubernetes-admin@uscentral
+  168  kubectl create role myrole --verb=get,create --resource=pods,services --namespace default
+  169  kubectl get roles 
+  170  kubectl describe role myrole
+  171  kubectl create rolebinding myrolebinding --user=naresh --role=myrole --namespace=default
+  172  kubectl config get-contexts 
+  173  kubectl config use-context naresh@uscentral
+  174  kubectl get pods -n default 
+  175  kubectl get services  -n default 
+  176  kubectl run tomcat --image=tomcat -n default 
+  177  kubectl config use-context kubernetes-admin@uscentral
+  178  kubectl get roles 
+  179  kubectl edit role myrole
+  180  kubectl config use-context naresh@uscentral
+  181  kubectl get pods 
+  182  kubectl get nodes 
+  183  kubectl get ns 
+  184  kubectl get pods 
+  185  kubectl get pods -n default 
+  186  kubectl get pods -n kube-system
+  187  kubectl get deploy -n default 
+  188  kubectl config use-context kubernetes-admin@uscentral
+  189  kubectl get clusteroles
+  190  kubectl get clusterroles
+  191  kubectl 
+  192  clear
+  193  kubectl config use-context kubernetes-admin@uscentral
+  194  kubectl get clusterroles 
+  195  kubectl create clusterrole myclusterrole --verb=get,list,create,delete --resource=namespaces,pods,deployements,serivces,nodes,persistentvolumes
+  196  kubectl create clusterrole myclusterrole --verb=get,list,create,delete --resource=namespaces,pods,deployments,serivces,nodes,persistentvolumes
+  197  kubectl create clusterrole myclusterrole --verb=get,list,create,delete --resource=namespaces,pods,deployments,services,nodes,persistentvolumes
+  198  kubectl get clusterrole myclusterrole
+  199  kubectl describe clusterrole myclusterrole
+  200  kubectl create clusterrolebinding mycrolbinding --user=naresh --clusterrole=myclusterrole 
+  201  kubectl config use-context naresh@uscentral
+  202  kubectl get pods 
+  203  kubectl get pods -n kube-system 
+  204  kubectl get pods --all-namespaces 
+  205  kubectl get rs --all-namespaces 
+  206  kubectl get ns 
+  207  kubectl create ns prod 
+  208  clear
+  209  kubectl config get-contexts
+  210  kubectl config use-context kubernetes-admin@uscentral
+  211  kubectl get pods 
+  212  kubectl get pods --as naresh 
+  213  kubectl get rs --as naresh 
+  214  kubectl get clusterroles 
+  215  kubectl describe clusterrole myclusterrole
+  216  kubectl get roles 
+  217  kubectl get rolebinding 
+  218  kubectl describe rolebiding myrolebinding
+  219  kubectl describe rolebinding myrolebinding
+  220  kubectl create rolebinding testuserbiding --user=testuser --role=myrole --namespace=prod
+  221  kubectl describe rolebinding testuserbiding
+  222  kubectl get rolebinding
+  223  kubectl describe rolebinding testuserbiding -n prod 
+  224  kubectl get rolebindng 
+  225  kubectl describe clusterrole view 
+  226  kubectl get clusterroles 
+  227  kubectl get clusterrole myclusterrole -o yaml 
+  228  clear
+  229  kubectl get clusterrolebiding 
+  230  kubectl get clusterrolebinding 
+  231  kubectl describe clusterrolebinding mycrolbinding
+  232  kubectl describe clusterrolebinding mycrolbinding -o yaml 
+  233  kubectl get clusterrolebinding mycrolbinding -o yaml 
+  234  kubectl get rolebinding 
+  235  kubectl get rolebinding -n prod
+  236  kubectl delete rolebinding myrolebinding -n default 
+  237  history 
+  238  clear
+  239  history 
+  240  history > day5.txt
