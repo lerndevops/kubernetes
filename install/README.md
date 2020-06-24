@@ -131,3 +131,5 @@ Create kubeadm bootstrap token: kubeadm token create
 find ca-cert-hash with openssl:
    openssl x509 -in /etc/kubernetes/pki/ca.crt -pubkey -noout | openssl pkey -pubin -outform DER | openssl dgst -sha256
 ```
+
+## MORE INFO: [Kubeam join](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-join/)
