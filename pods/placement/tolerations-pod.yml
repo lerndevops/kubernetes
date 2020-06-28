@@ -12,9 +12,9 @@ spec:
 #  - key: env
 #    operator: "Exists"
 #    effect: "NoExecute"
-   - key: env
+   - key: person
      operator: "Equal"
-     value: prod 
+     value: police 
      effect: "NoSchedule"
 
 
