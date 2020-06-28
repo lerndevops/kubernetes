@@ -3,11 +3,11 @@ kind: Pod
 metadata:
   name: nginx
 spec:
-# nodeName: node1
+  nodeName: node1
   containers:
   - name: nginx
     image: nginx
     ports:
       - containerPort: 80
-  nodeSelector:
-    role: web
+  #nodeSelector:
+    #role: web
