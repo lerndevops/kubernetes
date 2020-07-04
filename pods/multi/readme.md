@@ -1,8 +1,10 @@
 Containers within a pod can interact with each other in vari- ous ways:
+
 • Network: Containers can access any listening ports on containers within the same pod, even if those ports are not exposed outside the pod.
+
 • Shared Storage Volumes: Containers in the same pod can be given the same mounted storage volumes, which allows them to interact with the same files.
-• SharedProcessNamespace:ProcessnamespacesharingcanbeenabledbysettingshareProcessNamespace true in the pod spec. This allows containers within the pod to interact with, and signal, one an-
-other’s processes.
+
+• SharedProcessNamespace:ProcessnamespacesharingcanbeenabledbysettingshareProcessNamespace true in the pod spec. This allows containers within the pod to interact with, and signal, one an-other’s processes.
 
 
 
