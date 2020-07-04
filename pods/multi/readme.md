@@ -1,16 +1,13 @@
-Example #1: Sidecar containers
-Sidecar containers extend and enhance the "main" container, they take existing containers and make them better.  As an example, consider a container that runs the Nginx web server.  Add a different container that syncs the file system with a git repository, share the file system between the containers and you have built Git push-to-deploy.  But you’ve done it in a modular manner where the git synchronizer can be built by a different team, and can be reused across many different web servers (Apache, Python, Tomcat, etc).  Because of this modularity, you only have to write and test your git synchronizer once and reuse it across numerous apps. And if someone else writes it, you don’t even need to do that.
+Containers within a pod can interact with each other in vari- ous ways:
+• Network: Containers can access any listening ports on containers within the same pod, even if those ports are not exposed outside the pod.
+• Shared Storage Volumes: Containers in the same pod can be given the same mounted storage volumes, which allows them to interact with the same files.
+• SharedProcessNamespace:ProcessnamespacesharingcanbeenabledbysettingshareProcessNamespace true in the pod spec. This allows containers within the pod to interact with, and signal, one an-
+other’s processes.
 
-Sidecar Containers
 
-Example #2: Ambassador containers
-Ambassador containers proxy a local connection to the world.  As an example, consider a Redis cluster with read-replicas and a single write master.  You can create a Pod that groups your main application with a Redis ambassador container.  The ambassador is a proxy is responsible for splitting reads and writes and sending them on to the appropriate servers.  Because these two containers share a network namespace, they share an IP address and your application can open a connection on “localhost” and find the proxy without any service discovery.  As far as your main application is concerned, it is simply connecting to a Redis server on localhost.  This is powerful, not just because of separation of concerns and the fact that different teams can easily own the components, but also because in the development environment, you can simply skip the proxy and connect directly to a Redis server that is running on localhost.
 
-Ambassador Containers
+Ambassador: An haproxy ambassador container receives network traffic and forwards it to the main container. Example: An ambassador container listens on a custom port, and forwards the traffic to the main container’s hard-coded port.
 
-Example #3: Adapter containers
-Adapter containers standardize and normalize output.  Consider the task of monitoring N different applications.  Each application may be built with a different way of exporting monitoring data. (e.g. JMX, StatsD, application specific statistics) but every monitoring system expects a consistent and uniform data model for the monitoring data it collects.  By using the adapter pattern of composite containers, you can transform the heterogeneous monitoring data from different systems into a single unified representation by creating Pods that groups the application containers with adapters that know how to do the transformation.  Again because these Pods share namespaces and file systems, the coordination of these two containers is simple and straightforward.
+Sidecar: A sidecar container enhances the main container in some way, adding functionality to it. Exam- ple: a sidecar periodically syncs files in a webserver container’s file system from a Git repository.
 
-Adapter Containers
-
-In all of these cases, we've used the container boundary as an encapsulation/abstraction boundary that allows us to build modular, reusable components that we combine to build out applications.  This reuse enables us to more effectively share containers between different developers, reuse our code across multiple applications, and generally build more reliable, robust distributed systems more quickly.  I hope you’ve seen how Pods and composite container patterns can enable you to build robust distributed systems more quickly, and achieve container code re-use.  To try these patterns out yourself in your own applications. I encourage you to go check out open source Kubernetes or Google Container Engine.
+Adapter: An adapter container transforms the output of the main container. Example: An adapter con- tainer reads log output from the main container and transforms it.
