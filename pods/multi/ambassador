@@ -1,0 +1,43 @@
+#Ambassador: An haproxy ambassador container receives network traffic and forwards it to the main container. Example: An ambassador container listens on a custom port, and forwards the traffic to the main container’s hard-coded port.
+#A concrete example would be a configmap storing the haproxy config. Haproxy will listen on port 80 and forward the traffic to the main container, which is hard-coded to listen on port 8775:
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: haproxy-sidecar-config
+data:
+  haproxy.cfg: |-
+    global
+        daemon
+        maxconn 256
+    defaults
+        mode http
+        timeout connect 5000ms
+        timeout client 50000ms
+        timeout server 50000ms
+    listen http-in
+      bind *:80
+      server server1 127.0.0.1:8775 maxconn 32
+      
+ ---
+ 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fruit-service
+spec:
+  containers:
+    - name: legacy-fruit-service
+      image: linuxacademycontent/legacy-fruit-service:1
+    - name: haproxy-sidecar
+      image: haproxy:1.7
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: config-volume
+          mountPath: /usr/local/etc/haproxy
+  volumes:
+   - name: config-volume
+     configMap:
+      name: haproxy-sidecar-config
