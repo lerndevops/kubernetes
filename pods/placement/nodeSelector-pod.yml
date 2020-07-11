@@ -14,7 +14,7 @@ spec:
         app: kubeserve
     spec:
       nodeSelector: 
-         covid: true
+         covid: "true"
       containers:
       - image: leaddevops/kubeserve:v1
         name: app
