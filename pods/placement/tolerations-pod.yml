@@ -1,21 +1,49 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: nginx
+  name: kubeserve
 spec:
-  containers:
-  - name: nginx
-    image: nginx
-    ports:
-      - containerPort: 80
-  tolerations:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: kubeserve
+  template:
+    metadata:
+      name: kubeserve
+      labels:
+        app: kubeserve
+    spec:
+      tolerations:
+        - key: covid
+          operator: "Equals"
+          value: "true"
+          effect: "NoSchedule"
+      containers:
+      - image: leaddevops/kubeserve:v1
+        name: app
+
+
+
+
+
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  name: nginx
+#spec:
+#  containers:
+#  - name: nginx
+#    image: nginx
+#    ports:
+#      - containerPort: 80
+#  tolerations:
 #  - key: env
 #    operator: "Exists"
 #    effect: "NoExecute"
-   - key: person
-     operator: "Equal"
-     value: police 
-     effect: "NoSchedule"
+#   - key: person
+#     operator: "Equal"
+#     value: police 
+#     effect: "NoSchedule"
 
 
 #    operator: "Exists"/"Equal"
