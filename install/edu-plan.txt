@@ -94,6 +94,11 @@ Ingress
 
 Day8
 ===============
+Services
+  LoadBalancer
+
+Ingress
+
 monitoring
   metrics server
   prometheous&grafanna
