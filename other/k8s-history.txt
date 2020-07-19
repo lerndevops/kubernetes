@@ -1,0 +1,1000 @@
+  201  curl 10.32.0.4
+  202  kubectl get pods -o wide 
+  203  kubectl exec -it myrs-7kq2j -- bash 
+  204  kubectl get pods 
+  205  kubectl exec -it myrs-hrmc5 -- bash 
+  206  kubectl get pods -o wide 
+  207  curl 10.46.0.2
+  208  curl 10.32.0.4
+  209  curl 10.32.0.5
+  210  vi mysvc.yml
+  211  kubectl get pods --show-lables 
+  212  kubectl get pods --show-labels 
+  213  vi mysvc.yml 
+  214  kubectl apply -f mysvc.yml 
+  215  kubectl get svc 
+  216  curl 10.100.135.251
+  217  kubectl get svc -o wide 
+  218  curl 10.100.135.251
+  219  more mysvc.yml 
+  220  kubectl get svc 
+  221  kubectl delete svc mysvc 
+  222  kubectl get svc
+  223  vi mysvc.yml 
+  224  ls -l
+  225  kubectl apply -f mysvc.yml 
+  226  kubectl get svc 
+  227  netstat -anp | grpe 30539
+  228  netstat -anp | grep 30539
+  229  more mysvc.yml 
+  230  netstat -anp | grpe 30539
+  231  netstat -anp | grep 30539
+  232  more mysvc.yml 
+  233  vi mysvc.yml 
+  234  clear
+  235  ls -ltrh
+  236  cp myrs.yml myds.yml
+  237  vi myds.yml 
+  238  kubectl apply -f myds.yml 
+  239  kubectl get ds 
+  240  kubectl get pods 
+  241  kubectl get pods -n kube-system 
+  242  kubectl get ds -n kube-system
+  243  clear
+  244  kubectl get ds
+  245  kubectl delete ds myds
+  246  cd educka/
+  247  ls -ltrh
+  248  cd controllers/
+  249  ls -ltrh
+  250  vi job-ex1.yml
+  251  kubectl get rs 
+  252  kubectl get pods 
+  253  kubectl get pods -o wide 
+  254  vi job-ex1.yml 
+  255  kubectl apply -f job-ex1.yml 
+  256  kubectl get job
+  257  kubectl get pods 
+  258  more job-ex1.yml 
+  259  kubectl logs countdown-8kfqm
+  260  ls -ltrh
+  261  more job-ex2.yml 
+  262  vi cronjob-ex1.yml 
+  263  kubectl apply -f cronjob-ex1.yml 
+  264  kubectl get cj
+  265  kubectl get pods 
+  266  watch kubectl get pods 
+  267  kubectl get job
+  268  kubectl get pods 
+  269  kubectl get pods -o wide 
+  270  kubectl get cj
+  271  kubectl get job
+  272  kubectl edit cjhello
+  273  kubectl edit cj hello
+  274  kubectl get cj
+  275  kubectl get pods 
+  276  kubectl get rs 
+  277  kubectl get rs myrs -o yaml 
+  278  ls -l
+  279  kubectl edit rs myrs 
+  280  cd ..
+  281  ls -ltrh
+  282  cd pods/
+  283  ls -ltrh
+  284  vi single-cont-pod-ex1.yml
+  285  kubectl apply single-cont-pod-ex1.yml 
+  286  kubectl apply -f single-cont-pod-ex1.yml 
+  287  kubectl get pods 
+  288  more single-cont-pod-ex1.yml 
+  289  kubectl logs mypod
+  290  vi single-cont-pod-ex1.yml 
+  291  kubectl apply -f single-cont-pod-ex1.yml 
+  292  kubectl delete pod mypod
+  293  kubectl apply -f single-cont-pod-ex1.yml 
+  294  kubectl get pods 
+  295  clear
+  296  cd ..
+  297  cd controllers/
+  298  ls -ltrh
+  299  vi deployment-ex1.yml
+  300  kubectl get rs 
+  301  kubectl describe rs myrs 
+  302  kubectl apply -f deployment-ex1.yml 
+  303  kubectl get deployment 
+  304  kubectl getrs 
+  305  kubectl get rs 
+  306  kubectl describe deployment mydeployment
+  307  clear
+  308  vi deployment-ex3.yml 
+  309  kubectl create -f deployment-ex3.yml --record
+  310  kubectl get deploy 
+  311  more deployment-ex3.yml
+  312  kubectl get deploy 
+  313  kubectl get svc 
+  314  curl 10.104.245.145
+  315  kubectl get pods 
+  316  clear
+  317  kubectl get deploy -o wide 
+  318  kubectl get svc 
+  319  kubectl get ep kubeserve-svc
+  320  kubectl get pods 
+  321  kubectl get deploy 
+  322  kubectl get rs 
+  323  kubectl get svc 
+  324  kubectl get deploy 
+  325  kubectl get deploy -o wide 
+  326  curl 10.104.245.145
+  327  ls -ltrh
+  328  vi deployment-ex3.yml 
+  329  kubectl apply -f deployment-ex3.yml --record
+  330  kubectl get rs
+  331  kubectl rollout status deploy kubeserver
+  332  kubectl rollout status deploy kubeserve
+  333  kubectl get deploy -o wide 
+  334  vi deployment-ex1.yml 
+  335  vi deployment-ex3.yml 
+  336  kubectl apply -f deployment-ex3.yml --record
+  337  kubectl rollout status deploy kubeserve
+  338  kubectl rollout pause deploy kubeserve
+  339  kubectl get rs 
+  340  kubectl rollout resume deploy kubeserve
+  341  kubectl rollout history 
+  342  kubectl rollout history deploy kubeserve
+  343  kubectl rollout undo deployment kubeserver --to-revision=1
+  344  kubectl rollout undo deployment kubeserve --to-revision=1
+  345  kubectl get rollout status deploy kubeserve
+  346  kubectl rollout status deploy kubeserve
+  347  kubectl delete all
+  348  kubectl delete all --all
+  349  docker run -d -p 80:80 -p 5666:5666 -p 5667:5667 --name nagiosxi lerndevops/nagios:xi5.4
+  350  netstat -anp |grep 80
+  351  docker rm -f 9e8ec2ef9767a61d
+  352  kubectl get nodes
+  353  docker create deployment ravi --image nginx
+  354  kubectl  create deployment ravi --image nginx
+  355  kubectl scale deploy ravi --replicas=4
+  356  kubectl run pod1 --image httpd
+  357  cd educka/
+  358  ls
+  359  cd monitoring/
+  360  ls
+  361  cd kube-state-metrics/
+  362  kubectl create -f .
+  363  ls
+  364  cd standard/
+  365  kubectl create -f .
+  366  cd ..
+  367  cd .
+  368  cd ..
+  369  ls
+  370  cd metrics-server/
+  371  kubectl create -f .
+  372  cd ..
+  373  cd prometheus/
+  374  ls
+  375  kubectl create -f prometheus.yaml 
+  376  kubectl get all 
+  377  kubectl get ns
+  378  kubectl get all -n monitoring
+  379  docker run -d -p 3000:3000 grafana/grafana
+  380  kubectl run pod3 --image tomcat --limits='cpu=500m,memory=500Mi'
+  381  clear
+  382  cd /etc/cni/
+  383  ls -ltrh
+  384  cd net.d/
+  385  ls -l
+  386  more 10-weave.conflist 
+  387  cd /etc/cni/
+  388  ls -l
+  389  locate net-script.sh
+  390  cd 
+  391  locate cni
+  392  cd /opt/cni/
+  393  ls -l
+  394  cd bin/
+  395  ls -l
+  396  more bridge 
+  397  cd /var/lib/kubelet/
+  398  ls -l
+  399  mroe config.yaml 
+  400  more config.yaml 
+  401  ls -ltrh
+  402  ps -ef|grep cpu 
+  403  ps -ef|grep kubelet
+  404  more /etc/kubernetes/kubelet.conf 
+  405  more /etc/kubernetes/bootstrap-kubele.conf
+  406  cd /etc/kubernetes/
+  407  ll
+  408  more kubelet.conf 
+  409  ps -ef|grep kubelet
+  410  ps -ef|grep cni
+  411  cd /etc/cni/
+  412  ll
+  413  cd net.d/
+  414  ls -l
+  415  more 10-weave.conflist 
+  416  kubectl get pods 
+  417  kubectl get svc 
+  418  kubectl get pods -o wide 
+  419  curl 10.46.0.4
+  420  kubectl expose pod pod1 --port 80 
+  421  kubectl get svc 
+  422  iptables -t nat -L
+  423  kubectl get svc 
+  424  iptables -t nat -L | grep pod1
+  425  iptables -L -t nat  | grep pod1
+  426  kubectl expose pod pod1 --name mysvc --port 80 --target-port 80
+  427  iptables -t nat -L | grep mysvc 
+  428  cd /var/log/
+  429  kubectl get pods -n kube-system
+  430  kubectl get pods -n kube-system -o wide 
+  431  kubectl exec -it kube-proxy-97jmt -- bash 
+  432  kubectl exec -it kube-proxy-97jmt -n kube-system -- bash 
+  433  kubectl exec -it kube-proxy-97jmt -n kube-system -- sh
+  434  id devops
+  435  kubectl get nodes
+  436  kubectl delete node node2
+  437  kubectl get deploy
+  438  kubectl delete deploy ravi
+  439  kubectl get svc
+  440  kubectl get deploy
+  441  kubectl get svc
+  442  clear
+  443  kubectl get nodes 
+  444  kubeadm token create --print-join-command 
+  445  kubectl get pods 
+  446  kubectl delete deploy ravideploy 
+  447  kubectl delete pod mystaticpod-node1 pod3
+  448  clear
+  449  kubectl get pods 
+  450  clear
+  451  kubectl get nodes
+  452  kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/pods/placement/nodeName.yml
+  453  kubectl get deploy 
+  454  kubectl get pods -o wide 
+  455  kubectl describe pod kubeserve-694d9bd6cd-w2bp9
+  456  clear
+  457  kubectl get deploy 
+  458  kubectl delete deploy kubeserve
+  459  kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/pods/placement/nodeSelector-pod.yml
+  460  kubectl get pods 
+  461  vi nodeslector.yml
+  462  kubectl apply -f nodeslector.yml 
+  463  vi nodeslector.yml
+  464  kubectl apply -f nodeslector.yml 
+  465  more nodeslector.yml 
+  466  kubectl get deploy 
+  467  kubectl get pods 
+  468  kubectl describe pod kubeserve-7f4c465f5-2q79z
+  469  kubectl get nodes
+  470  kubectl describe node node1
+  471  kubectl label node node1 covid="true"
+  472  kubectl describe node node1
+  473  kubectl get pods 
+  474  kubectl get pods -o wide 
+  475  curl 10.32.0.2
+  476  kubectl label node node2 covid="true"
+  477  kubectl get nodes --show-labels 
+  478  kubectl get pods 
+  479  kubectl get pods -o wide 
+  480  kubectl scale deploy kubeserve --replicas 10
+  481  kubectl get pods -o wide 
+  482  kubectl delete deploy kubeserve
+  483  vi nodeslector.yml 
+  484  kubectl apply -f nodeslector.yml 
+  485  kubectl get pods 
+  486  kubectl get pods -o wide 
+  487  kubectl get nodes --show-labels 
+  488  kubectl delete deploy kubeserve
+  489  kubectl taint node node2 covid=positive:NoSchedule
+  490  kubectl taint node node1 covid=positive:NoSchedule
+  491  vi pod.yml
+  492  kubectl apply -f pod.yml 
+  493  vi pod.yml
+  494  kubectl apply -f pod.yml 
+  495  kubectl get pods 
+  496  kubectl describe pod covidpatient
+  497  vi pod.yml 
+  498  kubectl apply -f pod.yml 
+  499  vi pod.yml 
+  500  kubectl apply -f pod.yml 
+  501  kubectl get pods 
+  502  kubectl get pods -o wide 
+  503  more pod.yml 
+  504  vi pod1.yml
+  505  vi pod1.yml 
+  506  kubectl apply -f pod1.yml 
+  507  kubectl get pods 
+  508  kubectl get pods -o wide 
+  509  kubectl describe pod covidpatient1
+  510  clear
+  511  kubectl taint node node1 covid=positive:NoSchedule-
+  512  kubectl taint node node2 covid=positive:NoSchedule-
+  513  kubectl label node node2 covid=true-
+  514  kubectl label node node2 covid-
+  515  kubectl label node node1 covid-
+  516  kubectl label node node2 covid=true
+  517  kubectl label node node2 covid-
+  518  kubectl describe node node1
+  519  clear
+  520  kubectl get pods 
+  521  kubectl delete pod --all
+  522  kubectl get pods 
+  523  kubectl get ns
+  524  clear
+  525  ls -l
+  526  cd educka/
+  527  ls -ltrh
+  528  cd storage/
+  529  ls -ltrh
+  530  vi vol-emptyDir-ex2.yml
+  531  kubectl apply -f vol-emptyDir-ex2.yml 
+  532  kubectl get pods -o wide 
+  533  vi vol-emptyDir-ex
+  534  vi vol-emptyDir-ex2.yml 
+  535  kubectl get pods -o wide 
+  536  kubectl exec -it myvolumes-pod -c cont1 -- bash 
+  537  kubectl exec -it myvolumes-pod -c cont2 -- bash 
+  538  kubectl exec -it myvolumes-pod -c cont3 -- bash 
+  539  kubectl exec -it myvolumes-pod -c cont3 -- sh
+  540  ls -ltrh
+  541  vi vol-emptyDir-ex1.yml
+  542  vi vol-emptyDir-ex2.yml
+  543  kubectl get pods 
+  544  kubectl delete pod myvolumes-pod
+  545  ls -ltrh
+  546  vi pv.yml 
+  547  kubectl apply -f pv.yml 
+  548  kubectl get pv 
+  549  ls -ltrh
+  550  vi pvc.yml
+  551  kubectl apply -f pvc.yml 
+  552  kubectl get pv 
+  553  kubectl get pvc 
+  554  vi pvc-hostpath-pod.yml 
+  555  vi pvc.yml 
+  556  kubectl apply -f pvc-hostpath-pod.yml 
+  557  kubectl get pods 
+  558  kubectl get pods -o wide 
+  559  kubectl exec -it pvc-pod -- bash 
+  560  kubectl exec -it pvc-pod -- sh 
+  561  more pv.yml 
+  562  more pvc.yml 
+  563  more pvc-hostpath-pod.yml 
+  564  more pv.yml 
+  565  clear
+  566  kubectl get pods 
+  567  kubectl delete pod pvc-pod 
+  568  kubectl get pods -n kube-system
+  569  ls -ltrh
+  570  vi configmap-ex2.yml
+  571  kubectl apply -f configmap-ex2.yml 
+  572  vi configmap-ex2.yml
+  573  kubectl apply -f configmap-ex2.yml 
+  574  kubectl get pods 
+  575  kubectl exec -it cm-env-var-pod -- bash 
+  576  vi configmap-ex2.yml 
+  577  kubectl exec -it cm-env-var-pod -- bash 
+  578  ls -ltrh
+  579  vi configmap-ex2.yml 
+  580  ls -ltrh
+  581  vi configmap-ex2.yml 
+  582  kubectl get pods 
+  583  kubectl apply -f configmap-ex2.yml
+  584  kubectl exec -it configmap-ex2.yml -- bash 
+  585  kubectl exec -it cm-env-var-pod1 -- bash 
+  586  clear
+  587  cd /etc/kubernetes/
+  588  ls -l
+  589  cd pki/
+  590  ls -l
+  591  cd etcd/
+  592  ls -l
+  593  cd ..
+  594  ls -l
+  595  cd 
+  596  ls -l
+  597  ls -al
+  598  pwd 
+  599  cd .kube/
+  600  ls -l
+  601  vi config 
+  602  hostname -i
+  603  vi config 
+  604  ls -l
+  605  rm -r *
+  606  cd 
+  607  kubectl get nodes
+  608  cd /etc/kubernetes/
+  609  ls -l
+  610  vi admin.conf 
+  611  kubectl --kubeconfig=admin.conf get nodes
+  612  kubectl get nodes
+  613  kubectl --kubeconfig=admin.conf get nodes
+  614  cd 
+  615  mkdir .kube
+  616  cd .kube/
+  617  cp /etc/kubernetes/admin.conf config 
+  618  ls -l
+  619  kubectl get nodes 
+  620  clear
+  621  kubectl get nodes 
+  622  kubectl get ns
+  623  kubectl create ns prod
+  624  kubectl get ns
+  625  clear
+  626  mkdir -p /home/prod-user/certs
+  627  cd /home/prod-user/certs/
+  628  ls -l
+  629  openssl genrsa -out prod-user.key 2048
+  630  ls -l
+  631  cat prod-user.key 
+  632  clear
+  633  cd /etc/kubernetes/manifests/
+  634  ls -l
+  635  vi kube-apiserver.yaml
+  636  cd -
+  637  ls -l
+  638  openssl req -new -key prod-user.key -out prod-user.csr -subj "/CN=prod-user/O=devops"
+  639  ls -l
+  640  cat prod-user.csr 
+  641  ls -l
+  642  openssl x509 -req -in prod-user.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out prod-user.crt -days 1000 
+  643  ls -l
+  644  cp /etc/kubernetes/admin.conf .
+  645  ls -ltrh
+  646  mv admin.conf prod-user.conf
+  647  vi prod-user.conf 
+  648  cat prod-user.crt
+  649  cat prod-user.crt | base64
+  650  vi prod-user.conf 
+  651  kubectl get nodes 
+  652  kubectl --kubeconfig=prod-user.conf version --short 
+  653  kubectl --kubeconfig=prod-user.conf get nodes
+  654  kubectl --kubeconfig=prod-user.conf get pods 
+  655  kubectl --kubeconfig=prod-user.conf get svc 
+  656  kubectl get pods 
+  657  clear
+  658  kubectl create role prod-ns-view-role --verb=get,list,watch --resource=pods,deployment,daemonsets,services --namespace prod
+  659  kubectl get role 
+  660  kubectl get role -n prod 
+  661  kubectl describe role prod-ns-view-role -n prod 
+  662  kubectl create rolebinding prod-user-binding --user=prod-user --role=prod-ns-view-role--namespace prod 
+  663  kubectl create rolebinding prod-user-binding --user=prod-user --role=prod-ns-view-role --namespace prod 
+  664  kubectl get rolebinding -n prod 
+  665  ls -l
+  666  kubectl --kubeconfig=prod-user.conf get pods 
+  667  kubectl --kubeconfig=prod-user.conf get pods -n prod 
+  668  kubectl --kubeconfig=prod-user.conf get deploy -n prod
+  669  kubectl --kubeconfig=prod-user.conf get svc -n prod
+  670  kubectl --kubeconfig=prod-user.conf get ds -n prod
+  671  kubectl --kubeconfig=prod-user.conf get rs -n prod
+  672  kubectl --kubeconfig=prod-user.conf run --image=nginx -n prod 
+  673  kubectl --kubeconfig=prod-user.conf run pod1 --image=nginx -n prod 
+  674  cd /root/.kube/
+  675  ls -ltrh
+  676  mv config admin.conf
+  677  cp /home/prod-user/certs/prod-user.conf config 
+  678  ls -l
+  679  kubectl get pods -n pro d
+  680  kubectl get pods -n prod
+  681  ls -l
+  682  mv config prod-user.conf
+  683  mv admin.conf config 
+  684  ls -ltrh
+  685  kubectl get nodes
+  686  kubectl --kubeconfig=prod-user.conf get nodes
+  687  clear
+  688  kubectl create rolebinding prod-user-group-binding --group=devops --role=prod-ns-view-role --namespace prod 
+  689  kubectl get rolebinding -n prod
+  690  kubectl delete rolebinding prod-user-binding -n prod
+  691  kubectl get rolebinding -n prod
+  692  kubectl --kubeconfig=prod-user.conf get pods 
+  693  kubectl --kubeconfig=prod-user.conf get pods -n prod 
+  694  kubectl get roles -n prod
+  695  kubectl edit role prod-ns-view-role -n prod 
+  696  kubectl --kubeconfig=prod-user.conf get rs
+  697  kubectl --kubeconfig=prod-user.conf get rs -n prod 
+  698  vi prod-user.conf 
+  699  kubectl --kubeconfig=prod-user.conf get rs 
+  700  kubectl --kubeconfig=prod-user.conf get pvc
+  701  kubectl create clusterrole clus-admin --verb=get,list,watch,create,delete,update,edit --resource=pods,services,replicasets,nodes,namespaces
+  702  kubectl create clusterrole clus-admin --verb=get,list,watch,create,delete,update --resource=pods,services,replicasets,nodes,namespaces
+  703  kubectl create clusterrolebinding clus-admin-binding --group=devops --clusterrole=clus-admin
+  704  kubectl --kubeconfig=prod-user.conf get nodes
+  705  kubectl --kubeconfig=prod-user.conf get ns
+  706  kubectl --kubeconfig=prod-user.conf get ds
+  707  kubectl --kubeconfig=prod-user.conf get pods 
+  708  kubectl --kubeconfig=prod-user.conf get pv 
+  709  kubectl --kubeconfig=prod-user.conf run nginx --image=nginx 
+  710  kubectl --kubeconfig=prod-user.conf run nginx --image=nginx -n default
+  711  kubectl --kubeconfig=prod-user.conf get pods -n kube-system 
+  712  clear
+  713  cd 
+  714  kubectl get clusterroles 
+  715  clear
+  716  cd .kube/
+  717  ls -ltrh
+  718  openssl x509 -in /home/prod-user/certs/prod-user.c --text
+  719  openssl x509 -in /home/prod-user/certs/prod-user.crt --text
+  720  clear
+  721  cd 
+  722  kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/dashboard/dashboard-secure.yml
+  723  kubectl get pods -n kubernetes-dashboard
+  724  kubectl get pods 
+  725  kubectl get svc 
+  726  kubectl get sa
+  727  kubectl describe sa kubernetes-dashboard
+  728  kubectl describe secret kubernetes-dashboard-token-jxq6r
+  729  kubectl create sa test
+  730  kubectl describe test 
+  731  kubectl describe sa test 
+  732  kubectl describe secret test-token-q7664
+  733  kubectl get pods 
+  734  kubectl describe clusterrole cluster-admin
+  735  kubectl describe clusterrole admin 
+  736  ls -l
+  737  more pod1.yml 
+  738  kubectl apply -f kind: Pod
+  739  apiVersion: v1
+  740  metadata:
+  741  kubectl get pod s
+  742  kubectl get pods
+  743  kubectl apply -f pod1.yml --dry-run=client 
+  744  kubectl get pods 
+  745  kubectl apply -f pod1.yml --dry-run=client -o yaml 
+  746  kubectl apply -f pod1.yml --dry-run=client -o json 
+  747  {     "apiVersion": "v1",;     "kind": "Pod",;     "metadata": {;         "annotations": {;             "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Pod\",\"metadata\":{\"annotations\":{},\"labels\":{\"app\":\"web\"},\"name\":\"covidpatient1\",\"namespace\":\"default\"},\"spec\":{\"containers\":[{\"image\":\"nginx\",\"name\":\"cont1\",\"ports\":[{\"containerPort\":80}]}]}}\n";         },;         "labels": {;             "app": "web";         },;         "name": "covidpatient1",;         "namespace": "default";     },;     "spec": {;         "containers": [;             {                 "image": "nginx",;                 "name": "cont1",;                 "ports": [;                     {                         "containerPort": 80;                     };                 ];             };         ]
+  748  kubectl get pods 
+  749  kubectl run nginx1 --image=nginx 
+  750  kubectl run mynginx --image=nginx --dry-run=client -o yaml 
+  751  kubectl create deployment mydep --image=tomcat --dry-run=client -o yaml 
+  752  kubectl get deploy 
+  753  kubectl create clusterrole myrole --verb=get,list,watch --resource=pods,deployments --dry-run=client 
+  754  kubectl create clusterrole myrole --verb=get,list,watch --resource=pods,deployments --dry-run=client -o yaml 
+  755  history 
+  756  kubectl describe secret kubernetes-dashboard-token-jxq6r
+  757  clear
+  758  kubectl get nodes
+  759  kubectl get pods 
+  760  kubectl delete deploy sampleapp-deployment
+  761  cd educka/dashboard/
+  762  git pull
+  763  ls -ltrh
+  764  ./rm-dashbaord-v2.sh 
+  765  kubectl get deploy
+  766  kubectl get pods 
+  767  kubectl delete pods --all
+  768  kubectl get pods --all-namespaces
+  769  kubectl get monitoring 
+  770  kubectl get ns
+  771  cd ..
+  772  cd monitoring/
+  773  ls -ltrh
+  774  cd metrics-server/
+  775  ls -l
+  776  cd ..
+  777  ls -ltrh
+  778  cd prometheus/
+  779  ls -l
+  780  ./rm-prometheus.sh 
+  781  kubectl get ns
+  782  kubectl get all -n prod
+  783  kubectl delete pod nginx -n prod 
+  784  kubectl get ns
+  785  kubectl delete ns prod 
+  786  kubectl create ns prod
+  787  clear
+  788  cd ..
+  789  ls -ltrh
+  790  git pull 
+  791  clear
+  792  kubectl get pods --all-namespaces 
+  793  export RELEASE="3.3.13"
+  794  wget https://github.com/etcd-io/etcd/releases/download/v${RELEASE}/etcd-v${RELEASE}-linux-amd64.tar.gz
+  795  cd etcd-v3.3.13-linux-amd64/
+  796  ls -l
+  797  sudo mv etcdctl /usr/local/bin
+  798  cd 
+  799  etcdctl --version 
+  800  kubectl get pods --all-namespaces -o wide 
+  801  ls -ltrh
+  802  cd /etc/kubernetes/manifests/
+  803  ls -l
+  804  vi etcd.yaml
+  805  cd ..
+  806  cd pki/
+  807  ls -ltrh
+  808  cd etcd/
+  809  ls -l
+  810  cd 
+  811  etcdctl --endpoint 10.128.15.205:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key snapshot save /tmp/etcddd-bakcup.db
+  812  etcdctl --version 
+  813  ETCDCTL_API=3 etcdctl --endpoint 10.128.15.205:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key snapshot save /tmp/etcddd-bakcup.db
+  814  ETCDCTL_API=3 etcdctl --endpoints 10.128.15.205:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key snapshot save /tmp/etcddd-bakcup.db
+  815  cd /tmp/
+  816  ls -l
+  817  kubectl get pods --all-namespaces -o wide 
+  818  ls -ltrh /tmp/etcddd-bakcup.db 
+  819  vi etcd-backup.sh 
+  820  chmod 755 etcd-backup.sh 
+  821  ./etcd-backup.sh 
+  822  crontab -e 
+  823  clear
+  824  ifconfig 
+  825  cd 
+  826  cd educka/controllers/
+  827  ls -ltrh
+  828  kubectl apply -f deployment-ex1.yml
+  829  kubectl get pods 
+  830  kubectl get pods -o wide 
+  831  kubectl apply -f deployment-ex3.yml
+  832  more deployment-ex1.yml 
+  833  ifconfig 
+  834  kubectl get pods -o wide 
+  835  kubectl exec kubeserve-69c7cd5675-48n7w -- ping 10.34.0.6
+  836  kubectl delete deploy kubeserve
+  837  kubectl delete deploy mydeployment
+  838  kubectl create deployment mydep --image=lerndevops/netshoot
+  839  kubectl get pods 
+  840  kubectl describe pod mydep-8755f654c-vtskw
+  841  kubectl create deployment mydep1 --image=lerndevops/netshoot sleep 3600
+  842  kubectl create deployment mydep1 --image=lerndevops/netshoot -- sleep 3600
+  843  kubectl get deploy 
+  844  kubectl get pods 
+  845  kubectl delete deploy --all
+  846  ls -lrh
+  847  vi deployment-ex2.yml
+  848  kubectl apply -f deployment-ex2.yml
+  849  kubectl get deploy 
+  850  kubectl get pods -o wide 
+  851  kubectl exed sampleapp-deployment-744f9c9c98-p8n52 -- ping 10.32.0.4
+  852  kubectl exec sampleapp-deployment-744f9c9c98-p8n52 -- ping 10.32.0.4
+  853  kubectl exec sampleapp-deployment-744f9c9c98-rpd9w -- ping 
+  854  kubectl exec sampleapp-deployment-744f9c9c98-p8n52 -- traceroute 10.32.0.4
+  855  kubectl get pods -o wide 
+  856  kubectl exec sampleapp-deployment-744f9c9c98-fl7xj -- ping 10.32.0.3
+  857  route 
+  858  kubectl get pods --all-namespaces
+  859  route 
+  860  iptable -L 
+  861  iptables -L
+  862  clear
+  863  kubectl get pods -o wide 
+  864  cd 
+  865  kubectl get pods -n kube-system 
+  866  clear
+  867  ping 10.128.15.206
+  868  ping node1
+  869  ping db
+  870  vi /etc/hosts
+  871  ping db 
+  872  clear
+  873  more /etc/resolv.conf 
+  874  ping node1
+  875  clear
+  876  kubectl get pods 
+  877  kubectl get pods -o wide 
+  878  kubectl get pods -n kube-system 
+  879  clear
+  880  kubectl get pods -o wide 
+  881  kubectl exec sampleapp-deployment-744f9c9c98-fl7xj -- ping 10.32.0.3
+  882  kubectl exec sampleapp-deployment-744f9c9c98-fl7xj -- ping 10-32-0-3.default.pod.cluster.local
+  883  kubectl exec sampleapp-deployment-744f9c9c98-fl7xj -- cat /etc/resolv.conf 
+  884  kubectl get pods -n kube-system 
+  885  kubectl get pods -n kube-system -o wide 
+  886  kubectl get svc -n kube-system 
+  887  kubectl get ep kube-dns
+  888  kubectl get ep kube-dns -n kube-system 
+  889  kubectl get svc 
+  890  kubectl get pods -o wide 
+  891  kubectl exec sampleapp-deployment-744f9c9c98-fl7xj -- ping mysvc.default.svc.cluster.local
+  892  kubectl exec sampleapp-deployment-744f9c9c98-fl7xj -- ping sampleapp-service.default.svc.cluster.local
+  893  kubectl exec sampleapp-deployment-744f9c9c98-fl7xj -- nslookup sampleapp-service.default.svc.cluster.local
+  894  cd educka/
+  895  ls -ltrh
+  896  cd examples/
+  897  ls -trh
+  898  kubectl get deploy 
+  899  kubectl apply -f springboot-mongo-app.yml
+  900  vi springboot-mongo-app.yml
+  901  kubectl get pods 
+  902  kubectl get svc 
+  903  clear
+  904  kubectl get pods 
+  905  kubectl get pods -o wide 
+  906  kubectl logs mongodb-58c54d77db-m6kql
+  907  kubectl get pods -o wide 
+  908  kubectl scale deploy mongo --replicas=0
+  909  kubectl get deploy 
+  910  kubectl scale deploy mongodb --replicas=0
+  911  kubectl get deploy 
+  912  kubectl get pods 
+  913  kubectl get svc 
+  914  iptabels -L -v -t nat 
+  915  iptaeles -L -v -t nat 
+  916  iptables -L -v -t nat 
+  917  clear
+  918  kubectl get pods 
+  919  kubectl get pods -o wide 
+  920  kubectl exec sampleapp-deployment-744f9c9c98-fl7xj -- ping 10.32.0.3
+  921  cd ..
+  922  cd services-networks/network-policies/
+  923  ls -l
+  924  vi deny-all-ingress.yml
+  925  kubectl apply -f deny-all-ingress.yml
+  926  kubectl get netpol
+  927  kubectl describe netpol deny-all
+  928  kubectl exec sampleapp-deployment-744f9c9c98-fl7xj -- ping 10.32.0.3
+  929  ls -ltrh
+  930  vi ingress-NetPolicy.yml
+  931  kubectl apply -f ingress-NetPolicy.yml 
+  932  kubectl get pods --show-labels 
+  933  more ingress-NetPolicy.yml
+  934  kubectl run dbpod --image=nginx -l app=db
+  935  kubectl get pods dbpod --show-label
+  936  kubectl get pods dbpod --show-labels
+  937  kubectl run apppod --image=lerndevops/netshoot -l app=db -- sleep 3600
+  938  kubectl delete pod apppod 
+  939  kubectl run apppod --image=lerndevops/netshoot -l app=web -- sleep 3600
+  940  kubectl get pods 
+  941  kubectl get pods -o wide 
+  942  kubectl exec apppod -- ping 10.34.0.5
+  943  kubectl exec sampleapp-deployment-744f9c9c98-fl7xj -- ping 10.34.0.5
+  944  ls -l
+  945  more deny-all-ingress.yml
+  946  kubectl get pods -o wide
+  947  kubectl exec dbpod -- ping 10.34.0.6
+  948  ls -ltrh
+  949  more ingress-NetPolicy.yml
+  950  ls -ltrh
+  951  kubectl apply -f deny-all-egress.yml
+  952  kubectl exec apppod -- ping 10.34.0.5
+  953  vi ingress-NetPolicy.yml 
+  954  vi egress-NetPolicy.yml 
+  955  kubectl apply -f egress-NetPolicy.yml
+  956  kubectl exec apppod -- ping 10.34.0.5
+  957  clear
+  958  ls -ltrh
+  959  more egress-NetPolicy.yml
+  960  cd 
+  961  clear
+  962  kubectl get nodes 
+  963  kubectl describe node node2
+  964  kubectl get nodes 
+  965  kubectl describe pod node2
+  966  kubectl describe node node2
+  967  history 
+  968  kubectl get pod s
+  969  kubectl get pods
+  970  kubectl get pods -o wide 
+  971  curl 10.34.0.5
+  972  kubectl get netpol
+  973  kubectl delete netpol deny-all egress-netpol default-deny-egress db-netpolicy
+  974  curl 10.34.0.5
+  975  kubectl get svc 
+  976  clear
+  977  cd /root/.kube/
+  978  ls -ltrh
+  979  vi config 
+  980  clear
+  981  cd 
+  982  clear
+  983  kubectl get nodes
+  984  cd .kube/
+  985  ls -l
+  986  kubectl get netpol
+  987  vi config 
+  988  kubectl get nodes
+  989  clear
+  990  cd 
+  991  kubectl get pods 
+  992  kubectl get deploy 
+  993  kubectl delete deploy --all
+  994  kubectl get pods 
+  995  kubectl delete pods apppod dbpod
+  996  watch kubectl get pods 
+  997  clear
+  998  kubectl get hpa 
+  999  watch kubectl get hpa 
+ 1000  clear
+ 1001  kubectl get pods 
+ 1002  kubectl get svc 
+ 1003  kubectl delete svc --all
+ 1004  clear
+ 1005  kubectl get svc 
+ 1006  cd educka/
+ 1007  ls -ltrh
+ 1008  cd controllers/
+ 1009  ls -ltrh
+ 1010  vi deployment-ex2.yml
+ 1011  kubectl apply -f deployment-ex2.yml 
+ 1012  kubectl get deployment 
+ 1013  kubectl get pods -o wide 
+ 1014  curl 10.34.0.1
+ 1015  kubectl get pods -o wide 
+ 1016  curl 10.32.0.3
+ 1017  kubectl get svc 
+ 1018  curl 10.100.224.74
+ 1019  kubectl get svc 
+ 1020  kubectl get pods -o wide 
+ 1021  kubectl get ep sampleapp-service
+ 1022  kubectl scale deploy sampleapp-service --replicas=1
+ 1023  kubectl scale deploy sampleapp-deployment --replicas=1
+ 1024  kubectl get pods -o wide 
+ 1025  kubectl get ep sampleapp-service
+ 1026  kubectl scale deploy sampleapp-deployment --replicas=2
+ 1027  kubectl get pods -o wide 
+ 1028  kubectl get ep sampleapp-service
+ 1029  kubectl get svc 
+ 1030  netstat -anp | grep 32105
+ 1031  vi deployment-ex2.yml 
+ 1032  more deployment-ex2.yml 
+ 1033  clear
+ 1034  cd ..
+ 1035  ls -ltrh
+ 1036  cd ingress/
+ 1037  ls -ltrh
+ 1038  vi nginx-ing-controller.yaml 
+ 1039  kubectl apply -f nginx-ing-controller.yaml
+ 1040  kubectl get all -n ingress-nginx
+ 1041  ls -l
+ 1042  vi service-nodeport.yaml
+ 1043  kubectl apply -f service-nodeport.yaml 
+ 1044  ls -l
+ 1045  kubectl get all -n ingress-nginx
+ 1046  curl 10.102.121.127
+ 1047  kubectl get pods -o wide -n ingress-nginx
+ 1048  kubectl get ep ingress-nginx -n ingress-nginx
+ 1049  ls -l
+ 1050  vi deploy-app.yml
+ 1051  kubectl apply -f deploy-app.yml 
+ 1052  kubectl get deploy 
+ 1053  kubectl get svc 
+ 1054  curl 10.98.54.48
+ 1055  curl 10.98.54.48/app1
+ 1056  curl 10.100.238.226
+ 1057  curl 10.106.64.204
+ 1058  ls -l
+ 1059  vi ingress-rule.yml 
+ 1060  kubectl apply -f ingress-rule.yml 
+ 1061  kubectl get ingress 
+ 1062  kubectl describe ingress mying-rule
+ 1063  kubectl get svc 
+ 1064  ls -ltrh
+ 1065  vi ingress-rule.yml
+ 1066  clear
+ 1067  kubectl top pods 
+ 1068  kubectl top nodes
+ 1069  cd ..
+ 1070  ls -ltrh
+ 1071  cd monitoring/
+ 1072  ls -l
+ 1073  cd metrics-server/
+ 1074  ls -l
+ 1075  vi metrics-server-deployment.yaml
+ 1076  kubectl apply -f .
+ 1077  kubectl top pods 
+ 1078  kubectl top pods -n kube-system 
+ 1079  kubectl top nodes
+ 1080  kubectl get pods -n kube-system 
+ 1081  ls -ltrh
+ 1082  cd ..
+ 1083  ls -ltrh
+ 1084  cd prometheus/
+ 1085  ls -ltrh
+ 1086  vi prometheus.yaml
+ 1087  kubectl apply -f prometheus.yaml 
+ 1088  kubectl get all -n monitoring
+ 1089  ls -ltrh
+ 1090  vi grafana.yml
+ 1091  kubectl apply -f grafana.yml 
+ 1092  kubectl get all -n monitoring
+ 1093  clear
+ 1094  cd 
+ 1095  kubectl top pods 
+ 1096  kubectl top pods | grpe app1-7d69f6d645-74zkm
+ 1097  kubectl top pods | grep app1-7d69f6d645-74zkm
+ 1098  kubectl top pods | grep app1-7d69f6d645-74zkm > /tmp/hihgcpupod.tx
+ 1099  more /tmp/hihgcpupod.tx
+ 1100  clear
+ 1101  kubectl get ns
+ 1102  kubectl create ns finance
+ 1103  kubectl run forex --image=lerndeovps/tomcat:8.5.37 -n finance --dry-run=client -o yaml 
+ 1104  kubectl get pods -n finance 
+ 1105  kubectl run forex --image=lerndeovps/tomcat:8.5.37 -n finance -l env=qa --dry-run=client -o yaml 
+ 1106  vi pod.yml
+ 1107  kubectl apply -f pod.yml -n finance
+ 1108  kubectl get pods -n finance
+ 1109  clear
+ 1110  kubectl get pods 
+ 1111  kubectl top pods 
+ 1112  clear
+ 1113  cd educka/
+ 1114  ls -ltrh
+ 1115  cd controllers/
+ 1116  ls -l
+ 1117  cd hpa/
+ 1118  ls -ltrh
+ 1119  vi hpa.yml 
+ 1120  kubectl apply -f hpa.yml 
+ 1121  kubectl get deploy 
+ 1122  kubectl delete deploy app1 app2 app3 sampleapp-deployment
+ 1123  kubectl get deploy 
+ 1124  kubectl get svc 
+ 1125  kubectl delete svc app1-svc app2-svc app3-svc sampleapp-service
+ 1126  kubectl get svc 
+ 1127  curl 10.103.62.189
+ 1128  kubectl top pods 
+ 1129  curl 10.103.62.189
+ 1130  apt-get update 
+ 1131  apt-get install apache2-utils
+ 1132  ab
+ 1133  kubectl get pods 
+ 1134  cd 
+ 1135  clear
+ 1136  kubectl get svc 
+ 1137  ab -n 500000 -c 1000 http://10.103.62.189:80/
+ 1138  clear
+ 1139  kubectl logs nginx-7b4f6d59bb-79jcn
+ 1140  kubectl logs nginx-7b4f6d59bb-79jcn | wc -l
+ 1141  kubectl get pods -n kube-system 
+ 1142  kubectl logs kube-apiserver-master -n kube-system 
+ 1143  clear
+ 1144  mkdir /dbconfig 
+ 1145  cd /dbconfig/
+ 1146  ls -ltrh
+ 1147  touch db.props
+ 1148  vi db.props 
+ 1149  kubectl create configmap dbconfigmap --from-file db.props
+ 1150  kubectl get configmap 
+ 1151  kubectl describe configmap dbconfigmap
+ 1152  vi pod.yml
+ 1153  kubectl apply -f pod.yml 
+ 1154  kubectl get pods 
+ 1155  kubectl exec -it mypod -- bash 
+ 1156  more pod.yml 
+ 1157  cd ..
+ 1158  cd 
+ 1159  cd educka/monitoring/
+ 1160  ls -ltrh
+ 1161  cd prometheus/
+ 1162  ls -ltrh
+ 1163  vi prometheus.yaml
+ 1164  cd 
+ 1165  ls -ltrh
+ 1166  cd /dbconfig/
+ 1167  ls -ltrh
+ 1168  vi db.props 
+ 1169  kubectl get cm
+ 1170  kubectl describe cm dbconfigmap
+ 1171  vi db.cred
+ 1172  echo admin 
+ 1173  echo admin | base64 
+ 1174  vi db.cred 
+ 1175  kubectl create secret mysc --from-file db.cred 
+ 1176  kubectl create secret mysc --from-file=db.cred 
+ 1177  kubectl create secret -h 
+ 1178  kubectl create secret mysc generic --from-file db.cred 
+ 1179  kubectl create secret mysc generic db.cred 
+ 1180  kubectl create secret mysc generic -h 
+ 1181  kubectl create secret generic mysc --from-file db.cred 
+ 1182  kubectl get secret 
+ 1183  kubectl describe secret mysc
+ 1184  clear
+ 1185  vi pod.yml 
+ 1186  kubectl apply -f pod.yml 
+ 1187  vi pod.yml 
+ 1188  kubectl apply -f pod.yml 
+ 1189  vi pod.yml 
+ 1190  kubectl apply -f pod.yml 
+ 1191  cd educka/pods/
+ 1192  ls -ltrh
+ 1193  cd ..
+ 1194  cd storage/
+ 1195  ls -ltrh
+ 1196  more configmap-ex2.yml 
+ 1197  clear
+ 1198  ls -ltrh
+ 1199  history 
+ 1200  history > k8s-history.txt
