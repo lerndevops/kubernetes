@@ -1,7 +1,11 @@
-Operators in Kubernetes
-Kubernetes is designed for automation. Out of the box, you get lots of built-in automation from the core of Kubernetes. You can use Kubernetes to automate deploying and running workloads, and you can automate how Kubernetes does that.
+## Operators in Kubernetes
+
+> Kubernetes is designed for automation. Out of the box, you get lots of built-in automation from the core of Kubernetes. You can use Kubernetes to automate deploying and running workloads, and you can automate how Kubernetes does that.
 Kubernetes’ controllers concept lets you extend the cluster’s behaviour without modifying the code of Kubernetes itself. Operators are clients of the Kubernetes API that act as controllers for a Custom Resource.
-An example Operator
+
+### An example Operator
+
+```
 Some of the things that you can use an operator to automate include:
 		deploying an application on demand
 		taking and restoring backups of that application’s state
@@ -19,9 +23,12 @@ What might an Operator look like in more detail? Here’s an example in more det
 		If you delete it, the Operator takes a snapshot, then makes sure that the StatefulSet and Volumes are also removed.
 	6.	The operator also manages regular database backups. For each SampleDB resource, the operator determines when to create a Pod that can connect to the database and take backups. These Pods would rely on a ConfigMap and / or a Secret that has database connection details and credentials.
 	7.	Because the Operator aims to provide robust automation for the resource it manages, there would be additional supporting code. For this example, code checks to see if the database is running an old version and, if so, creates Job objects that upgrade it for you.
-Deploying Operators
-The most common way to deploy an Operator is to add the Custom Resource Definition and its associated Controller to your cluster. The Controller will normally run outside of the control plane, much as you would run any containerized application. For example, you can run the controller in your cluster as a Deployment.
+```
 
-https://operatorhub.io/getting-started
+### Deploying Operators
+
+> The most common way to deploy an Operator is to add the Custom Resource Definition and its associated Controller to your cluster. The Controller will normally run outside of the control plane, much as you would run any containerized application. For example, you can run the controller in your cluster as a Deployment.
+
+`https://operatorhub.io/getting-started`
 
 
