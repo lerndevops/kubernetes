@@ -1,4 +1,4 @@
-Containers within a pod can interact with each other in vari- ous ways:
+Containers within a pod can interact with each other in various ways:
 
 • Network: Containers can access any listening ports on containers within the same pod, even if those ports are not exposed outside the pod.
 
