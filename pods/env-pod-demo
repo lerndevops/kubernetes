@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: envar-demo
+  labels:
+    purpose: demonstrate-envars
+spec:
+  containers:
+  - name: envar-demo-container
+    image: gcr.io/google-samples/node-hello:1.0
+    env:
+    - name: WELCOME
+      value: "Hello from the environment"
+    - name: CKAEXAM
+      value: "CKA exam version 1.18"
+      
+      
+      
+  #kubectl exec -it envar-demo -- /bin/bash
+  ## Run this in the shell inside the container
+    # printenv
