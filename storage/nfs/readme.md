@@ -1,12 +1,12 @@
 ## Kubernetes Volumes and NFS
 
-> ***Kubernetes Volumes are abstracted storage units that allow nodes within a cluster to write, read and share data between them. 
+> ***Kubernetes Volumes are abstracted storage units that allow nodes within a cluster to write, read and share data between them.***
 
-> Kubernetes offers many storage plugins that provide access to storage services and platforms. One of these is the NFS plugin
+> ***Kubernetes offers many storage plugins that provide access to storage services and platforms. One of these is the NFS plugin***
 
-> `Network File System (NFS)` is a standard protocol that lets you mount a storage device as a local drive. Kubernetes allows you to mount a Volume as a local drive on a container. 
+> ***`Network File System (NFS)` is a standard protocol that lets you mount a storage device as a local drive. Kubernetes allows you to mount a Volume as a local drive on a container.*** 
 
-> The NFS integration is very useful for migrating legacy workloads to Kubernetes, because very often legacy code accesses data via NFS.***
+> ***The NFS integration is very useful for migrating legacy workloads to Kubernetes, because very often legacy code accesses data via NFS.***
 
 ## There are two ways to access data via NFS in Kubernetes:
 
