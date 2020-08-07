@@ -70,6 +70,8 @@ day9
 =====
 statefull sets / headless service
 etcd backup / multi schedular
+Ingress
+HPA
 troubleshooting -- cluster validation
 
 day10
