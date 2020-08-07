@@ -7,7 +7,7 @@ sudo kubeadm reset -f
 #### Remove any pre installed docker packages  
 sudo apt-mark unhold docker-ce docker-ce-cli kubectl kubeadm kubelet
 sudo apt-get remove -y docker docker-engine docker.io containerd runc kubeadm kubectl kubelet
-sudo apt autoremove
+sudo apt autoremove -y
 cd /var/lib
 sudo rm -r docker
 sudo rm -r kubelet
