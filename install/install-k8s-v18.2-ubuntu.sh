@@ -7,8 +7,10 @@ sudo kubeadm reset -f
 #### Remove any pre installed docker packages  
 sudo apt-mark unhold docker-ce docker-ce-cli kubectl kubeadm kubelet
 sudo apt-get remove -y docker docker-engine docker.io containerd runc kubeadm kubectl kubelet
+sudo apt autoremove
 cd /var/lib
 sudo rm -r docker
+sudo rm -r kubelet
 
 #### Install Specific Docker version
 sudo apt-get update
@@ -45,8 +47,8 @@ apt-cache madison kubelet | head | awk '{print $1,$2,$3}'
 echo "=================================="
 apt-cache madison kubectl | head | awk '{print $1,$2,$3}'
 echo " "
-kubever="1.18.1-00"
-echo "Installing v1.17.4-00 Version for kubeadm,kubelet,kubectl"
+kubever="1.18.2-00"
+echo "Installing v1.18.2-00 Version for kubeadm,kubelet,kubectl"
 sudo apt-get install -y kubeadm=$kubever kubelet=$kubever kubectl=$kubever
 if [ $? -eq 0 ];then
      echo "kubelet, kubeadm & kubectl with Version $kuberver are successfully installed"
