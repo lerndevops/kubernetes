@@ -14,7 +14,7 @@ spec:
         app: kubeserve
     spec:
       nodeSelector: 
-         covid: "true"
+         color: "blue"
       containers:
       - image: leaddevops/kubeserve:v1
         name: app
