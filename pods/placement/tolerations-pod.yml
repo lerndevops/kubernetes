@@ -15,7 +15,7 @@ spec:
     spec:
       tolerations:
         - key: covid
-          operator: "Equals"
+          operator: "Equal"
           value: "true"
           effect: "NoSchedule"
       containers:
