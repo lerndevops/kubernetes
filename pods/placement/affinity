@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pref
+spec:
+  selector:
+    matchLabels:
+      app: pref
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: pref
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 80
+            preference:
+              matchExpressions:
+              - key: zone           # assign this label to node
+                operator: In
+                values:
+                - east
+          - weight: 20
+            preference:
+              matchExpressions:
+              - key: type           # assign this label to node
+                operator: In
+                values:
+                - web
+      containers:
+      - args:
+        - sleep
+        - "99999"
+        image: busybox
+        name: main
