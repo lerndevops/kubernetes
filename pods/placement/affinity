@@ -22,6 +22,7 @@ spec:
                 operator: In
                 values:
                 - east
+               #- west we can add multiple values too
           - weight: 20
             preference:
               matchExpressions:
