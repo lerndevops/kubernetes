@@ -25,3 +25,30 @@ spec:
     ports:
     - containerPort: 27017
       protocol: TCP
+
+
+---------
+
+kubectl exec -it mongodb mongo
+use mystore
+
+
+Create a JSON document to insert into the database:
+db.foo.insert({name:'foo'})
+
+View the document you just created:
+db.foo.find()
+
+Exit from the mongodb shell:
+exit 
+
+Delete the pod:
+kubectl delete pod mongodb
+
+Create a new pod with the same attached disk:
+
+kubectl apply -f mongodb-pod.yaml
+
+Check to see which node the pod landed on:
+
+kubectl get pods -o wide
