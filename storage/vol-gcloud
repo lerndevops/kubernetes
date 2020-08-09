@@ -1,0 +1,27 @@
+# Use Gcloud Cluster
+
+gcloud container clusters list -- get the zone from here
+gcloud compute disks create --size=1GiB --zone=us-central1-a mongodb
+
+The Yml:
+========
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongodb 
+spec:
+  volumes:
+  - name: mongodb-data
+    gcePersistentDisk:
+      pdName: mongodb
+      fsType: ext4
+  containers:
+  - image: mongo
+    name: mongodb
+    volumeMounts:
+    - name: mongodb-data
+      mountPath: /data/db
+    ports:
+    - containerPort: 27017
+      protocol: TCP
