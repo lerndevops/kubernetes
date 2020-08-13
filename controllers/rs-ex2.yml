@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: frontend
+  name: samplers
   labels:
     app: sampleapp
     tier: frontend
@@ -16,16 +16,16 @@ spec:
         tier: frontend
     spec:
       containers:
-      - name: apache
-        image: httpd
+      - name: test
+        image: lerndevops/samplepyapp:v2
         ports:
-         - containerPort: 80
+         - containerPort: 3000
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontendsvc
+  name: samplesvc
   labels:
     app: frontend
 spec:
