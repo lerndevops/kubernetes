@@ -60,16 +60,7 @@ EOF
    58  kubectl config get-contexts
    59  kubectl get pods
    60  kubectl config use-context kubernetes-admin@kubernetes
-   61  kubectl get pods
-   64  kubectl create -f https://raw.githubusercontent.com/lerndevops/educka/master/controllers/statefulsets/statefulset-ex1.yml
-   65  watch kubectl get pods
-   66  watch kubectl get pods -o wide
-   67  kubectl get pods
-   68  kubectl get svc
-   69  kubectl run te --image lerndevops/netshoot -- sleep 3600
-   70  kubectl exec -it te -- bash
-
-
+  
 
 
 
