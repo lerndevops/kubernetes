@@ -64,6 +64,7 @@ EOF
 
 
 
+#### To SEE Users : kubectl config view -o jsonpath='{.users[].name}' ;echo ""
 
 
 
