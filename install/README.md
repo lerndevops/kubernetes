@@ -18,7 +18,7 @@
 	
 ### Step2: `On Master only:`
 
-    sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --ignore-preflight-errors=all
+    sudo kubeadm init --ignore-preflight-errors=all
 	
     sudo mkdir -p $HOME/.kube
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
