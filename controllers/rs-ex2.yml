@@ -31,8 +31,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 80  # inside container
-#    nodePort: 30001 #expose , if dont give takes default
+  - port: 3000  
+ #   nodePort: 30001 #expose , if dont give takes default
     protocol: TCP
   selector:
     tier: frontend
