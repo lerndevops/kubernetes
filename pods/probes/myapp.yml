@@ -7,11 +7,10 @@ metadata:
 spec:
   terminationGracePeriodSeconds: 0
   containers:
-    - image: lerndevops/samplejavaapp
-      name: sampleapp
+    - image: leaddevops/petclinic:3
+      name: petclinic
       ports:
         - containerPort: 8080 
-          name: sampleapp
       readinessProbe:
         tcpSocket:
           port: 8080
@@ -20,10 +19,10 @@ spec:
         timeoutSeconds: 3
       livenessProbe:
         httpGet:
-           path: /sampleapppp
+           path: /petclinic
            port: 8080
 #        exec:
-#          command: ["curl","localhost:8080","/sampleapp"]
+#          command: ["curl","localhost:8080","/petclinic"]
         initialDelaySeconds: 10
         periodSeconds: 5
         timeoutSeconds: 3
