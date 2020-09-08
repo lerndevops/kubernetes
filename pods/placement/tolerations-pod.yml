@@ -14,9 +14,9 @@ spec:
         app: kubeserve
     spec:
       tolerations:
-        - key: covid
+        - key: zone
           operator: "Equal"
-          value: "true"
+          value: "red"
           effect: "NoSchedule"
       containers:
       - image: leaddevops/kubeserve:v1
