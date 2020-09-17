@@ -53,6 +53,7 @@ kubectl apply -f deployment-ex1.yml  --record      # update the deployment
 
 kubectl get deploy                              # List all deployments in current active namespace
 kubectl get deploy -n <namespace>               # List the deployments in <namespace>
+kubectl get pods --all-namespaces               # List all the deployment in cluster
 kubectl get deploy --show-labels                # list the labels for deploy
 kubectl get deploy -l deploy=myapprs -o wide    # list deployments with matching labels
 kubectl get pods | grep mydeploy                # list the pods associated with deployment
