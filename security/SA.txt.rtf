@@ -1,0 +1,481 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Georgia;\f1\fnil\fcharset0 LucidaGrande-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fnil\fcharset0 Georgia-Bold;\f4\fnil\fcharset0 Georgia-Italic;\f5\fnil\fcharset0 HelveticaNeue;
+\f6\fnil\fcharset0 Menlo-Italic;}
+{\colortbl;\red255\green255\blue255;\red31\green31\blue31;\red255\green255\blue255;\red9\green9\blue9;
+\red239\green239\blue239;\red0\green0\blue0;\red34\green244\blue125;}
+{\*\expandedcolortbl;;\cssrgb\c16078\c16078\c16078;\cssrgb\c100000\c100000\c100000;\cssrgb\c3137\c3137\c3137;
+\cssrgb\c94902\c94902\c94902;\cssrgb\c0\c0\c0\c80000;\cssrgb\c4706\c94902\c56078\c20000;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{none\}}{\leveltext\leveltemplateid1\'00;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{none\}}{\leveltext\leveltemplateid101\'00;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{none\}}{\leveltext\leveltemplateid201\'00;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{none\}}{\leveltext\leveltemplateid301\'00;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid4}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25380\viewh9500\viewkind0
+\deftab720
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 A ServiceAccount is used by containers running in a Pod, to communicate with the API server of the\'a0{\field{\*\fldinst{HYPERLINK "https://kubernetes.io/"}}{\fldrslt Kubernetes}}\'a0cluster. In this post we will see how this is done and the Kubernetes resources involved in the process.\cb1 \
+\pard\pardeftab720\sa280\qc\partightenfactor0
+
+\fs56 \cf4 \cb3 \strokec4 \
+\pard\pardeftab720\sl800\partightenfactor0
+
+\f1\b\fs72 \cf2 \strokec2 API Server \'97 HTTP REST API\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\b0\fs42 \cf2 \cb3 If you work with a Kubernetes cluster, chances are that you use the\'a0
+\f2\fs31\fsmilli15750 \cb5 kubectl
+\f0\fs42 \cb3 \'a0binary, or the web interface, to call the API server. Under the hood, all the calls are made through the HTTP endpoints exposed by the API.\cb1 \
+\cb3 This API is well documented; all the endpoints are described in the\'a0{\field{\*\fldinst{HYPERLINK "https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.14"}}{\fldrslt official documentation}}.\cb1 \
+\cb3 A simple example: here is the\'a0{\field{\*\fldinst{HYPERLINK "https://api_server/api/v1/namespaces/default/pods/"}}{\fldrslt list of Pods running in the default namespace}}. Of course the request needs to be authenticated and authorized to perform this action.\cb1 \
+\pard\pardeftab720\sa280\qc\partightenfactor0
+
+\fs56 \cf4 \cb3 \strokec4 \
+\pard\pardeftab720\sl800\partightenfactor0
+
+\f1\b\fs72 \cf2 \strokec2 Accessing the API Server From a Pod\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\b0\fs42 \cf2 \cb3 A lot of applications that run in the cluster (read: running in Pods), need to communicate with the API server. Among them are the processes running within the Control Plane (scheduler, controller manager, proxy, etc.), as well as all the applications that need to perform some form of administration for the cluster.\cb1 \
+\cb3 For example, some applications might need to know:\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl640\partightenfactor0
+\ls1\ilvl0\cf2 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The status of the cluster\'92s nodes.\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The namespaces available.\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The Pods running in the cluster, or in a specific namespace.\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 And other things like that.\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+\cf2 \cb3 To communicate with the API server, a Pod uses a ServiceAccount containing an authentication token. Roles (e.g: the right to list all the Pods within a given namespace), or ClusterRole (eg: the right to read all the Secrets within the entire cluster), can then be bound to this ServiceAccount. Respectively with a RoleBinding or a ClusterRoleBinding, so the ServiceAccount is authorized to perform those actions.\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl640\partightenfactor0
+\ls2\ilvl0
+\f3\b \cf2 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 From the outside of the cluster:
+\f0\b0 \'a0the API server can be accessed using the end point specified in the kube config file (
+\f2\fs31\fsmilli15750 \cb5 $HOME/.kube/config
+\f0\fs42 \cb3 \'a0by default). As an example, if you use a DigitalOcean Managed Kubernetes, the end point is something like\'a0{\field{\*\fldinst{HYPERLINK "https://b703a4fd-0d66-4802-a354-ba2c2a734a77.k8s.ondigitalocean.com/"}}{\fldrslt https://b703a4fd-0d56-4802-a354-ba2c2a767a77.k8s.ondigitalocean.com}}\cb1 \
+\ls2\ilvl0
+\f3\b \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 From the inside of the cluster\'a0
+\f0\b0 (read: from a Pod): the API server can be accessed using the dedicated service of type\'a0
+\f2\fs31\fsmilli15750 \cb5 ClusterIP
+\f0\fs42 \cb3 \'a0named\'a0
+\f2\fs31\fsmilli15750 \cb5 kubernetes
+\f0\fs42 \cb3 . This service is there by default and automatically recreated if it is deleted by error (it happens).\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 $ kubectl get svc\cb1 \
+\cb5 NAME       TYPE      CLUSTER-IP  EXTERNAL-IP PORT(S) AGE\cb1 \
+\cb5 kubernetes ClusterIP 10.96.0.1   <none>      443/TCP 23h\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 With the correct rights (more on that later), listing the Pods in the\'a0
+\f4\i default
+\f0\i0 \'a0namespace can be done from a Pod with this simple\'a0{\field{\*\fldinst{HYPERLINK "https://kubernetes/api/v1/namespaces/default/pods/"}}{\fldrslt GET request}}.\cb1 \
+\pard\pardeftab720\sa280\qc\partightenfactor0
+
+\fs56 \cf4 \cb3 \strokec4 \
+\pard\pardeftab720\sl800\partightenfactor0
+
+\f1\b\fs72 \cf2 \strokec2 Using the Namespace Default ServiceAccount\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\b0\fs42 \cf2 \cb3 Each namespace has a default ServiceAccount, named\'a0
+\f2\fs31\fsmilli15750 \cb5 default
+\f0\fs42 \cb3 . We can verify this with the following command:\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 $ kubectl get sa --all-namespaces | grep default\cb1 \
+\cb5 default     default 1 6m19s\cb1 \
+\cb5 kube-public default 1 6m19s\cb1 \
+\cb5 kube-system default 1 6m19s\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 Let\'92s inspect the ServiceAccount named\'a0
+\f2\fs31\fsmilli15750 \cb5 default
+\f0\fs42 \cb3 \'a0of the\'a0
+\f4\i default\'a0
+\f0\i0 namespace (this will be pretty much the same for the default ServiceAccount of another namespace).\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 $ kubectl get sa default -o yaml\cb1 \
+\cb5 apiVersion: v1\cb1 \
+\cb5 kind: ServiceAccount\cb1 \
+\cb5 metadata:\cb1 \
+\cb5  name: default\cb1 \
+\cb5  namespace: default\cb1 \
+\cb5  ...\cb1 \
+\cb5 secrets:\cb1 \
+\cb5 - name: default-token-dffkj\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 We can see here that a Secret is provided to this ServiceAccount. Let\'92s have a closer look at this one:\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 $ kubectl get secret default-token-dffkj -o yaml\cb1 \
+\cb5 apiVersion: v1\cb1 \
+\cb5 data:\cb1 \
+\cb5  ca.crt: LS0tLS1CRU...0tLS0tCg==\cb1 \
+\cb5  namespace: ZGVmYXVsdA==\cb1 \
+\cb5  token: ZXlKaGJHY2...RGMUlIX2c=\cb1 \
+\cb5 kind: Secret\cb1 \
+\cb5 metadata:\cb1 \
+\cb5  name: default-token-dffkj\cb1 \
+\cb5  namespace: default\cb1 \
+\cb5  ...\cb1 \
+\cb5 type: kubernetes.io/service-account-token\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 There are several key/value pairs under the data key of this Secret. For readability, I\'92ve shortened the value of the\'a0
+\f2\fs31\fsmilli15750 \cb5 ca.crt
+\f0\fs42 \cb3 \'a0and\'a0
+\f2\fs31\fsmilli15750 \cb5 token
+\f0\fs42 \cb3 \'a0values), basically:\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl640\partightenfactor0
+\ls3\ilvl0
+\f2\fs31\fsmilli15750 \cf2 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 ca.crt
+\f0\fs42 \cb3 \'a0is the Base64 encoding of the cluster certificate.\cb1 \
+\ls3\ilvl0
+\f2\fs31\fsmilli15750 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 namespace
+\f0\fs42 \cb3 \'a0is the Base64 encoding of the current namespace (default).\cb1 \
+\ls3\ilvl0
+\f2\fs31\fsmilli15750 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 token
+\f0\fs42 \cb3 \'a0is the Base64 encoding of the JWT used to authenticate against the API server.\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+\cf2 \cb3 Note: JSON Web Token (JWT) is an open standard ({\field{\*\fldinst{HYPERLINK "https://tools.ietf.org/html/rfc7519"}}{\fldrslt RFC 7519}}), that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed.\cb1 \
+\cb3 Let\'92s focus on the\'a0
+\f2\fs31\fsmilli15750 \cb5 token
+\f4\i\fs42 \cb3 .\'a0
+\f0\i0 Once decoded (using\'a0
+\f2\fs31\fsmilli15750 \cb5 base64 -d
+\f0\fs42 \cb3 \'a0on Linux, or\'a0
+\f2\fs31\fsmilli15750 \cb5 base64 -D
+\f0\fs42 \cb3 \'a0on MacOS), we can easily get the payload of this JWT from the command line, or an online service like\'a0{\field{\*\fldinst{HYPERLINK "https://jwt.io/"}}{\fldrslt jwt.io}}.\cb1 \
+\cb3 This payload has the following format:\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 \{\cb1 \
+\cb5  \'93iss\'94: \'93kubernetes/serviceaccount\'94,\cb1 \
+\cb5  \'93kubernetes.io/serviceaccount/namespace\'94: \'93default\'94,\cb1 \
+\cb5  \'93kubernetes.io/serviceaccount/secret.name\'94: \'93default-token-dffkj\'94,\cb1 \
+\cb5  \'93kubernetes.io/serviceaccount/service-account.name\'94: \'93default\'94,\cb1 \
+\cb5  \'93kubernetes.io/serviceaccount/service-account.uid\'94: \'93ac5aa972\'9680ae-11e9\'96854d-0800278b691f\'94,\cb1 \
+\cb5  \'93sub\'94: \'93system:serviceaccount:default:default\'94\cb1 \
+\cb5 \}\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 We can see the ServiceAccount it is linked to, the namespace it exists in, and some other internal information.\cb1 \
+\cb3 We will see below how to use this token from within a simple Pod, based on the following specification:\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f5\fs24 \cf6 \strokec6 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 \strokec2 Assuming this specification is in the\'a0
+\f2\fs31\fsmilli15750 \cb5 pod-default.yaml
+\f0\fs42 \cb3 \'a0file, you can create the Pod with the following (and standard) command:\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 $ kubectl apply -f 
+\f6\i pod-default.yaml
+\f2\i0 \cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 As no\'a0
+\f2\fs31\fsmilli15750 \cb5 serviceAccountName
+\f0\fs42 \cb3 \'a0key is specified, the default ServiceAccount of the Pod\'92s namespace is used. We can confirm this by checking the specification of this Pod once created (Kubernetes adds a lot of things for us during the creation process).\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f5\fs24 \cf6 \strokec6 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 \strokec2 Important things to note here:\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl640\partightenfactor0
+\ls4\ilvl0\cf2 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The\'a0
+\f2\fs31\fsmilli15750 \cb5 serviceAccountName
+\f0\fs42 \cb3 \'a0key is set with the name of the default ServiceAccount.\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl640\partightenfactor0
+\ls4\ilvl0\cf2 \cb7 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The information of the ServiceAccount is mounted inside the container of the Pod, through the usage of volume, in\'a0
+\f2\fs31\fsmilli15750 \cb5 /var/run/secrets/kubernetes.io/serviceaccount
+\f0\fs42 \cb3 \'a0(more on that in a bit).\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f1\b\fs52 \cf2 \cb3 Anonymous call of the API server\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\b0\fs42 \cf2 \cb3 Let\'92s run a shell within this container and install the\'a0
+\f2\fs31\fsmilli15750 \cb5 curl
+\f0\fs42 \cb3 \'a0utility:\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 $ kubectl exec -ti pod-default -- sh\cb1 \
+\cb5 / # apk add --update curl\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 From this shell, we can try to get information from the API server without authentication.\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 / # curl {\field{\*\fldinst{HYPERLINK "https://kubernetes/api/v1"}}{\fldrslt https://kubernetes/api/v1}} --insecure\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 Note: as said above, from a Pod running in the cluster, the API server can be reached using the Kubernetes ClusterIP service.\cb1 \
+\cb3 We then get an error message, as an unauthenticated user is not allowed to perform this request.\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 / # curl {\field{\*\fldinst{HYPERLINK "https://kubernetes/api"}}{\fldrslt https://kubernetes/api}} --insecure\cb1 \
+\cb5 \{\cb1 \
+\cb5  \'93kind\'94: \'93Status\'94,\cb1 \
+\cb5  \'93apiVersion\'94: \'93v1\'94,\cb1 \
+\cb5  \'93metadata\'94: \{\},\cb1 \
+\cb5  \'93status\'94: \'93Failure\'94,\cb1 \
+\cb5  \'93message\'94: \'93forbidden: User \\\'94system:anonymous\\\'94 cannot get path \\\'94/api\\\'94\'94,\cb1 \
+\cb5  \'93reason\'94: \'93Forbidden\'94,\cb1 \
+\cb5  \'93details\'94: \{\},\cb1 \
+\cb5  \'93code\'94: 403\cb1 \
+\cb5 \}\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 Let\'92s go one step further and try to issue the same query using the token of the default ServiceAccount.\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f1\b\fs52 \cf2 \cb3 Call using the ServiceAccount token\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\b0\fs42 \cf2 \cb3 From the\'a0
+\f2\fs31\fsmilli15750 \cb5 alpine
+\f0\fs42 \cb3 \'a0container, the token of the default ServiceAccount can be retrieved from\'a0
+\f2\fs31\fsmilli15750 \cb5 /run/secrets/kubernetes.io/serviceaccount/token
+\f0\fs42 \cb3 \'a0(remember the volume/volumeMounts instructions above). Using this token, we can use it as a Bearer token to authenticate against the API server:\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 / # TOKEN=$(cat /run/secrets/kubernetes.io/serviceaccount/token)\cb1 \
+\cb5 / # curl -H \'93Authorization: Bearer $TOKEN\'94 {\field{\*\fldinst{HYPERLINK "https://kubernetes/api/v1/"}}{\fldrslt https://kubernetes/api/v1/}} --insecure\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 This time the request goes fine \'97 no more error querying this end point. The list of resources is returned.\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 \{\cb1 \
+\cb5   "kind": "APIResourceList",\cb1 \
+\cb5   "groupVersion": "v1",\cb1 \
+\cb5   "resources": [\cb1 \
+\cb5    \{\cb1 \
+\cb5      "name": "bindings",\cb1 \
+\cb5      "singularName": "",\cb1 \
+\cb5      "namespaced": true,\cb1 \
+\cb5      "kind": "Binding",\cb1 \
+\cb5      "verbs": [\cb1 \
+\cb5        "create"\cb1 \
+\cb5      ]\cb1 \
+\cb5    \},\cb1 \
+\cb5    ...\cb1 \
+\cb5   ]\cb1 \
+\cb5 \}\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 Let\'92s now try something more ambitious, and use this token to list all the Pods within the default namespace:\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 / # curl -H \'93Authorization: Bearer $TOKEN\'94 {\field{\*\fldinst{HYPERLINK "https://kubernetes/api/v1/namespaces/default/pods/"}}{\fldrslt https://kubernetes/api/v1/namespaces/default/pods/}} --insecure\cb1 \
+\cb5 \{\cb1 \
+\cb5  \'93kind\'94: \'93Status\'94,\cb1 \
+\cb5  \'93apiVersion\'94: \'93v1\'94,\cb1 \
+\cb5  \'93metadata\'94: \{\},\cb1 \
+\cb5  \'93status\'94: \'93Failure\'94,\cb1 \
+\cb5  \'93message\'94: \'93pods is forbidden: User \\\'94system:serviceaccount:default:default\\\'94 cannot list resource \\\'94pods\\\'94 in API group \\\'94\\\'94 in the namespace \\\'94default\\\'94\'94,\cb1 \
+\cb5  \'93reason\'94: \'93Forbidden\'94,\cb1 \
+\cb5  \'93details\'94: \{\cb1 \
+\cb5    \'93kind\'94: \'93pods\'94\cb1 \
+\cb5  \},\cb1 \
+\cb5  \'93code\'94: 403\cb1 \
+\cb5 \}\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 The default ServiceAccount does not have enough rights to perform this query. In the following part, we will create our own ServiceAccount and provide it with the additional rights it needs for this action.\cb1 \
+\pard\pardeftab720\sa280\qc\partightenfactor0
+
+\fs56 \cf4 \cb3 \strokec4 \
+\pard\pardeftab720\sl800\partightenfactor0
+
+\f1\b\fs72 \cf2 \strokec2 Using a Custom ServiceAccount\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\fs52 \cf2 \cb3 Creation of a ServiceAccount\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\b0\fs42 \cf2 \cb3 Let\'92s create a new ServiceAccount in the default namespace and call it\'a0
+\f2\fs31\fsmilli15750 \cb5 demo-sa
+\f0\fs42 \cb3 . This ServiceAccount is defined in the following specification and created with the standard\'a0
+\f2\fs31\fsmilli15750 \cb5 kubectl apply -f
+\f0\fs42 \cb3 \'a0command.\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 apiVersion: v1\cb1 \
+\cb5 kind: ServiceAccount\cb1 \
+\cb5 metadata:\cb1 \
+\cb5  name: demo-sa\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f1\b\fs52 \cf2 \cb3 Creation of a Role\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\b0\fs42 \cf2 \cb3 A ServiceAccount is not that useful unless certain rights are bound to it. Rights are known as Role or ClusterRole in Kubernetes. They are associated with a ServiceAccount, with RoleBinding and ClusterRoleBinding respectively.\cb1 \
+\cb3 A Role (the same applies to a ClusterRole) contains a list of rules. Each rule defines some actions that can be performed (e.g:\'a0
+\f2\fs31\fsmilli15750 \cb5 list
+\f0\fs42 \cb3 ,\'a0
+\f2\fs31\fsmilli15750 \cb5 get
+\f0\fs42 \cb3 ,\'a0
+\f2\fs31\fsmilli15750 \cb5 watch
+\f0\fs42 \cb3 ) against a list of\'a0
+\f2\fs31\fsmilli15750 \cb5 resources
+\f0\fs42 \cb3 \'a0(e.g:\'a0
+\f2\fs31\fsmilli15750 \cb5 Pod
+\f0\fs42 \cb3 ,\'a0
+\f2\fs31\fsmilli15750 \cb5 Service
+\f0\fs42 \cb3 ,\'a0
+\f2\fs31\fsmilli15750 \cb5 Secret
+\f0\fs42 \cb3 ) within\'a0
+\f2\fs31\fsmilli15750 \cb5 apiGroups
+\f0\fs42 \cb3 \'a0(eg:\'a0
+\f2\fs31\fsmilli15750 \cb5 core
+\f0\fs42 \cb3 ,\'a0
+\f2\fs31\fsmilli15750 \cb5 apps/v1
+\f0\fs42 \cb3 ). While a Role defines rights for a specific namespace, the scope of a ClusterRole is the entire cluster.\cb1 \
+\cb3 The following specification defines a\'a0
+\f2\fs31\fsmilli15750 \cb5 Role
+\f0\fs42 \cb3 \'a0allowing to list all the Pods in the default\'a0
+\f2\fs31\fsmilli15750 \cb5 namespace
+\f0\fs42 \cb3 .\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 apiVersion: rbac.authorization.k8s.io/v1beta1\cb1 \
+\cb5 kind: Role\cb1 \
+\cb5 metadata:\cb1 \
+\cb5  name: list-pods\cb1 \
+\cb5  namespace: default\cb1 \
+\cb5 rules:\cb1 \
+\cb5  \'97 apiGroups:\cb1 \
+\cb5    \'97 ''\cb1 \
+\cb5  resources:\cb1 \
+\cb5    \'97 pods\cb1 \
+\cb5  verbs:\cb1 \
+\cb5    \'97 list\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f1\b\fs52 \cf2 \cb3 Binding the Role with the ServiceAccount\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\b0\fs42 \cf2 \cb3 In the last step, we bind the Role and the ServiceAccount created above. In order to do so, we define a\'a0
+\f2\fs31\fsmilli15750 \cb5 RoleBinding
+\f0\fs42 \cb3 \'a0with the following specification:\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 apiVersion: rbac.authorization.k8s.io/v1beta1\cb1 \
+\cb5 kind: RoleBinding\cb1 \
+\cb5 metadata:\cb1 \
+\cb5  name: list-pods_demo-sa\cb1 \
+\cb5  namespace: default\cb1 \
+\cb5 roleRef:\cb1 \
+\cb5  kind: Role\cb1 \
+\cb5  name: list-pods\cb1 \
+\cb5  apiGroup: rbac.authorization.k8s.io\cb1 \
+\cb5 subjects:\cb1 \
+\cb5  \'97 kind: ServiceAccount\cb1 \
+\cb5    name: demo-sa\cb1 \
+\cb5    namespace: default\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 Once the\'a0
+\f2\fs31\fsmilli15750 \cb5 RoleBinding
+\f0\fs42 \cb3 \'a0is created, the\'a0
+\f2\fs31\fsmilli15750 \cb5 demo-sa
+\f0\fs42 \cb3 \'a0ServiceAccount can list the Pods in the\'a0
+\f2\fs31\fsmilli15750 \cb5 default
+\f0\fs42 \cb3 \'a0
+\f2\fs31\fsmilli15750 \cb5 namespace
+\f0\fs42 \cb3 \'a0(this is the action defined under the\'a0
+\f2\fs31\fsmilli15750 \cb5 rules
+\f0\fs42 \cb3 \'a0key within the specification of the Role). Let\'92s check this.\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f1\b\fs52 \cf2 \cb3 Using the ServiceAccount within a Pod\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\b0\fs42 \cf2 \cb3 We create a simple Pod from the following specification:\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 apiVersion: v1\cb1 \
+\cb5 kind: Pod\cb1 \
+\cb5 metadata:\cb1 \
+\cb5  name: pod-demo-sa\cb1 \
+\cb5 spec:\cb1 \
+\cb5  serviceAccountName: demo-sa\cb1 \
+\cb5  containers:\cb1 \
+\cb5  \'97 name: alpine\cb1 \
+\cb5    image: alpine:3.9\cb1 \
+\cb5    command:\cb1 \
+\cb5    \'97 "sleep"\cb1 \
+\cb5    \'97 "10000"\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 The\'a0
+\f2\fs31\fsmilli15750 \cb5 serviceAccountName
+\f0\fs42 \cb3 \'a0key is specified and contains the name of the ServiceAccount used by that Pod,\'a0
+\f2\fs31\fsmilli15750 \cb5 demo-sa
+\f0\fs42 \cb3 . As we saw above, if the\'a0
+\f2\fs31\fsmilli15750 \cb5 serviceAccountName
+\f0\fs42 \cb3 \'a0is not specified in the Pod specification, the default ServiceAccount of the namespace is used.\cb1 \
+\cb3 As we did with the\'a0
+\f2\fs31\fsmilli15750 \cb5 pod-default
+\f0\fs42 \cb3 \'a0Pod, we now run a shell within the\'a0
+\f2\fs31\fsmilli15750 \cb5 alpine
+\f0\fs42 \cb3 \'a0container of the Pod\'a0
+\f2\fs31\fsmilli15750 \cb5 pod-demo-sa
+\f0\fs42 \cb3 , get the token belonging to the\'a0
+\f2\fs31\fsmilli15750 \cb5 demo-sa
+\f0\fs42 \cb3 \'a0ServiceAccount, and use it to query the list of Pods within the default namespace.\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 # Get the ServiceAccount token from within the Pod's container\cb1 \
+\cb5 / # TOKEN=$(cat /run/secrets/kubernetes.io/serviceaccount/token)\cb1 \
+\cb5 # Call an API Server's endpoint (using the ClusterIP kubernetes service) to get all the Pods running in the default namespace\cb1 \
+\cb5 / # curl -H \'93Authorization: Bearer $TOKEN\'94 {\field{\*\fldinst{HYPERLINK "https://kubernetes/api/v1/namespaces/default/pods/"}}{\fldrslt https://kubernetes/api/v1/namespaces/default/pods/}} --insecure\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\fs42 \cf2 \cb3 No more error this time, as the ServiceAccount has the rights to perform this action. We get a list of Pods running in the default namespace.\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\fs32 \cf2 \cb5 \{\cb1 \
+\cb5   "kind": "PodList",\cb1 \
+\cb5   "apiVersion": "v1",\cb1 \
+\cb5   "metadata": \{\cb1 \
+\cb5     "selfLink": "/api/v1/namespaces/default/pods/",\cb1 \
+\cb5     "resourceVersion": "96296"\cb1 \
+\cb5   \},\cb1 \
+\cb5   "items": [\cb1 \
+\cb5     ...\cb1 \
+\cb5   ]\cb1 \
+\cb5 \}\cb1 \
+\pard\pardeftab720\sa280\qc\partightenfactor0
+
+\f0\fs56 \cf4 \cb3 \strokec4 \
+\pard\pardeftab720\sl800\partightenfactor0
+
+\f1\b\fs72 \cf2 \strokec2 Main Takeaways\cb1 \
+\pard\pardeftab720\sl640\partightenfactor0
+
+\f0\b0\fs42 \cf2 \cb3 By default, each Pod can communicate with the API server of the cluster it is running on. If no ServiceAccount is specified, it uses the default ServiceAccount of its namespace. As the default ServiceAccounts only have limited rights, it is generally best practice to create a ServiceAccount for each application, giving it the rights it needs (and no more).\cb1 \
+\cb3 To authenticate against the API server, a Pod uses the token of the attached ServiceAccount. This token is available in the filesystem of each container of the Pod.\cb1 \
+\cb3 In this example we used\'a0
+\f2\fs31\fsmilli15750 \cb5 curl
+\f0\fs42 \cb3 \'a0to query the HTTP end points of the API server. Real applications would obviously use dedicated libraries \'97 several of them are available in different languages.\cb1 \
+}
