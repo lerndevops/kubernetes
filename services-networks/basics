@@ -25,4 +25,4 @@ DNS for Services and Pods
 	•	A pod inside the same namespace as the service does not need to fully qualify its name, for example a pod in my-namespace could lookup this service with a DNS query for my-service , while a pod outside my-namespace would have to query for my-service.my-namespace .
 	•	For headless services (without a cluster IP), the DNS name resolves to the set of IPs of the pods which are part of the service. The caller can then use the set of IPs as it sees fit (for example round-robin).
 	•	By default pods get assigned a DNS name which includes the pod’s IP address and namespace. In order to assign a more meaningful DNS name, the pod’s specification can specify a hostname and subdomain:
-	•	 
+		 
