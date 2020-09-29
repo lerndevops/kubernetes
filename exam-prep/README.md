@@ -19,6 +19,8 @@
 > **mostly the security is separated out of the CKA exam and LF is planning to include this in their CKS(Certified Kubernetes Security Specialist) certification exam which is scheduled to release in November 2020.**
 
 
+<p align="center"> <img src="https://github.com/lerndevops/educka/blob/master/static/CKA-Old-vs-New.PNG"> </p>
+
 ## Kubernetes 1.18 & above Versions Only
 
 ## `Generate Pod Yamls`
