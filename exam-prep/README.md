@@ -1,22 +1,22 @@
-## About the NEW CKA Exam 
+## About the NEW CKA Exam (From September 2020)
 
-##### 1) The new CKA Certification Exam is aligned with CKAD exam pattern in terms of duration, the number of questions and passing score.
+> **The new CKA Certification Exam is aligned with CKAD exam pattern in terms of duration, the number of questions and passing score.**
 
-##### 2) Time management is more critical compare with the old version of CKA exam.
+> **Time management is more critical compare with the old version of CKA exam.**
 
-##### 3) Questions are weightage in three categories like 4%, 7% & 8%. Most of the 4% weightage questions are easy to answer except 1 or 2. However, if you stuck with any 4% weighted marks question then flag it & move on without investing too much time.
+> **Questions are weightage in three categories like 4%, 7% & 8%. Most of the 4% weightage questions are easy to answer except 1 or 2. However, if you stuck with any 4% weighted marks question then flag it & move on without investing too much time.**
 
-##### 4) Troubleshooting raised from 10% to 30% and logging/monitoring also included in it. There is a much greater emphasis on troubleshooting and hence, the question related to troubleshooting carries more weight marks like 7-8%.
+> **Troubleshooting raised from 10% to 30% and logging/monitoring also included in it. There is a much greater emphasis on troubleshooting and hence, the question related to troubleshooting carries more weight marks like 7-8%.**
 
-##### 5) 1/4 of the new curriculum is dedicated to the cluster Architecture, installation & configuration including Kubeadm to install/ version upgrade on a kubernetes cluster, etcd backup and restore, Manage RBAC. Obviously, cluster related configuration questions will carry the highest weightage %.
+> **1/4 of the new curriculum is dedicated to the cluster Architecture, installation & configuration including Kubeadm to install/ version upgrade on a kubernetes cluster, etcd backup and restore, Manage RBAC. Obviously, cluster related configuration questions will carry the highest weightage %.**
 
-##### 6) Service & Networking increases by 9% in the weight, but there are not many changes except how to use Ingress resources and network policy. Questions coming from this section is weighted to 4% and 7%.
+> **Service & Networking increases by 9% in the weight, but there are not many changes except how to use Ingress resources and network policy. Questions coming from this section is weighted to 4% and 7%.**
 
-##### 7) Workload & Scheduling capture all points of the previous Application Lifecycle Management including label selectors, scale the deployment, reschedule pods and so on. Most of the questions coming from this section are easy to answer and carry 4% weightage.
+> **Workload & Scheduling capture all points of the previous Application Lifecycle Management including label selectors, scale the deployment, reschedule pods and so on. Most of the questions coming from this section are easy to answer and carry 4% weightage.**
 
-##### 8) Storage curriculum has no significant changes. In my opinion, this is the only section which is almost similar to previous CKA version.
+> **Storage curriculum has no significant changes. In my opinion, this is the only section which is almost similar to previous CKA version.**
 
-##### 9) mostly the security is separated out of the CKA exam and LF is planning to include this in their CKS(Certified Kubernetes Security Specialist) certification exam which is scheduled to release in November 2020.
+> **mostly the security is separated out of the CKA exam and LF is planning to include this in their CKS(Certified Kubernetes Security Specialist) certification exam which is scheduled to release in November 2020.**
 
 
 ## Kubernetes 1.18 & above Versions Only
