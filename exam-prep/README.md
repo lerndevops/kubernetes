@@ -1,3 +1,5 @@
+## About the NEW CKA Exam 
+
 ##### 1) The new CKA Certification Exam is aligned with CKAD exam pattern in terms of duration, the number of questions and passing score.
 
 ##### 2) Time management is more critical compare with the old version of CKA exam.
