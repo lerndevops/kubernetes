@@ -14,27 +14,15 @@
    25  openssl req -new -key prod-user.key -out prod-user.csr -subj "/CN=prod-user/O=devops"
    26  ls -l
    27  cat prod-user.csr | base64 | tr -d '\n'
-   28  cat <<EOF | kubectl apply -f -
-apiVersion: certificates.k8s.io/v1beta1
-kind: CertificateSigningRequest
-metadata:
-  name: prodcsr
-spec:
-  request: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ2FqQ0NBVklDQVFBd0pURVNNQkFHQTFVRUF3d0pjSEp2WkMxMWMyVnlNUTh3RFFZRFZRUUtEQVprWlhadgpjSE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLQW9JQkFRQ2hXVW5NTUV3Vk0yam0rYmhyCmF4Y0dBUE14bnJZNnlKVFI3cE01cFFIV1hnQWNRcmExUEsrTGw3UmFQRUNsNWZYWTU5aTVVTnY3aEVPNnVYVlMKR01BakVRRzFnbVpxVG0wN3dzSldFRUxNYUFDTjlqUnhIUTlKUkV2SEt2aTBLYkRtM2dQWjZJREdDdVJZOUx0TgpIdExndUdRMk5UT1V6VExLaWFmakVPWUwwdUp4QjBHOGhqOE9IU1Z2anpRTHpMUjhDcmVhdGxLZElERTFrQTNBClUwR01QYXB1U2tadUlXeDhnekpCTkF5ODlQOUNoL0RicWUrQkZBM3ovV1g4anJpcitFdVVmZVFlckpDT20yZWUKRWFBV3hYaUx3REFZT0tXMG9KbUFiakZuWWhnVk05aHRaTUk5ekQ1eFR0cDVxS09Ma2Y4Z0thTWo1ZVFkcW5SMwpORW9qQWdNQkFBR2dBREFOQmdrcWhraUc5dzBCQVFzRkFBT0NBUUVBYTVsNEoyRkRvNzV2OS8reVkvejlKZ0paCnRFQXpGWXhOZHZldWNBVmM4aEFsQWhFNnBTQzVoU3grbHREWCtWeFlwZFNDcEtoUzBmeXplVU1MQmRZajdFMXMKSUdxSW93ampyUkZMUXhTTDJqVDdBVlozdStGbm1mREdJa0FCeEVIOTBFazhhaWlwL21GYVQyNG81bXNrVFFxbgpuRzVidW50dlBWbFhpM1VqcEJTMmlkclpHbDMxbUVmSkhzOWZJaUlMNEViUUNBR0N5MEYrY1AzZjdpRlVPRWY4CmJWckl6K0NoeGFNWXZLN0p3ZVE3dkxMWGJHUlpOcHE4TXZqNHNoVnBHMzNPM0wydnlIS1lDNkRmYThSdzhSTTkKTnlSUzFUVW8rRStSdzBZT0pIdFlvOUVZZ0JOWHpQSUtwZiszMTJLM3VmN2pEdUtDVDFxd3BqS1NxSGpKUWc9PQotLS0tLUVORCBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0K
-  usages:
-  - digital signature
-  - key encipherment
-  - server auth
-EOF
+
 
    29  kubectl get csr
    30  kubectl certificate approve prodcsr
-   31  kubectl create role prodadmin --verb=get,list,watch,describe,create --namespace default
-   32  kubectl create role prodadmin --verb=get,list,watch,create --namespace default
+ 
    33  kubectl create role prodadmin --verb=get,list,watch,create --resource=pods,services --namespace default
    34  kubectl get roles
    35  kubectl describe role prodadmin
-   36  kubectl create rolebinding --user=prod-user --role=prodadmin --namespace default
+   
    37  kubectl create rolebinding prodadminbinding --user=prod-user --role=prodadmin --namespace default
    38  kubectl get pods --as prod-user
    39  kubectl get deploy  --as prod-user
