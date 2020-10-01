@@ -1,0 +1,92 @@
+By Default , all pods in the cluster can communicate with any other pod and reach out to any available IP.
+
+Network Policies allow you to limit what network traffic is allowed to and from pods in your cluster.
+
+wget -O canal.yaml https://docs.projectcalico.org/v3.5/getting-started/kubernetes/installation/hosted/canal/canal.yaml (If flannel is already there)
+
+kubectl apply -f canal.yaml
+
+1. Create nginx pod
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: network-policy-secure-pod
+  labels:
+    app: secure-app
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+
+
+2. Create a test pod
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: network-policy-client-pod
+spec:
+  containers:
+  - name: busybox
+    image: radial/busyboxplus:curl
+    command: ["/bin/sh", "-c", "while true; do sleep 3600; done"]
+
+
+Use this command to get the  IP address of the Nginx pod:
+kubectl get pod network-policy-secure-pod -o wide
+Use the secure pod's IP address to test network access from the client pod to the secure Nginx pod:
+kubectl exec network-policy-client-pod -- curl <secure pod cluster ip address>
+
+
+
+NOW…….
+
+Create a network policy that restricts all access to the secure pod, except to and from pods which bear the allow-access: "true" label:
+
+
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: my-network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: secure-app
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          allow-access: "true"
+    ports:
+    - protocol: TCP
+      port: 80
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          allow-access: "true"
+    ports:
+    - protocol: TCP
+      port: 80
+
+
+kubectl get networkpolicies
+kubectl describe networkpolicy my-network-policy
+
+
+Now
+
+kubectl exec network-policy-client-pod -- curl 10.244.2.2 
+
+This will be timeout as the client pod doesn’t have the label that we put in policy allow-access=true.
+
+Now update the client pod with label , it works again !!
+
+
