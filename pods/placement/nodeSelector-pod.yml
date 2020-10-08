@@ -14,7 +14,7 @@ spec:
         app: kubeserve
     spec:
       nodeSelector: 
-         color: "clue"
+         zone: "east"
       containers:
       - image: leaddevops/kubeserve:v1
         name: app
