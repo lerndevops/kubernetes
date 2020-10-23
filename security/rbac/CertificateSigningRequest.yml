@@ -1,7 +1,7 @@
 kind: CertificateSigningRequest
 apiVersion: certificates.k8s.io/v1beta1
 metadata:
-   name: naresh
+   name: prod-user
 spec:
   groups:
     - system:authenticated
@@ -12,10 +12,10 @@ spec:
   - server auth
   - client auth
 
-# openssl genrsa -out naresh.key 2048
-# openssl req -config csr.conf -new -key naresh.key -nodes -out naresh.csr
-# cat naresh.csr | base64 | tr -d '\n'
-# kubectl apply -f nareshcsr.yml
-# kubectl get csr ; kubectl certificate approve naresh
-# kubectl get csr naresh -o jsonpath="{.status.certificate}" | base64 --decode > naresh.crt
-# modify kubeconfig with naresh.key & naresh.crt
+# openssl genrsa -out prod-user.key 2048
+# openssl req -config csr.conf -new -key prod-user.key -nodes -out prod-user.csr
+# cat prod-user.csr | base64 | tr -d '\n'
+# kubectl apply -f csr.yml
+# kubectl get csr ; kubectl certificate approve prod-user
+# kubectl get csr prod-user -o jsonpath="{.status.certificate}" | base64 --decode > prod-user.crt
+# modify kubeconfig with 
