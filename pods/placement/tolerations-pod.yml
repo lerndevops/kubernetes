@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kubeserve
+  name: kubeserve1
 spec:
   replicas: 5
   selector:
