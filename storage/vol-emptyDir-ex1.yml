@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: nginx
   labels:
-     tier: frontend
+    tier: frontend
 spec:
   containers:
    - name: nginx
