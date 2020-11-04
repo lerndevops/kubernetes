@@ -15,9 +15,6 @@ spec:
       labels:
         app: test
      spec:
-#       nodeSelector:
-#          env: prodd
-#       nodeName: kdube-node
        containers:
         - name: mydaemonsetcont
           image: lerndevops/tomcat:8.5.47
