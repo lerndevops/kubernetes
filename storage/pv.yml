@@ -5,6 +5,7 @@ metadata:
   labels:
     type: local
 spec:
+  storageClassName: Standard
   persistentVolumeReclaimPolicy: Recycle ## Retain / Delete
   capacity:
     storage: 1000Mi
