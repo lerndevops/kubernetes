@@ -5,13 +5,12 @@ metadata:
 spec:
   containers:
    - name: test-container
-     image: busybox
-     command: ['sh', '-c', 'sleep 3600']
+     image: tomcat
      volumeMounts:
       - name: hostpath-volume
-        mountPath: /test
+        mountPath: /usr/local/tomcat/logs
   volumes:
    - name: hostpath-volume
      hostPath:
-       path: /tmp/data      # directory location on host
+       path: /tmp/logs     # directory location on host
        type: Directory  # this field is optional
