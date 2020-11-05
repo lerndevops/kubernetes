@@ -18,9 +18,8 @@ data:
         timeout server 50000ms
     listen http-in
       bind *:80
-      server server1 127.0.0.1:8775 maxconn 32
-      
- ---
+      server server1 127.0.0.1:8775 maxconn 32      
+---
  
 apiVersion: v1
 kind: Pod
