@@ -16,6 +16,6 @@ spec:
 #        path: /
 #        port: 80
       tcpSocket:
-         port: 80
+         port: 800
       initialDelaySeconds: 5
       periodSeconds: 5
