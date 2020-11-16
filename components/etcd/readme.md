@@ -27,7 +27,7 @@
 
 `ETCDCTL_API=3 etcdctl --endpoints=192.168.198.147:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key snapshot save /etcd-backup/etcd-snapshot-latest.db`
 
-## remove /var/lin/etcd folder, delete couple of deployments/pods
+## remove /var/lib/etcd folder, delete couple of deployments/pods
 
 ## restore ETCD Data:
 
