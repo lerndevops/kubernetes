@@ -154,4 +154,12 @@ spec:
         ports:
         - containerPort: 5000
 
+==================================
 
+
+Now RUN the app with LoadBalancer Ip:
+
+1. keep on refresh to the see the counter increases the value.
+2. Delete couple of Pods and re-test the app  (the counter should continue)
+3. Scale down redis statefulset to 4 (the counter should continue)
+4. If you scale down to 1 and see cluster info --- it shows failure as kube doesnt take care of redis cluster config.
