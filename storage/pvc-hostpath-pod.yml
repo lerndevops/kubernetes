@@ -5,12 +5,10 @@ metadata:
 spec:
   containers:
    - name: myvolumes-container
-     image: alpine
-     imagePullPolicy: IfNotPresent
-     command: ['sh', '-c', 'echo Container 1 is Running ; sleep 3600']
+     image: tomcat:8.5
      volumeMounts:
       - name: pv
-        mountPath: "/my-pv-path"
+        mountPath: "/usr/local/tomcat/logs"
   volumes:
    - name: pv
      persistentVolumeClaim:
