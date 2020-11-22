@@ -6,7 +6,7 @@ metadata:
   labels:
     app: nginx
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: nginx
@@ -21,7 +21,7 @@ spec:
           image: nginx:latest
           resources:
             limits:
-              cpu: 100m ## 10% of 1 core on your system
+              cpu: 10m ## 10% of 1 core on your system
 
 ---
 
@@ -49,7 +49,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: nginx
-  minReplicas: 1
+  minReplicas: 2
   maxReplicas: 10
-  targetCPUUtilizationPercentage: 5
+  targetCPUUtilizationPercentage: 20
 
