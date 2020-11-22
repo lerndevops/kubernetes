@@ -95,7 +95,7 @@ spec:
 Get the IPs of pods and save to a variable:
 ==============
 
-$IPs = $(kubectl get pods -l app=redis-cluster -o jsonpath='{range.items[*]}{.status.podIP}:6379’)
+$IPs=$(kubectl get pods -l app=redis-cluster -o jsonpath='{range.items[*]}{.status.podIP}:6379')
 
 echo $IPs to test
 =======
