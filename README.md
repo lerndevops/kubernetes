@@ -76,7 +76,7 @@
 
 > At this time, Kubernetes is the most popular orchestration platform in the world. It has a vibrant community of end-users, developers and maintainers. Let the facts speak for themselves: as of July 18, 2019, Kubernetes had 55,314 GitHub stars compared to just 5,632 for Docker Swarm and 4,226 for Apache Mesos. Kubernetes was forked 19,212 times compared to only 1,113 for Docker Swarm and 1,610 for Apache Mesos (see the image below).
 
-![k8S Popularity](https://github.com/lerndevops/educka/blob/master/static/k8s-popularity.png)
+![k8S Popularity](https://github.com/lerndevops/static/blob/master/kube/k8s-popularity.png)
 
 > Also, Kubernetes is supported by major cloud providers including AWS, Google Compute Engine, Microsoft, and IBM. All these companies offer managed Kubernetes offerings in the cloud.
 
