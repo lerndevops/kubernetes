@@ -20,6 +20,10 @@ kubectl get sa,secret
 
 curl https://kubernetes -k -H "Authorization: Bearer PUT YOUR TOKEN "
 
+
+
+curl  -H "Authorization: Bearer PUT YOUR TOKEN" https://kubernetes/api/v1/namespaces/default/pods/ --insecure 
+
 ———— come out —————
 
 
