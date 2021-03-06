@@ -9,6 +9,7 @@ apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: object-counts
+  namespace: prod
 spec:
   hard:
     pods: "4"
