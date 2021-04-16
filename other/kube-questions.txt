@@ -44,7 +44,7 @@
 
 	A. Kubernetes set deployment
 	B. Kubernetes get deployment
-	C. Kubectl run
+	C. Kubectl create deployment 
 	D. Kubectl deploy
 
 8. The command to create Kubernetes service is
@@ -102,7 +102,41 @@
 	C. Headless
 	D. Load Balancer
 
+  
+16. You have a pod that requires a username and password for database running inside it. Username and password for database are stored in file /etc/secrets/username and /etc/secrets/password respectively. How would you create secret from these files?
 
+  	A. kubectl create secret webapp-credential /etc/secrets/username /etc/secrets/password
+  	B. kubectl create secret webapp-credential --from-file=/etc/secrets/username, /etc/secrets/password
+  	C. kubectl create secret webapp-credential --from-file=/etc/secrets/username --from-file=/etc/secrets/passwordYour Answer
+  	D. kubectl create secret generic webapp-credential --from-file=/etc/secrets/username --from-file=/etc/secrets/password
+
+17. Lifetime of a EmptyDir volume is bound to:
+    	
+    	A. Lifetime of the cluster
+    	B. Lifetime of the pod using it
+    	C. Lifetime of the container using it
+    	D. Volume lifetime is not dependent on kubernetes cluster
+
+18. What is the default restartPolicy for a pod?
+
+      	A. Never
+      	B. OnFailure
+      	C. Always
+      	D. There is no default RestartPolicy
+
+19. Who performs probe operatons (liveness or readiness) on a container?
+
+        	A. kube-scheduler
+        	B. kubelet
+        	C. kubectl
+        	D. Pods manage probing on their own
+          
+20 How do you list pods in a kubernetes cluster which is labelled with run=nginx and running inside namespace prod?
+
+          	A. kubectl get pods -l run=nginx --namespace prod
+          	B. kubectl get pods -l run=nginx
+          	C. kubectl get pods -l run=nginx --namespace prod --cpu
+          	D. kubectl get pods -l run=nginx --namespace=all
 ==================================================================
 
 key 
@@ -122,3 +156,8 @@ key
 13. D
 14. A
 15. B
+16. D
+17. B
+18. C
+19. B
+20. A
