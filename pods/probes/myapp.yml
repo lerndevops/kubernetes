@@ -7,7 +7,7 @@ metadata:
 spec:
   terminationGracePeriodSeconds: 0
   containers:
-    - image: leaddevops/petclinic:3
+    - image: leaddevops/petclinic
       name: petclinic
       ports:
         - containerPort: 8080 

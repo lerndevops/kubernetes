@@ -1,0 +1,36 @@
+kubectl get sa,secret
+  kubectl create sa sa1
+  kubectl get sa,secret
+  kubectl describe secret/sa1-token-5t46p
+
+  177  kubectl run pod1 --image nginx --dry-run=client -o yaml > pod1.yml
+  178  vi pod1.yml    #under spec… serviceAccountName: sa1
+  179  kubectl create -f pod1.yml
+  180  kubectl exec -it pod1 -- bash
+
+
+ ——— inside pod ——
+ mount |grep sec
+ cd /run/secrets/kubernetes.io/serviceaccount/
+ ls
+ cat token
+ cd
+
+ curl https://kubernetes -k
+
+curl https://kubernetes -k -H "Authorization: Bearer PUT YOUR TOKEN "
+
+
+
+curl  -H "Authorization: Bearer PUT YOUR TOKEN" https://kubernetes/api/v1/namespaces/default/pods/ --insecure 
+
+———— come out —————
+
+
+ 
+  182  kubectl auth can-i delete secrets --as system:serviceaccount:default:sa1
+  183  kubectl create clusterrolebinding sa1 --clusterrole edit --serviceaccount default:sa1
+  184  kubectl auth can-i delete secrets --as system:serviceaccount:default:sa1
+
+
+

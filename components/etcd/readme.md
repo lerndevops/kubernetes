@@ -31,11 +31,7 @@
 
 ## restore ETCD Data:
 
-ETCDCTL_API=3 etcdctl snapshot restore /etcd-backup/etcd-snapshot-latest.db \
-  --initial-cluster etcd-restore=https://10.128.0.32:2380 \
-  --initial-advertise-peer-urls=https://10.128.0.32:2380 \
-  --name etcd-restore \
-  --data-dir /var/lib/etcd
+ETCDCTL_API=3 etcdctl snapshot restore /etcd-backup/etcd-snapshot-latest.db --initial-cluster etcd-restore=https://10.128.0.42:2380 --initial-advertise-peer-urls=https://10.128.0.42:2380 --name etcd-restore --data-dir /var/lib/etcd
 
 
 # ETCD Operations 

@@ -5,7 +5,7 @@ metadata:
   name: readonly-binding
   namespace: kube-system
 subjects:
-- kind: ServiceAccount 
+- kind: User 
   name: testuser # Name is case sensitive
   namespace: kube-system
 roleRef:
