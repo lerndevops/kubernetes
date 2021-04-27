@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: mying-rule
   annotations:
+    kubernetes.io/ingress.class: "nginx"
     ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
