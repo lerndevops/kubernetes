@@ -14,8 +14,8 @@ spec:
           backend:
             service:
               name: app1-svc
-            port:
-              number: 80
+              port:
+                number: 80
          # backend:
          #  serviceName: app1-svc
          #   servicePort: 80
@@ -24,8 +24,8 @@ spec:
           backend:
             service:
               name: app2-svc
-            port:
-              number: 80
+              port:
+                number: 80
           #backend:
           #  serviceName: app2-svc
           #  servicePort: 80
@@ -34,5 +34,5 @@ spec:
           backend:
             service:
               name: app3-svc
-            port:
-              number: 80
+              port:
+                number: 80
