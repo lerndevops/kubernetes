@@ -10,14 +10,29 @@ spec:
   - http:
       paths:
         - path: /app1
+          pathType: Prefix
           backend:
-            serviceName: app1-svc
-            servicePort: 80
+            service:
+              name: app1-svc
+            port:
+              number: 80
+         # backend:
+         #  serviceName: app1-svc
+         #   servicePort: 80
         - path: /app2
+          pathType: Prefix
           backend:
-            serviceName: app2-svc
-            servicePort: 80
+            service:
+              name: app2-svc
+            port:
+              number: 80
+          #backend:
+          #  serviceName: app2-svc
+          #  servicePort: 80
         - path: /app3
+          pathType: Prefix
           backend:
-            serviceName: app3-svc
-            servicePort: 80
+            service:
+              name: app3-svc
+            port:
+              number: 80
