@@ -14,10 +14,8 @@ Run the ls -l command to view the linux-amd64 folder. The helm executable binary
 $ ls -l ./linux-amd64/
 Run the mv command to move the helm executable to the /usr/local/bin/ directory.
 
-$ mv ./linux-amd64/helm /usr/local/bin/
-If you receive a "Permission denied" error, run the sudo !! command and use the password provided for the lab.
+$ sudo mv ./linux-amd64/helm /usr/local/bin/
 
-$ sudo !!
 Run the ls -l command on the /usr/local/bin/ directory to ensure the helm binary is still owned by cloud_user and can still be run.
 
 $ ls -l /usr/local/bin/
