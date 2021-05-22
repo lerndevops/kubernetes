@@ -1,16 +1,7 @@
 12  mkdir -p /home/prod-user/certs
    13  cd /home/prod-user/certs
    14  openssl genrsa -out prod-user.key 2048
-   15  ls
-   16  more prod-user.key
-   17  ll /etc/kubernetes/pki/
-   18  ls
-   19  cd
-   20  more .kube/config
-   21  ip a
-   22  ll /etc/kubernetes/pki/
-   23  cd /home/prod-user/certs
-   24  ls -l
+ 
    25  openssl req -new -key prod-user.key -out prod-user.csr -subj "/CN=prod-user/O=devops"
    26  ls -l
    27  cat prod-user.csr | base64 | tr -d '\n'
@@ -18,6 +9,8 @@
 
    29  kubectl get csr
    30  kubectl certificate approve prodcsr
+   
+  31  kubectl get csr prod-user -o jsonpath="{.status.certificate}" | base64 --decode > prod-user.crt      ## this generates a crt file
  
    33  kubectl create role prodadmin --verb=get,list,watch,create --resource=pods,services --namespace default
    34  kubectl get roles
