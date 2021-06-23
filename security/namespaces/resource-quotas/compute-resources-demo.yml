@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: dev
+  name: teama
   labels:
     name: development
 ---
@@ -9,7 +9,7 @@ apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: compute-resources-demo
-  namespace: dev
+  namespace: teama
 spec:
   hard:
     requests.cpu: "1"
