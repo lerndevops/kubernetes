@@ -35,3 +35,17 @@ spec:
   ports:
     - port: 80
       targetPort: 80
+---
+kind: HorizontalPodAutoscaler
+apiVersion: autoscaling/v1
+metadata:
+  name: slproject-hpa
+  namespace: default
+spec:
+  targetCPUUtilizationPercentage: 60
+  minReplicas: 3
+  maxReplicas: 10
+  scaleTargetRef:
+    name:  slproject
+    kind: Deployment
+    apiVersion: apps/v1
