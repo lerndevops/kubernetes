@@ -21,7 +21,7 @@ spec:
               containerPort: 80
           resources:
             limits:
-              cpu: 50m  ## 5% of the 1 core cpu on the vm
+              cpu: 20m  ## 5% of the 1 core cpu on the vm
 ---
 kind: Service
 apiVersion: v1
