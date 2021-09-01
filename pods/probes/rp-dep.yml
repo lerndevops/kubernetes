@@ -1,0 +1,56 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: rp-dep
+  namespace: default
+  #labels: # optional
+spec:
+  replicas: 2 
+  selector:
+    matchLabels:
+      role: web3
+  template:
+    metadata:
+      labels:
+        role: web3
+    spec:
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 0  ## the defalut value for this is 30s / 0 means that a forceful termination / delete
+      #initContainers:
+      #nodeName: anode01
+      #nodeSelector:
+      #tolerations:
+      containers:
+        - name: cont1 
+          image: lerndevops/samplejavaapp:21
+          ports:
+            - name: http
+              containerPort: 8080
+          #resources:         
+          #env:
+          readinessProbe:  ## when readinessProbe fails kubernetes will mark pod as not ready 
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+            httpGet:
+              path: /sampleapp
+              port: 8080
+            #tcpSocket:
+            #  port: 8080
+            #exec:
+            #  command: ["curl", "localhost:8080", "/sampleapp"]
+
+--- 
+kind: Service
+apiVersion: v1
+metadata:
+  name: rp-svc 
+  namespace: defalut
+spec:
+  type: ClusterIP
+  selector: 
+    role: web3
+  ports:
+    - name: http 
+      port: 80
+      targetPort: 8080
