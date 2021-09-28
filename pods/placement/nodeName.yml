@@ -13,7 +13,7 @@ spec:
       labels:
         app: kubeserve
     spec:
-      nodeName: node1
+      nodeName: anode02
       containers:
       - image: leaddevops/kubeserve:v1
         name: app
