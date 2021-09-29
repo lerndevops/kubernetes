@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: nginx-html
+  name: dev-html
 data:
   index.html: |
       <H1> Hello ConfigMap </H1>
@@ -25,4 +25,4 @@ spec:
   volumes:
    - name: html-from-cm
      configMap:
-       name: nginx-html 
+       name: dev-html 
