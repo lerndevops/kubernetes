@@ -1,5 +1,5 @@
 kind: CertificateSigningRequest
-apiVersion: certificates.k8s.io/v1beta1
+apiVersion: certificates.k8s.io/v1
 metadata:
    name: prod-user
 spec:
