@@ -1,14 +1,8 @@
 # deploy insecure dashboard
 ```
-   kubectl apply -f dashboard-insecure.yml
+   kubectl apply -f dashboard-insecurev2.4.0.yml
 ```
-### validate
-```
-   ensure dashboard deployment is available & pod in running state
 
-       kubectl get deploy 
-       kubectl get pods 
-```
 ### Access UI
 ```
    kubectl get svc ( note port number ex: 30605)
