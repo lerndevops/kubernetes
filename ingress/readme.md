@@ -14,7 +14,7 @@
 
 `kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/ingress/nginx-ing-controller.yaml`
 
-`kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/ingress/service-nodeport.yaml`
+
 
 ## Deploy Ingress Rule
 
