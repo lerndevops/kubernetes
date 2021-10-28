@@ -2,9 +2,7 @@ By Default , all pods in the cluster can communicate with any other pod and reac
 
 Network Policies allow you to limit what network traffic is allowed to and from pods in your cluster.
 
-wget -O canal.yaml https://docs.projectcalico.org/v3.5/getting-started/kubernetes/installation/hosted/canal/canal.yaml (If flannel is already there)
 
-kubectl apply -f canal.yaml
 
 1. Create nginx pod
 
