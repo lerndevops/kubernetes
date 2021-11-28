@@ -14,7 +14,7 @@ spec:
         app: kubeserve
     spec:
       tolerations:
-        - key: zone
+        - key: color
           operator: "Equal"
           value: "red"
           effect: "NoSchedule"
