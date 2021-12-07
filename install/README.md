@@ -36,7 +36,10 @@
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
     
-    ## Weave
+    ## install networking driver -- Weave/flannel/canal/calico etc... 
+    
+    ## below installs weave networking driver 
+    
     kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
     
     kubectl get nodes
