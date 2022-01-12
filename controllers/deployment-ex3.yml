@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   name: kubeserve
 spec:
-  replicas: 5
-  minReadySeconds: 10 # wait for 10 sec before pod is ready going to next
+  replicas: 10
+  minReadySeconds: 45 # wait for 10 sec before pod is ready going to next
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -30,9 +30,8 @@ metadata:
    name: kubeserve-svc
 spec:
   type: NodePort
-  ports:
-    - port: 80
-      protocol: TCP
-      targetPort: 80
   selector: 
     app: kubeserve
+  ports:
+    - port: 80
+      targetPort: 80
