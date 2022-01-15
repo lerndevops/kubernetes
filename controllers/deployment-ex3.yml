@@ -9,7 +9,7 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 1  # take down 1 pod at a time
-      maxSurge: 1        # bring one at a time
+      maxSurge: 2        # bring one at a time
   selector:
     matchLabels:
       app: kubeserve
