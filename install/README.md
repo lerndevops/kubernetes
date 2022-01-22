@@ -15,7 +15,7 @@
     sudo vi /etc/docker/daemon.json
     
 	{
-    		"exec-opts": ["native.cgroupdriver=systemd"]
+    	"exec-opts": ["native.cgroupdriver=systemd"]
 	}
     
     sudo service docker restart
