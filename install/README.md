@@ -12,14 +12,9 @@
     sudo apt-get update ; clear
     sudo apt-get install -y docker-ce
     
-    sudo vi /etc/docker/daemon.json
-    
-	{
-    	"exec-opts": ["native.cgroupdriver=systemd"]
-	}
-    
+    sudo cd /etc/docker ; sudo wget https://raw.githubusercontent.com/lerndevops/educka/master/install/daemon.json
     sudo service docker restart
-  
+    sudo service docker status
     
     ### INSTALL KUBEADM,KUBELET,KUBECTL
 
