@@ -10,7 +10,7 @@
 
 * However, since individual pods are transient and ephemeral, the ever-changing runtime environment can present challenges for IT security professionals, as applications and API links to other applications and services are constantly in flux.
 
-## What are the top Kubernetes Security vulnerabilities through the application’s lifecycle and how do you address them?
+## What are the top Kubernetes Security vulnerabilities through the application’s lifecycle ?
 > Kubernetes security tools should:
 
 * Reduce time to ensure code is free of compromises.
@@ -32,4 +32,4 @@
 * Infrastructure attacks. During runtime, Kubernetes infrastructure elements including the API server, etcd, and controllers all present their own attack surfaces.
 * Complexity. The ongoing health of a Kubernetes cluster has many moving parts. Compromised containers must be quickly isolated, stopped, and replaced with healthy ones while the source of the attack is located and remediated. 
 
-## [What is a high-level Kubernetes security checklist? Best Practices](https://github.com/lerndevops/educka/blob/master/security/Security-Best-Practices.md)
+### [What is a high-level Kubernetes security checklist? Best Practices](https://github.com/lerndevops/educka/blob/master/security/Security-Best-Practices.md)
