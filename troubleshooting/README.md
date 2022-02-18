@@ -4,10 +4,13 @@
 
 ### here you can find common Kubernetes troubleshooting scenarios that IT and DevOps teams may encounter, and how to address them.
 
-## Common Networing Issues
-* Kubernetes supports a variety of networking plugins and each one can fail in its own way
-* At its core, Kubernetes relies on the [Netfilter](https://www.netfilter.org/) kernel module to set up low level cluster IP load balancing. This requires two critical modules, IP forwarding and bridging, to be on.
-[**`Issue 1`** -- Kernel IP forwarding]
+ <details>
+           <summary>Common Networing Issues</summary>
+           <p>[**`Issue 1`** -- Kernel IP forwarding](https://github.com/lerndevops/educka/blob/master/troubleshooting/issues/kernal-ip-forward.md)</p>
+         </details>
+
+####
+
 [**`Issue 2`** -- Bridge Netfilter]
 [**`Issue 3`** -- Firewall rules block overlay network traffic]
 [**`Issue 4`** -- AWS source/destination check is turned on]
