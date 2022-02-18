@@ -6,7 +6,7 @@
 
  <details>
            <summary>Common Networing Issues</summary>
-           <p>[Issue 1-- Kernel IP forwarding](https://github.com/lerndevops/educka/blob/master/troubleshooting/issues/kernal-ip-forward.md)</p>
+           <p [Issue 1 -- Kernel IP forwarding](https://github.com/lerndevops/educka/blob/master/troubleshooting/issues/kernal-ip-forward.md)> </p>
          </details>
 
 ####
