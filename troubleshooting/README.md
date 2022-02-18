@@ -6,8 +6,10 @@
 
 <details>
    <summary>Common Networing Issues</summary>
-   <br><a href="https://github.com/lerndevops/educka/blob/master/troubleshooting/issues/kernal-ip-forward.md">Issue 1 -- Kernel IP forwarding</a></br>
-   <br><a href="https://github.com/lerndevops/educka/blob/master/troubleshooting/issues/bridge-netfilter.md">Issue 2-- Bridge Netfilter</a></br>
+   <ul>
+     <li><a href="https://github.com/lerndevops/educka/blob/master/troubleshooting/issues/kernal-ip-forward.md">Issue 1 -- Kernel IP forwarding</a></li>
+     <li><a href="https://github.com/lerndevops/educka/blob/master/troubleshooting/issues/bridge-netfilter.md">Issue 2-- Bridge Netfilter</a></li>
+   </ul>
 </details>
 
 ####
