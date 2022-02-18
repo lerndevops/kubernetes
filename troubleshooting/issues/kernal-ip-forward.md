@@ -1,3 +1,7 @@
+> Kubernetes supports a variety of networking plugins and each one can fail in its own way
+
+> At its core, Kubernetes relies on the [Netfilter](https://www.netfilter.org/) kernel module to set up low level cluster IP load balancing. This requires two critical modules, IP forwarding and bridging, to be on.
+
 ## Kernel IP forwarding
 * IP forwarding is a kernel setting that allows forwarding of the traffic coming from one interface to be routed to another interface.
 
