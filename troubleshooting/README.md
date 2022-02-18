@@ -4,11 +4,11 @@
 
 ### here you can find common Kubernetes troubleshooting scenarios that IT and DevOps teams may encounter, and how to address them.
 
- <details>
-           <summary>Common Networing Issues</summary>
-           [Issue 1 -- Kernel IP forwarding](https://github.com/lerndevops/educka/blob/master/troubleshooting/issues/kernal-ip-forward.md)
-           [**`Issue 2`** -- Bridge Netfilter](https://github.com/lerndevops/educka/blob/master/troubleshooting/issues/bridge-netfilter.md)
-         </details>
+<details>
+   <summary>Common Networing Issues</summary>
+      * [Issue 1 -- Kernel IP forwarding](https://github.com/lerndevops/educka/blob/master/troubleshooting/issues/kernal-ip-forward.md)
+      * [Issue 2-- Bridge Netfilter](https://github.com/lerndevops/educka/blob/master/troubleshooting/issues/bridge-netfilter.md)
+</details>
 
 ####
 
