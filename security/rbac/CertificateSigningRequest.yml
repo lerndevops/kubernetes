@@ -13,10 +13,10 @@ spec:
   - client auth
 
 
-# openssl genrsa -out prod-user.key 2048
-# openssl req -config csr.conf -new -key prod-user.key -nodes -out prod-user.csr
-# cat prod-user.csr | base64 | tr -d '\n'
+# openssl genrsa -out user1.key 2048
+# openssl req -config csr.conf -new -key user1.key -nodes -out user1.csr
+# cat user1.csr | base64 | tr -d '\n'
 # kubectl apply -f csr.yml
 # kubectl get csr ; kubectl certificate approve prod-user
-# kubectl get csr prod-user -o jsonpath="{.status.certificate}" | base64 --decode > prod-user.crt
+# kubectl get csr prod-user -o jsonpath="{.status.certificate}" | base64 --decode > user1.crt
 # modify kubeconfig with 
