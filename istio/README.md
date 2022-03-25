@@ -11,9 +11,10 @@
 ## Deploy DemoApp
 
 ```
-1. kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/istio/1-fleemanapp-full-stack.yml
+kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/istio/1-fleemanapp-full-stack.yml
 ```
 
 ## DemoApp issues resolution
 ```
-
+kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/istio/resolution-1-fleemanapp-full-stack.yml
+```
