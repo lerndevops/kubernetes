@@ -9,6 +9,6 @@ spec:
     - ReadWriteMany 
   persistentVolumeReclaimPolicy: Retain 
   nfs: 
-    path: /mnt/sharedfolder
-    server: 10.128.15.215
+    path: /mnt/appdata
+    server: <PLACE-NFS-SERVER-IP-HERE>
     readOnly: false

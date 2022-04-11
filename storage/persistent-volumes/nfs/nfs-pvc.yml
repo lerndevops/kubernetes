@@ -3,6 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: nfs-pvc  
 spec:
+  storageClassName: manual
   accessModes:
   - ReadWriteMany      
   resources:
