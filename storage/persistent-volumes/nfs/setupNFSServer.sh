@@ -15,11 +15,15 @@ echo ' '
 echo "nfs server setup complete"
 echo ' '
 echo "setting the client access"
-echo "/mnt/appdata *(rw,sync,no_subtree_check,no_root_squash,insecure)" >> /etc/exports
-sudo exportfs -rv
-sudo showmount -e
-sudo systemctl restart nfs-kernel-server
-
+pe=`grep /mnt/appdata /etc/exports | wc -l`
+if [ $pe -eq 0 ]; then
+   echo "/mnt/appdata *(rw,sync,no_subtree_check,no_root_squash,insecure)" >> /etc/exports
+   sudo exportfs -rv
+   sudo showmount -e
+   sudo systemctl restart nfs-kernel-server
+else
+   echo "/mnt/appdata is already exported"
+fi
 
 #echo "you will need to  setup server access to client(s) through NFS export file /etc/exports"
 #echo ' '
