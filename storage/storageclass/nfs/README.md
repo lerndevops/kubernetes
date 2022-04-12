@@ -46,3 +46,5 @@ kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/stor
 ```
 kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/storage/storageclass/nfs/deploy-app.yaml
 ```
+
+### [Click here for More Info](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
