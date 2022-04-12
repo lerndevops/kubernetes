@@ -11,6 +11,7 @@
 #### `A ConfigMap is an API object` used to store non-confidential data in key-value pairs in the cluster store (ETCD). 
 
 #### `Pods can consume ConfigMaps` as 
-    * environment variables, 
-    * command-line arguments, 
-    * or as configuration files in a volume.
+
+* environment variables, 
+* command-line arguments, 
+* or as configuration files in a volume.
