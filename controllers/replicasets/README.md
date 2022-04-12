@@ -4,11 +4,13 @@
 
 > As such, it is often used to guarantee the availability of a specified number of identical Pods.
 
-> A ReplicaSet is defined with fields, 
+> **A ReplicaSet is defined with fields, including** 
 
-##### including a selector that specifies how to identify Pods it can acquire, a number of replicas indicating how many Pods it should be maintaining, and a pod template specifying the data of new Pods it should create to meet the number of replicas criteria. 
+* a selector that specifies how to identify Pods it can acquire, 
+* a number of replicas indicating how many Pods it should be maintaining, 
+* and a pod template specifying the data of new Pods it should create to meet the number of replicas criteria. 
 
-##### A ReplicaSet then fulfills its purpose by creating and deleting Pods as needed to reach the desired number. When a ReplicaSet needs to create new Pods, it uses its Pod template.
+> A ReplicaSet then fulfills its purpose by creating and deleting Pods as needed to reach the desired number. When a ReplicaSet needs to create new Pods, it uses its Pod template.
 
 
 ## Lab
