@@ -1,8 +1,8 @@
-#!/bin/bash 
+#!/bin/bash
 
 # Install NFS Kernel Server
 sudo apt-get update
-sudo apt install -y nfs-kernel-server
+sudo apt-get install -y nfs-kernel-server
 
 # Create the Export Directory
 sudo mkdir -p /mnt/appdata
@@ -12,9 +12,9 @@ sudo chown nobody:nogroup /mnt/appdata
 sudo chmod 777 /mnt/appdata
 
 echo ' '
-echo "nfs server setup complete" 
+echo "nfs server setup complete"
 echo ' '
-echo "setting the client access" 
+echo "setting the client access"
 echo "/mnt/appdata *(rw,sync,no_subtree_check,no_root_squash,insecure)" >> /etc/exports
 sudo exportfs -rv
 sudo showmount -e
@@ -23,8 +23,8 @@ sudo systemctl restart nfs-kernel-server
 
 #echo "you will need to  setup server access to client(s) through NFS export file /etc/exports"
 #echo ' '
-#echo "Ex: A single client by adding the following line in the file: 
-#             
+#echo "Ex: A single client by adding the following line in the file:
+#
 #          /mnt/sharedfolder clientIP(rw,sync,no_subtree_check)"
 #echo ' '
 #echo "    Multiple clients, by specifying an entire subnet that the clients belong to:
