@@ -15,3 +15,5 @@
 * environment variables, 
 * command-line arguments, 
 * or as configuration files in a volume.
+
+## [MORE INFO](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/)
