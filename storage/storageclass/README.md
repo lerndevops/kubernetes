@@ -25,3 +25,6 @@ Managed kubernetes services like AKS, EKS and GKE provides a default storage cla
 > To enable dynamic provisioning, a cluster administrator needs to pre-create one or more StorageClass objects for users. 
 
 > StorageClass objects define which provisioner should be used and what parameters should be passed to that provisioner when dynamic provisioning is invoked.
+
+### [More Info](https://kubernetes.io/docs/concepts/storage/storage-classes/)
+
