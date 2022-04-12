@@ -1,4 +1,4 @@
-## Kubernetes Controllers
+## Kubernetes Controllers / workloads 
 
 > **In Kubernetes, controllers are control loops that watch the state of your cluster, then make or request changes where needed.** 
 
@@ -15,4 +15,7 @@
 7. Replication Controller - Deprecated
 
 
-### [Click Here for More Info](https://kubernetes.io/docs/concepts/architecture/controller/)
+### [Controller Concept - More Info](https://kubernetes.io/docs/concepts/architecture/controller/)
+
+### [Controller Types - More Info](https://kubernetes.io/docs/concepts/workloads/controllers/)
+
