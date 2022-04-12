@@ -8,10 +8,9 @@
 
 > ConfigMaps allow you to decouple configuration artifacts from image content to keep containerized applications portable. 
 
-> `A ConfigMap is an API object` used to store non-confidential data in key-value pairs in the cluster store (ETCD). 
+#### `A ConfigMap is an API object` used to store non-confidential data in key-value pairs in the cluster store (ETCD). 
 
-> `Pods can consume ConfigMaps` as 
-
+#### `Pods can consume ConfigMaps` as 
     * environment variables, 
     * command-line arguments, 
     * or as configuration files in a volume.
