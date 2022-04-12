@@ -1,4 +1,4 @@
-# Kuberntes Controllers
+# Kubernetes Controllers
 
 > **In Kubernetes, controllers are control loops that watch the state of your cluster, then make or request changes where needed.** 
 
