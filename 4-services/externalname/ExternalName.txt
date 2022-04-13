@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service
+  name: extapp
 spec:
   type: ExternalName
   externalName: my.database.example.com
