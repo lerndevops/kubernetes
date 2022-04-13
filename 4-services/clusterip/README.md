@@ -2,7 +2,7 @@
 
 > **ClusterIP is the default and most common service type**
 
-> **assume the ClsuterIP service will act as internal virtual LoadBalancer that can forward the request into one / group of pods.**
+> **assume that the `ClsuterIP` service will `act as internal virtual LoadBalancer`, that can forward the request into one / group of pods.**
 
 > **Kubernetes will assign a cluster-internal IP address to ClusterIP service. This makes the service only reachable within the cluster.**
 
