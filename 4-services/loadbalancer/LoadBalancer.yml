@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: np-deployment
+  name: frontend
   labels:
     app: frontend
 spec:
@@ -24,11 +24,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: npservice
+  name: frontend
 spec:
   type: LoadBalancer
   selector:
     app: frontend
   ports:
    - protocol: TCP
-     port: 3000
+     port: 80
+     targetPort: 3000
+     #nodePort: 30003
