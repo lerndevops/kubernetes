@@ -17,9 +17,36 @@
 3. **`LoadBalancer`** -- Exposes the service via the cloud provider’s load balancer.
 4. **`ExternalName`** -- Maps a service to a predefined externalName field by returning a value for the CNAME record.
 
-#### The core attributes of a Kubernetes service are:
+### The core attributes of a Kubernetes service are:
 
 1. A `label selector` that locates pods
 2. The `type` of service to create
 3. `Port` definitions
 4. Optional mapping of incoming ports(nodeport) to a `targetPort`
+
+### Lab:
+
+#### Note: svc is short name for service
+```
+kubectl get svc                         # list all running services in current active namespace
+kubectl get svc -n kube-system          # list all running services in specified namespace
+kubectl get svc --all-namespaces        # list all running services in all namespaces available
+kubectl get svc -o wide                 # list all running services in current active namespace wider output
+kubectl get svc --show-labels           # list services with labels
+kubectl get svc -l env=prod             # list services with matching labels
+
+
+kubectl describe svc <svcname>              # detailed output about a service in current namespace
+kubectl describe svc <svcname> -n namespace # detailed output about a service in current namespace
+kubectl describe svc <svcname> -o wide      # detailed output about a service wider output
+kubectl describe svc <svcname> -o yaml      # detailed manifest file from apiserver yaml format
+kubectl describe svc <svcname> -o json      # detailed manifest file from apiserver json format
+
+kubectl label svc <svcname> env=prod        # add label to svc
+kubectl label svc <svcname> env-            # remove a label
+
+kubectl delete svc <svcname>                    # delete a svc in current active namespace
+kubectl delete svc <svcname> -n <my-namespace>  # delete a svc in specified namespace
+kubectl delete svc -l env=test                  # delete svc matching labels
+kubectl delete svc --all                        # delete all svc
+```
