@@ -24,7 +24,7 @@
 3. `Port` definitions
 4. Optional mapping of incoming ports(nodeport) to a `targetPort`
 
-### Lab:
+## Lab:
 
 #### Note: svc is short name for service
 ```
