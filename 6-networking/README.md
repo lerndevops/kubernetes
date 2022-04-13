@@ -10,7 +10,7 @@
 	
 > Instead, **`use a Kubernetes service`** which represents a group of pods acting as a single entity to the outside. Services get allocated their own IP address in the cluster and provide a reliable entry point.
 
-> Kubernetes does not provide a default network implementation, it only enforces a model for third-party tools to implement. There is a variety of implementations nowadays, below we list some popular ones.
+> Kubernetes **`does not provide a default network implementation,`** it only enforces a model for third-party tools to implement. There is a variety of implementations nowadays, below we list some popular ones.
 	
 1. **`Flannel`** - a very simple overlay network that satisfies the Kubernetes requirements. Flannel runs an agent on each host and allocates a subnet lease to each of them out of a larger, preconfigured address space. Flannel creates a flat network called as overlay network which runs above the host network.
 	
