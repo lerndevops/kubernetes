@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dnstest
+  labels:
+    run: dnstest
+spec:
+  restartPolicy: Always
+  containers:
+    - name: dnstest
+      image: lerndevops/netshoot:sleep
+    
