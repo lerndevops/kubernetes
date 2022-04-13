@@ -1,6 +1,8 @@
 ## headless service?
 
-> A headless service is a service with a service IP but instead of load-balancing it will return the IPs of our associated Pods. This allows us to interact directly with the Pods instead of a proxy. It's as simple as specifying None for .spec.clusterIP and can be utilized with or without selectors - you'll see an example with selectors in a moment.
+> A headless service is a service with a service IP but instead of load-balancing it will return the IPs of our associated Pods. This allows us to interact directly with the Pods instead of a proxy. 
+
+> It's as simple as specifying None for `.spec.clusterIP` and can be utilized with or without selectors
 
 
 ## Demo
