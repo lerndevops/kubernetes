@@ -91,23 +91,26 @@ Deploy a test pod
 
 $ kubectl run testpod --image lerndevops/samples:netshoot
 
-get inside the cont 
+get inside the cont, Lets run nslookup on each service to see what DNS entries exist
 
 $ kubectl exec -it testpod -- /bin/bash 
 
 root@testpod:/# 
+```
+```
+If we nslookup normal-service one DNS entry and IP is returned, 
 
-Lets run nslookup on each service to see what DNS entries exist. 
-If we nslookup normal-service one DNS entry and IP is returned, where nslookup headless-service returns the list of associated Pod IPs with the service DNS:
-
-root@utils:/# nslookup normal-service
+root@testpod:/# nslookup normal-service
 Server:         10.96.0.10
 Address:        10.96.0.10#53
 
 Name:   normal-service.default.svc.cluster.local
 Address: 10.109.192.226
+```
+```
+## if we nslookup headless-service returns the list of associated Pod IPs with the service DNS:
 
-root@utils:/# nslookup headless-service
+root@testpod:/# nslookup headless-service
 Server:         10.96.0.10
 Address:        10.96.0.10#53
 
