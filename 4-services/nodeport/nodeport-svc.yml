@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: np-deployment
+  name: pyapp
   labels:
-    app: frontend
+    app: npapp
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: frontend
+      app: npapp
   template:
     metadata:
       labels:
-        app: frontend 
+        app: npapp 
     spec:
       containers:
       - name: myapp-cont
@@ -24,11 +24,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: npservice
+  name: pyapp
 spec:
   type: NodePort
   selector:
-    app: frontend
+    app: npapp
   ports:
    - protocol: TCP
-     port: 3000
+     port: 80
+     targetPort: 3000
+     #nodePort: 30005
