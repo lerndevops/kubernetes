@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mydeployment
+  name: cipapp
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: myapp1
+      app: cipapp
   template:
     metadata:
       labels:
-        app: myapp1
+        app: cipapp
     spec:
       containers:
       - name: myapp-cont
@@ -22,12 +22,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: clusterip-svc-demo
+  name: cipapp
 spec:
   type: ClusterIP  ## this is default if we do not type in service definition
   selector:
-    app: myapp1
+    app: cipapp
   ports:
    - protocol: TCP
-     port: 3000 
-
+     port: 80
+     targetPort: 3000
