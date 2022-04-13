@@ -4,12 +4,6 @@
 
 > The **`Kubernetes networking model,`** on the other hand, natively supports **`multi-host networking`** in which pods are able to communicate with each other by default, regardless of which host they live in.
 
-> Kubernetes follows an `“IP-per-pod”` model where each pod get assigned an IP address and all containers in a single pod share the same network namespaces and IP address. Containers in the same pod can therefore reach each other’s ports via localhost:<port>. 
-	
-> However, **`it is not recommended to communicate directly with a pod via its IP address`** due to pod’s volatility (a pod can be killed and replaced at any moment). 
-	
-> Instead, **`use a Kubernetes service`** which represents a group of pods acting as a single entity to the outside. Services get allocated their own IP address in the cluster and provide a reliable entry point.
-
 > Kubernetes **`does not provide a default network implementation,`** it only enforces a model for third-party tools to implement. There is a variety of implementations nowadays, below we list some popular ones.
 	
 1. **`Flannel`** - a very simple overlay network that satisfies the Kubernetes requirements. Flannel runs an agent on each host and allocates a subnet lease to each of them out of a larger, preconfigured address space. Flannel creates a flat network called as overlay network which runs above the host network.
@@ -21,6 +15,14 @@
 4. **`Other options`** include Cisco ACI , Cilium , Contiv , Contrail , Kube-router , Nuage , OVN , Romana , VMWare NSX-T with NSX-T Container Plug-in (NCP) . Some tools even support using multiple implementations, such as Huawei CNI-Genie and Multus .
 
 
+## Pod to Pod Communication 
+
+> Kubernetes follows an `“IP-per-pod”` model where each pod get assigned an IP address and all containers in a single pod share the same network namespaces and IP address. Containers in the same pod can therefore reach each other’s ports via localhost:<port>. 
+	
+> However, **`it is not recommended to communicate directly with a pod via its IP address`** due to pod’s volatility (a pod can be killed and replaced at any moment). 
+	
+> Instead, **`use a Kubernetes service`** which represents a group of pods acting as a single entity to the outside. Services get allocated their own IP address in the cluster and provide a reliable entry point.
+
 > **Kubernetes services allow grouping pods under a common access policy (for example, load-balanced). The service gets assigned a virtual IP which pods outside the service can communicate with. Those requests are then transparently proxied (via the kube-proxy component that runs on each node) to the pods inside the service. Different proxy-modes are supported:**
 	
 * **`iptables:`** kube-proxy installs iptables rules trap access to service IP addresses and redirect them to the correct pods. 
@@ -28,7 +30,6 @@
 * **`userspace:`** kube-proxy opens a port (randomly chosen) on the local node. Requests on this “proxy port” get proxied to one of the service’s pods (as retrieved from Endpoints API). 
 
 * **`ipvs (from Kubernetes 1.9):`** calls netlink interface to create ipvs rules and regularly synchronizes them with the Endpoints API.
-
 	
 ## DNS for Services and Pods
 	
