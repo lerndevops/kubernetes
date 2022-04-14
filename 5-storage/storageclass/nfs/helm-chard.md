@@ -17,6 +17,9 @@ helm repo update
 ```
 #### Deploy the NFS Provisioner with Helm Chart 
 ```
+Note: replace <nfs-server-ip> & </path/to/nfs/storage> in below command accordingly before installing the nfs-provisioner
+```
+```
 helm install nfs-provisioner \
   nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
   --set nfs.server=<nfs-server-ip> \
