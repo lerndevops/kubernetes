@@ -1,11 +1,10 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: my-pv
+  name: myapp-pv
   labels:
     type: local
 spec:
-  storageClassName: standard
   persistentVolumeReclaimPolicy: Recycle ## Retain / Delete
   capacity:
     storage: 1000Mi
@@ -18,10 +17,9 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: my-pvc
+  name: myapp-pvc
 spec:
-  storageClassName: standard
-  volumeName: my-pv
+  volumeName: myapp-pv
   accessModes:
     - ReadWriteOnce
   resources:
@@ -55,7 +53,7 @@ spec:
       volumes:
        - name: pv
          persistentVolumeClaim:
-            claimName: my-pvc
+            claimName: myapp-pvc
 
 ---
 apiVersion: v1
@@ -66,6 +64,7 @@ spec:
    type: ClusterIP
    ports:
     - port: 27017
+      targetPort: 27017
    selector:
      app: mongodb
 
@@ -98,6 +97,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-   - port: 8080
+   - port: 80
+     targetPort: 8080
   selector:
     app: myapp
