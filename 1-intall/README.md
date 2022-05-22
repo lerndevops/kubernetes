@@ -55,8 +55,8 @@ kubeadm token create --print-join-command
     sudo apt-get update ; clear
     sudo apt-get install -y docker-ce
     
-    sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/kube/install/daemon.json -P /etc/docker
-    sudo service docker restart
+    sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/kubernetes/0-install/daemon.json -P /etc/docker
+    sudo systemctl restart docker.service
     sudo service docker status
    
     ### INSTALL KUBEADM,KUBELET,KUBECTL
@@ -94,8 +94,8 @@ kubeadm token create --print-join-command
     sudo apt-get update ; clear
     sudo apt-get install -y docker-ce
     
-    sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/kube/install/daemon.json -P /etc/docker
-    sudo service docker restart
+    sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/kubernetes/0-install/daemon.json -P /etc/docker
+    sudo systemctl restart docker.service
     sudo service docker status
    
     ### INSTALL KUBEADM,KUBELET,KUBECTL
