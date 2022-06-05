@@ -8,10 +8,15 @@
 step1:  
 Create a Ubuntu Instance/server with 1CPU 2gb RAM & Login to Server
 
-setp2: 
+setp2: Install NFS Server
+
 wget https://raw.githubusercontent.com/lerndevops/educka/master/5-storage/persistent-volumes/nfs/setupNFSServer.sh -P /tmp
 chmod 755 /tmp/setupNFSServer.sh
-bash /tmp/setupNFSServer.sh
+bash /tmp/setupNFSServer.
+
+step3: Validate NFS Server is running 
+
+systemctl status nfs-kernel-server.service
 ```
 
 ### Deploy the NFS Provisioner
