@@ -5,7 +5,7 @@ metadata:
 data:
   # Configuration values can be set as key-value properties
   database: mongodb
-  database_uri: mongodb://localhost:27017
+  database_url: mongodb://localhost:27017
 
 ---
 
