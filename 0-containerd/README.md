@@ -1,12 +1,12 @@
-### An industry-standard container runtime with an emphasis on simplicity, robustness and portability.
+> An industry-standard container runtime with an emphasis on simplicity, robustness and portability.
 
-### containerd is available as a daemon for Linux and Windows. 
+> containerd is available as a daemon for Linux and Windows. 
 
-### It manages the complete container lifecycle of its host system, from image transfer and storage to container execution and supervision to low-level storage to network attachments and beyond.
+> It manages the complete container lifecycle of its host system, from image transfer and storage to container execution and supervision to low-level storage to network attachments and beyond.
 
-# containerd Setup  
+## containerd setup  
 
-## Install & Configure on Ubuntu / Debian
+### Install & Configure on Ubuntu / Debian
 
 ```
 ## Install 
@@ -35,6 +35,7 @@ containerd config default | sudo tee /etc/containerd/config.toml
 sudo systemctl restart containerd
 sudo systemctl status containerd
 ```
+
 #### FYI
 
 > modprobe is a Linux program originally written by Rusty Russell and used to add a loadable kernel module to the Linux kernel or to remove a loadable kernel module from the kernel.
