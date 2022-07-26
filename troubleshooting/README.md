@@ -15,5 +15,9 @@
    </ul>
 </details>
 
-
-
+<details>
+   <summary>Common Deployment Issues</summary>
+   <ul>
+     <li><a href="https://github.com/lerndevops/educka/blob/master/troubleshooting/issues/Tubleshooting_Deployment.pdf">Tubleshooting_Deployment_Issues</a></li>
+   </ul>
+</details>
