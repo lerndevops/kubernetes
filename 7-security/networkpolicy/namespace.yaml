@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    kubernetes.io/metadata.name: pro-security
+    project: pro-security
+  name: pro-security
+spec:
+  finalizers:
+  - kubernetes

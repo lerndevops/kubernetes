@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-team2
+  namespace: pro-security
+  labels:
+    role: team2
+spec:
+  containers:
+  - image: tomcat
+    name: tomcat
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always

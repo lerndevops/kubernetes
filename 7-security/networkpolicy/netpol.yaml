@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: network-policy-team1-db-allow
+  namespace: pro-security
+spec:
+  podSelector:
+    matchLabels:
+      role: db-team1
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              role: team1
+      ports:
+        - protocol: TCP
+          port: 6379
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              role: team1
+      ports:
+        - protocol: TCP
+          port: 5978
