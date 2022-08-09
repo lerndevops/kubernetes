@@ -1,0 +1,121 @@
+Flannel 
+ip link show type veth
+ip link show type bridge
+bridge link show | grep cni0
+ip route
+
+iptables -n -t nat -L KUBE-SERVICES
+iptables -n -t nat -L KUBE-SVC-145lskdj
+iptables -n -t nat -L KUBE-SEP-DBU
+iptables -nvL | grep cali5cedaac93fc
+iptables -n -L cali-fw-cali5cedaac93fc
+
+=============
+Calico 
+
+# Get interfaces on a node (ex: node01)
+ip addr 
+#Show veth sets 
+ip link show type veth 
+#Show IP-inIP
+ip link show type ipip
+#Get Pods 
+kubectl get pods -o wide 
+#Get route to POD with IP: 192.168.196.138(podip) (on node01)
+ip route get 192.168.196.138
+
+
+Capture the traffic route between two pods running two diff nodes 
+
+install wireshark
+  Ubuntu OS 
+  sudo add-apt-repository universe
+  sudo apt install wireshark
+  
+  CentOS 
+  yum install wireshark
+
+tshark -i eth0 -V -Y "http"
+
+install calicoctl 
+
+curl -L https://github.com/projectcalico/calico/releases/download/v3.23.3/calicoctl-linux-amd64 -o /usr/bin/calicoctl
+chmod +x /usr/bin/calicoctl
+
+calicoctl node status 
+calicoctl get ipPool
+calicoctl get ipPool default-ipv4-ippool -o yaml > ippool.yaml
+vi ippool.yaml
+
+apiVersion: projectcalico.org/v3
+kind: IPPool
+metadata:
+  creationTimestamp: "2022-07-26T07:18:43Z"
+  name: default-ipv4-ippool
+  resourceVersion: "733"
+  uid: 8f3af0f0-7ab2-44fe-89e9-45f831110780
+spec:
+  allowedUses:
+  - Workload
+  - Tunnel
+  blockSize: 26
+  cidr: 192.168.0.0/16
+  ipipMode: Always ## change it to Never
+  natOutgoing: true
+  nodeSelector: all()
+  vxlanMode: Never
+
+route -n 
+calicoctl apply -f ippool.yaml
+
+
+=======
+IPVS
+
+# Configure the "Director"
+login to it 
+
+# install ipvsadm. it is used to set up, maintain or inpsect the virutla server table in the linux kernel 
+sudo ap install ipvsadm -y 
+
+real servers 
+  setup 2 vms 
+  
+
+# A: add service, "-t": tcp, "s": Shceudling alogrithm,  "rr": Round robi 
+ipvsadm -A -t 192.168.0.14:80 -s rr 
+
+# Add Servers 
+#"a": Add Service to a Virutal Servce, "r": Real Server, "m":, Masquerading (NAT)
+ipvsadm -a -t 192.168.0.14:80 -r 192.168.0.13:8080 -m
+ipvsadm -a -t 192.168.0.14:80 -r 192.168.0.87:8080 -m
+
+# List the Virutal Server table 
+sudo ipvsadm -L
+curl http://192.168.0.14:80/computer
+
+#"c": Connection table, "n": Numeric Output, IP Addresses and port number will be print in numeric format
+sudo ipvsadm -lcn
+
+# Delete the service 
+ipvsadm -D -t 192.168.0.14:80
+====================================================
+
+configure kube to use ipvs admin 
+## update the server 
+ap-get update -y && apt-get upgrade -y 
+#install ipvs adm 
+apt-get install -y ipvsadm
+
+# instal container runtime (containerd) & kubeadm,kubectl,kubelet
+
+kubeadm config print init-defaults > kubeadm.yaml 
+vi kubeadm.yaml 
+
+add the following 
+apiVersion: kubeproxy.config.k8s.io/v1alpha1
+kind: KubeProxyConfiguration
+mode: ipvs
+
+kubeadm init --config kubeadm.yaml 
+======================================================================
