@@ -1,0 +1,7 @@
+kind: ConfigMap
+apiVersion: v1
+metadata: 
+   name: democonfig
+data:
+   app: demoapp
+   version: "1.0"
