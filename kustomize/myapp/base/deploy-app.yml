@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
        - image: lerndevops/springboot-mongo-app:latest
-         name: springboot-mongo-app
+         name: cont1
          envFrom: 
           - configMapRef: 
               name: myapp-config

@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: myapp-config
+data:
+  DBHOST: "56.34.21.34"
+  DBPORT: "1521"
+  DBNAME: "stagedb"

@@ -1,8 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: mongodb
   name: mongodb
 spec:
   replicas: 1
@@ -11,17 +9,9 @@ spec:
       app: mongodb
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: mongodb
     spec:
       containers:
        - image: lerndevops/mongo
          name: mongo
-         volumeMounts:
-           - name: pv
-             mountPath: "/data/db"
-      volumes:
-       - name: pv
-         persistentVolumeClaim:
-            claimName: myapp-pvc

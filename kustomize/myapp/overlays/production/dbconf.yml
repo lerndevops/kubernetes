@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: myapp-config
+data:
+  DBHOST: "172.34.23.12"
+  DBPORT: "1521"
+  DBNAME: "proddb"

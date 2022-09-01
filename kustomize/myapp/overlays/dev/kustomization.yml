@@ -1,4 +1,17 @@
 bases:
   - ../../base
-patches:
+namespace: dev
+#patches:
+#  - replica_count.yaml
+#  - resource_limits.yml
+#  - devdbconf.yml
+configMapGenerator:
+  - name: myapp-xyz-config
+    files:
+     - configs/app.json
+patchesStrategicMerge:
+  - env.yml
   - replica_count.yaml
+  - resource_limits.yml
+  - dbconf.yml
+  - namespace.yml
