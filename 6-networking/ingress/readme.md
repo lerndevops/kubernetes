@@ -12,7 +12,7 @@
 
 ## Deploy Ingress Controller 
 
-`kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/ingress/nginx-ing-controller.yaml`
+`kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/baremetal/deploy.yaml`
 
 
 
