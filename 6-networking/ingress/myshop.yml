@@ -49,7 +49,7 @@ spec:
     spec:
       containers:
         - name: app2
-          image: lerndevops/samples:pyapp-v3
+          image: lerndevops/samples:pyapp-v2
           ports:
             - containerPort: 3000
 
