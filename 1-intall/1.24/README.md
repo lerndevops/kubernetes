@@ -4,17 +4,17 @@
 ### Install Docker: 
 -------------------
 
-##### sh installDocker.sh
+ sh installDocker.sh
 
 ### Install DockerCRI connector
 ------------------------------
 
-##### sh installCRIDockerd.sh
+sh installCRIDockerd.sh
 
 ### Install Kubernetes
 ----------------------
 
-##### installK8S.sh
+installK8S.sh
 
 
 ## Step 2. Initialize Master  (Run only on Master)
