@@ -1,0 +1,37 @@
+### publish helm charts to github 
+
+step1: go to: https://github.com  & login to your account 
+       create repo (ex: helm-charts)
+       
+step2: clone repo to your local
+
+   git clone https://github.com/lerndevops/helm-charts $HOME/helm-charts
+   cd $HOME/helm-charts
+   mkdir chart-sources packages
+
+step3: copy & package the charts 
+
+   copy all the charts created into chart-sources folder 
+   helm lint $HOME/helm-charts/chart-sources/*  # validates if there are any errors in yamls 
+   cd $HOME/helm-charts/packages 
+   helm package $HOME/helm-charts/chart-sources/*   # packages charts into tar bundles
+
+   we will need to create index.yaml that consist of all the chart info on github repo & is mandatory 
+   cd $HOME/helm-charts
+   helm repo index --url https://<youracctname>.github.io/<reponame>/
+   ex: helm repo index --url https://lerndevops.github.io/helm-charts/ .
+
+   cd $HOME/helm-charts
+   git add .
+   git commit -m "newcharts"
+   use your github creds to push to github repo 
+
+step4: Deploy the Chart using repo now 
+
+helm repo add myrepo https://lerndevops.github.io/helm-charts/
+helm install nginxdemo myrepo/nginxdemo
+
+step5: validate
+
+kubectl get pods 
+kubectl get services
