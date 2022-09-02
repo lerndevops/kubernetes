@@ -1,7 +1,14 @@
-## Install Docker
 
+## Step 1. RUN on Both Masster & Nodes
 
-## Install DockerCRI connector
+### Install Docker
 
+##### sh installDocker.sh
 
-## Install Kubernetes
+### Install DockerCRI connector
+
+##### sh installCRIDockerd.sh
+
+### Install Kubernetes
+
+##### installK8S.sh
