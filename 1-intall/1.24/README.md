@@ -19,7 +19,7 @@ installK8S.sh
 
 ## Step 2. Initialize Master  (Run only on Master)
 
-sudo kubeadm init --ignore-preflight-errors=all
+sudo kubeadm init --cri-socket unix:///var/run/cri-dockerd.sock
 
 
     sudo mkdir -p $HOME/.kube
