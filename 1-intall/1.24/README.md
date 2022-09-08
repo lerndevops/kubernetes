@@ -4,12 +4,12 @@
 ### Install Docker: 
 -------------------
 
- sh installDocker.sh
+./installDocker.sh
 
 ### Install DockerCRI connector
 ------------------------------
 
-sh installCRIDockerd.sh
+./installCRIDockerd.sh
 
 #### Now update cridockerd service and restart as below
 
@@ -35,7 +35,7 @@ service docker restart
 ### Install Kubernetes
 ----------------------
 
-installK8S.sh
+./installK8S.sh
 
 
 ## Step 2. Initialize Master  (Run only on Master)
