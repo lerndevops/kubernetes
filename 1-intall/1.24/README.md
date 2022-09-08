@@ -23,8 +23,11 @@ vi /etc/systemd/system/cri-docker.service
 ######(refs: https://github.com/Mirantis/cri-dockerd/blob/master/README.md)
 
 systemctl daemon-reload
+
 service cri-docker restart
+
 service docker restart
+
 
 
 
