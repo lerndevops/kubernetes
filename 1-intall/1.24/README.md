@@ -11,6 +11,24 @@
 
 sh installCRIDockerd.sh
 
+#### Now update cridockerd service and restart as below
+
+vi /etc/systemd/system/cri-docker.service
+
+--network-plugin=cni  --cni-bin-dir=/opt/cni/bin --cni-conf-dir=/etc/cni/net.d
+
+![image](https://user-images.githubusercontent.com/36464863/189142998-bb999780-be58-458c-bba6-bf6a789affbd.png)
+
+
+######(refs: https://github.com/Mirantis/cri-dockerd/blob/master/README.md)
+
+systemctl daemon-reload
+service cri-docker restart
+service docker restart
+
+
+
+
 ### Install Kubernetes
 ----------------------
 
