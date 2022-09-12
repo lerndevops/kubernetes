@@ -1,15 +1,16 @@
 ## deploy Nginx Deployment & Server with nginxdemo helmchart
 
 ```
-git clone https://github.com/lerndevops/educka
-cd educka/helm/charts
+git clone https://github.com/lerndevops/educka /tmp/educka
+cd /tmp/educka/helm/charts
 ```
 
 ### validate chart for any errors 
 
 ```
-cd educka/helm/charts
-root@kube-master:/helm/charts# helm lint nginxdemo/
+cd /tmp/educka/helm/charts
+
+root@kube-master:/tmp/educka/helm/charts# helm lint nginxdemo/
 ==> Linting .
 1 chart(s) linted, 0 chart(s) failed
 ```
