@@ -17,4 +17,4 @@ access with master/nodeIP: nodePort --> to access the Argo CD UI
 
 username: admin
 
-password: Output of Line 11 above.
+password: Output of Line 13 above.
