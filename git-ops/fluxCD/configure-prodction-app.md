@@ -1,4 +1,4 @@
-step: clone fluxdemoapp git repo to local 
+steps: clone fluxdemoapp git repo to local 
 
 sudo su -
 git clone https://github.com/leaddevops/fluxdemoapp /root/fluxdemoapp
@@ -20,7 +20,7 @@ Note:
   3) --interval: how frequent the repository should be synced automatically, if there are any changes found they will be applied in cluster automatically
   4) --export: this command is just used to generate the configuration with given information, export all the configuration into a file
 
-Step3: Kustomization style deployment for you application & its path in the git repo 
+Step3: configure Kustomization style deployment for your application & its path in the git repo 
 
 flux create kustomization demoapp-prod \
     --source demoapp-prod \
@@ -37,16 +37,16 @@ Note:
   4) --interval: how frequent the garbage collection shoud happen 
   4) --export: exports all the configuration into a file 
 
-step4: Ensure your application kubernetes resource yamls configured under ./apps/demoapp/production accordinlgy 
+step4: Ensure your application kubernetes resource yamls configured under ./apps/demoapp/production accordingly 
 
-step5: commit the all the changes & push to github 
+step5: stage & commit all the changes in local & push to github 
 
 cd /root/fluxdemoapp/
 git add .
 git commit -m "demoapp production code" 
-git push -u origin main  ( use the cred to push accordinlgy )
+git push -u origin main  ( use the cred to push accordingly )
 
-step6: watch flux updaing / deploying the application into your cluster automatically now 
+step6: watch flux updating / deploying the application into your cluster automatically now 
 
 watch flux get sources git 
 watch flux get kustomizations 
