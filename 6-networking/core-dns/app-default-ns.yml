@@ -1,7 +1,7 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: app1
+  name: pyapp
   namespace: default
 spec:
   replicas: 2  
@@ -16,7 +16,7 @@ spec:
       restartPolicy: Always # Never
       containers:  ## app containers
         - name: tcont
-          image: docker.io/lerndevops/samplepyapp:v1   ## docker.io/lerndevops/samplepyapp:v1
+          image: docker.io/lerndevops/samples:pyapp-v1
           ports:
             - name: http 
               containerPort: 3000
@@ -25,7 +25,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: svc1
+  name: pyapp
   namespace: default
 spec:
   type: NodePort
