@@ -22,3 +22,18 @@
 * `An overlay is a directory that refers to another kustomization directory as its, or one of its, bases.`
 
 > A base can be thought of as a preliminary step in a pipeline, having no knowledge of the overlays that it is referenced by. After a base is finished processing, it sends its resources as input to the overlay to transform according to the overlay's specification.
+
+## apply kustomize directories from github repo 
+
+```
+## kustomization.yaml in a subdirectory in a repo on branch master/main
+- kubectl apply -k https://github.com/lerndevops/educka/kustomize/demoapp
+```
+```
+## kustomization.yaml in a subdirectory in a repo on branch test
+- kubectl apply -k https://github.com/lerndevops/educka/kustomize/demoapp?ref=test
+```
+```
+## kustomization.yaml in a subdirectory in a repo on commit `53aca40d4b9a98f1456869ec1197bae12b4119f1`
+- kubectl apply -k https://github.com/lerndevops/educka/kustomize/demoapp?ref=53aca40d4b9a98f1456869ec1197bae12b4119f1
+```
