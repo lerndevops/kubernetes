@@ -6,7 +6,7 @@ patches:
  - patches/replica_count.yaml
  - patches/resource_limits.yaml
  - patches/env.yaml
-#configMapGenerator:
+##configMapGenerator:
 #patchesStrategicMerge:
 #images:
 #namespace: test
