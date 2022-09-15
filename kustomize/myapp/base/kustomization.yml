@@ -1,7 +1,0 @@
-resources: 
-- namespace.yml
-- deploy-db.yml
-- deploy-db-svc.yml
-- configmap.yml
-- deploy-app.yml
-- deploy-app-svc.yml
