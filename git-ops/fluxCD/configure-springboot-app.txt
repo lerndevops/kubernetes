@@ -1,4 +1,12 @@
-## Create a spring boot app source from git repo 
+## step1: clone fluxdemo git repo to local 
+
+sudo su -
+git clone https://github.com/leaddevops/fluxdemoapp /root/fluxdemoapp
+cd /root/fluxdemo/clusters/staging 
+
+## Step2: Create a spring boot app source from git repo 
+
+mkdir -p /root/fluxdemo/clusters/staging/springbootapp
 
 flux create source git springboot-app \
     --url https://github.com/lerndevops/sprintboot-app \
@@ -7,7 +15,8 @@ flux create source git springboot-app \
     --export \
     | tee springboot-app-repo-sync.yaml
 
-## Create a flux kustomization with a kustomization.yaml path from a GitRepository source
+
+## Step3: Create a flux kustomization with a kustomization.yaml path from a GitRepository source
 
 ## Staging 
 
