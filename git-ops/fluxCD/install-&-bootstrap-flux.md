@@ -30,12 +30,12 @@ export GITHUB_TOKEN=<replace-the-token-genereated-as-per-above-step1>
 flux bootstrap github \
   --context=kubernetes-admin@kubernetes \
   --owner=<YOUR-GITHUB-ACCOUNT-ID> \
-  --repository=fluxdemoapp \
+  --repository=fluxdemo \
   --branch=main \
   --personal \
   --path=./clusters/staging
 
-git clone https://github.com/lerndevops/fluxdemoapp
+git clone https://github.com/lerndevops/fluxdemo
 
 
 # Note: 
