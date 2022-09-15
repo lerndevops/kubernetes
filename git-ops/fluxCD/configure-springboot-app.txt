@@ -17,7 +17,7 @@ flux create kustomization springboot-app-kustomize-stage \
     --prune true \
     --interval 10m \
     --export \
-    | tee springboot-app-kustomization.yaml
+    | tee springboot-app-kustomization-stage.yaml
 
 
 ## Production 
