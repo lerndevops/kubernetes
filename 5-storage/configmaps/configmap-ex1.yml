@@ -4,7 +4,15 @@ metadata:
   name: dev-html
 data:
   index.html: |
-      <H1> Hello ConfigMap </H1>
+      <H1> Hello Dev ENV ConfigMap </H1>
+---      
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-html
+data:
+  index.html: |
+      <H1> Hello  PROD ConfigMap </H1>
 
 ---
 kind: Pod 
