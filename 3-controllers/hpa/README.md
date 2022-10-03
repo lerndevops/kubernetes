@@ -3,10 +3,10 @@
 Install Metrics server
 ---------------------------
 ```
-kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/9-monitoring/metrics-server/metrics-server-v0.5.yml
+kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/9-monitoring/metrics-server/metrics-server.yaml
 ```
 
-### [More Info](https://github.com/kubernetes-incubator/metrics-server) 
+### [More Info](https://github.com/kubernetes-sigs/metrics-server) 
 
 
 Create nginx deployment, service & hpa 
