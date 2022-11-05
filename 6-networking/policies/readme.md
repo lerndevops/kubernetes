@@ -55,7 +55,8 @@ use the NodPort to access the springboot java in the browser
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/6-networking/policies/allow-ingress-to-springapp-from-all.yaml
-
+```
+```
 kubectl get services springboot-app-svc
 
 use the NodPort to access the springboot java in the browser
