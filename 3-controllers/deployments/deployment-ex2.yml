@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sampleapp-deployment
+  name: java-app
   labels:
     app: sampleapp
 spec:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: sampleapp
-        image: lerndevops/samplejavaapp:latest 
+        image: lerndevops/samples:java-app
         ports:
         - containerPort: 8080
 
@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: sampleapp-service
+  name: java-app-service
 spec:
   type: NodePort
   selector:
@@ -33,4 +33,4 @@ spec:
   ports:
   - protocol: TCP
     port: 8080
-    nodePort: 32105
+    #nodePort: 32105

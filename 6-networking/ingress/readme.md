@@ -7,18 +7,19 @@
 
 ## Deploy three different Apps on k8s cluster
 
-`kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/ingress/deploy-app.yml`
+`https://raw.githubusercontent.com/lerndevops/educka/master/6-networking/ingress/deploy-app.yml`
 
 
 ## Deploy Ingress Controller 
 
-`kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/ingress/nginx-ing-controller.yaml`
+`kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/baremetal/deploy.yaml`
 
 
 
-## Deploy Ingress Rule
+## Deploy Ingress Resource(rules)
 
-`kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/ingress/ingress-rule.yml`
+`kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/6-networking/ingress/ingress-rule1.yml`
+
 
 ## Get Ingress Controller Service NodePort 
 
@@ -26,7 +27,7 @@
 get Ingress Controller Pod NodeIP & Ingress Controller Service NodePort
 
     kubectl get pods -n ingress-nginx -o wide  ## Note the Node IP in which the Ingress Controller Pod is Running
-    kubectl get svc -n ingress-nginx  ## Note the Ingress Servcie NodePort
+    kubectl get services -n ingress-nginx      ## Note the Ingress Servcie NodePort
 ```
 
 ## validate 
@@ -34,9 +35,9 @@ get Ingress Controller Pod NodeIP & Ingress Controller Service NodePort
 ``` 
    From the above details noted in your browser hit as below
    
-   NodeIp:NodePort/app1
-   NodeIp:NodePort/app2
-   NodeIp:NodePort/app3
+   masterNodeIp:NodePort/app1
+   worker1NodeIp:NodePort/app2
+   worker2NodeIp:NodePort/app3
    
    Example: 192.168.198.129:30528/app1, 192.168.198.129:30528/app2, 192.168.198.129:30528/app3
    

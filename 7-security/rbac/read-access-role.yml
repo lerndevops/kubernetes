@@ -5,6 +5,8 @@ metadata:
   name: readonly-role
 rules:
 - apiGroups: ["*"] # "" indicates the core API group
-  resources: ["pods","deployments", "replicasets"]
+  resources: ["pods", "replicasets"]
   verbs: ["get", "watch", "list"]
+  resources: ["deployments"]
+  verbs: ["get", "watch", "list", "create", "delete"]
   #verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]

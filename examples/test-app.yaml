@@ -1,17 +1,17 @@
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: dnstest
+  name: testapp
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: dnstest
+      app: test
   template:
     metadata:
       labels:
-        app: dnstest
+        app: test
     spec:
       containers:
-       - name: dnstest
+       - name: test
          image: lerndevops/samples:netshoot

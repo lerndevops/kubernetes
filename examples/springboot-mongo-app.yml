@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: myapp-pv
+  name: springboot-app-pv
   labels:
     type: local
 spec:
@@ -17,9 +17,9 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: myapp-pvc
+  name: springboot-app-pvc
 spec:
-  volumeName: myapp-pv
+  volumeName: springboot-app-pv
   accessModes:
     - ReadWriteOnce
   resources:
@@ -45,7 +45,7 @@ spec:
         app: mongodb
     spec:
       containers:
-       - image: lerndevops/mongo
+       - image: lerndevops/samples:mongodb
          name: mongo
          volumeMounts:
            - name: pv
@@ -53,7 +53,7 @@ spec:
       volumes:
        - name: pv
          persistentVolumeClaim:
-            claimName: myapp-pvc
+            claimName: springboot-app-pvc
 
 ---
 apiVersion: v1
@@ -72,9 +72,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: myapp
-  name: myapp
+  name: springboot-app
 spec:
   replicas: 2
   selector:
@@ -86,14 +84,14 @@ spec:
         app: myapp
     spec:
       containers:
-      - image: lerndevops/springboot-mongo-app:latest
-        name: springboot-mongo-app
+      - image: lerndevops/samples:springboot-app
+        name: springboot-app
         
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp-svc
+  name: springboot-app-svc
 spec:
   type: NodePort
   ports:
