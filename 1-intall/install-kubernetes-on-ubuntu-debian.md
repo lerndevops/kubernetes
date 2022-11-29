@@ -60,7 +60,7 @@ sudo bash /tmp/installK8S-v1-23.sh
 
 ## Run Below on Master Node to get join token 
 
-kubeadm token create --print-join-command 
+sudo kubeadm token create --print-join-command 
 
     copy the kubeadm join token from master & run it on all nodes
 
