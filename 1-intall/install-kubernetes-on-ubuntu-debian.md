@@ -15,6 +15,11 @@ sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/scripts/insta
 sudo chmod 755 /tmp/installK8S-v1-23.sh
 sudo bash /tmp/installK8S-v1-23.sh
 
+   71  docker -v
+   72  kubeadm version -o short
+   73  kubelet --version
+   74  kubectl version --short --client
+
 ## Initialize kubernetes Master Node
  
    sudo kubeadm init --ignore-preflight-errors=all
@@ -47,6 +52,11 @@ sudo systemctl restart docker
 sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/scripts/installK8S-v1-23.sh -P /tmp
 sudo chmod 755 /tmp/installK8S-v1-23.sh
 sudo bash /tmp/installK8S-v1-23.sh
+
+   71  docker -v
+   72  kubeadm version -o short
+   73  kubelet --version
+   74  kubectl version --short --client
 
 ## Run Below on Master Node to get join token 
 
