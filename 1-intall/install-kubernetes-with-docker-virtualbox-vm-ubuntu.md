@@ -32,7 +32,7 @@ sudo bash /tmp/installK8S.sh
 
 ## Initialize kubernetes Master Node
 
-   sudo kubeadm init unix:///var/run/cri-dockerd.sock --ignore-preflight-errors=all
+   sudo kubeadm init --cri-socket unix:///var/run/cri-dockerd.sock --ignore-preflight-errors=all
 
    sudo mkdir -p $HOME/.kube
    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -71,8 +71,8 @@ sudo bash /tmp/installK8S.sh
 
 kubeadm token create --print-join-command
 
-    copy the kubeadm join token from master & run it on all nodes
+    copy the kubeadm join token from master & add --cri-socket unix:///var/run/cri-dockerd.sock as below & then run on all worker nodes
 
-    Ex: kubeadm join 10.128.15.231:6443 --token mks3y2.v03tyyru0gy12mbt \
+    Ex: kubeadm join 10.128.15.231:6443 --cri-socket unix:///var/run/cri-dockerd.sock --token mks3y2.v03tyyru0gy12mbt \
            --discovery-token-ca-cert-hash sha256:3de23d42c7002be0893339fbe558ee75e14399e11f22e3f0b34351077b7c4b56
 ```
