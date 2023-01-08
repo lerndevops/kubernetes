@@ -32,7 +32,7 @@ sudo bash /tmp/installK8S.sh
 
 ## Initialize kubernetes Master Node
 
-   sudo kubeadm init --cri-socket unix:///var/run/cri-dockerd.sock --ignore-preflight-errors=all
+   sudo kubeadm init unix:///var/run/cri-dockerd.sock --ignore-preflight-errors=all
 
    sudo mkdir -p $HOME/.kube
    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
