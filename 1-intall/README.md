@@ -20,4 +20,8 @@
 
 ## Setup Kubernetes Cluster on VirutalBox vms with Docker Container Runtime
 
-> **[install-kubernetes-with-docker-virtualbox-vms-ubuntu](https://github.com/lerndevops/educka/blob/master/1-intall/install-kubernetes-virtualbox-ubuntu.md)**
+> **[install-kubernetes-with-docker-virtualbox-vms-ubuntu](https://github.com/lerndevops/educka/blob/master/1-intall/install-kubernetes-with-docker-virtualbox-vm-ubuntu.md)**
+
+## Setup Kubernetes Cluster on VirutalBox vms with Containerd Container Runtime
+
+> **[install-kubernetes-with-containerd-virtualbox-vms-ubuntu](https://github.com/lerndevops/educka/blob/master/1-intall/install-kubernetes-with-containerd-virtualbox-vm-ubuntu.md)**
