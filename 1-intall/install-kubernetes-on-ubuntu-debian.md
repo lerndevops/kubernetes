@@ -15,6 +15,11 @@ sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/scripts/insta
 sudo chmod 755 /tmp/installK8S-v1-23.sh
 sudo bash /tmp/installK8S-v1-23.sh
 
+   71  docker -v
+   72  kubeadm version -o short
+   73  kubelet --version
+   74  kubectl version --short --client
+
 ## Initialize kubernetes Master Node
  
    sudo kubeadm init --ignore-preflight-errors=all
@@ -27,7 +32,7 @@ sudo bash /tmp/installK8S-v1-23.sh
 
    ## below installs weave networking driver 
     
-   sudo kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')" 
+   kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml 
 
    # Validate:  kubectl get nodes
 ```
@@ -48,9 +53,14 @@ sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/scripts/insta
 sudo chmod 755 /tmp/installK8S-v1-23.sh
 sudo bash /tmp/installK8S-v1-23.sh
 
+   71  docker -v
+   72  kubeadm version -o short
+   73  kubelet --version
+   74  kubectl version --short --client
+
 ## Run Below on Master Node to get join token 
 
-kubeadm token create --print-join-command 
+sudo kubeadm token create --print-join-command 
 
     copy the kubeadm join token from master & run it on all nodes
 
@@ -98,7 +108,7 @@ kubeadm token create --print-join-command
 
     ## below installs weave networking driver 
     
-       sudo kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')" 
+       sudo kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml 
 	
     # Validate: kubectl get nodes
 ```

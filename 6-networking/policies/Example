@@ -1,6 +1,6 @@
-By Default , all pods in the cluster can communicate with any other pod and reach out to any available IP.
+### By Default , all pods in the cluster can communicate with any other pod and reach out to any available IP.
 
-Network Policies allow you to limit what network traffic is allowed to and from pods in your cluster.
+### Network Policies allow you to limit what network traffic is allowed to and from pods in your cluster.
 
 
 

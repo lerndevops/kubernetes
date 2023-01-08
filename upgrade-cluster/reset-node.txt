@@ -1,0 +1,20 @@
+# reset/cleanup a node kubernetes cluster 
+
+worker node:
+    sudo kubeadm reset --force
+    sudo iptables --flush
+    sudo iptables -tnat --flush 
+    sudo rm -rf /etc/cni/net.d/*
+
+master node: 
+    sudo kubeadm reset --force
+    sudo iptables --flush
+    sudo iptables -tnat --flush 
+    sudo rm -rf /etc/cni/net.d/*
+    sudo rm -rf $HOME/.kube/* 
+
+# uninstall kubeadm/kubelet/kubectl tools 
+
+    apt-mark unhold kubeadm kubelet kubectl
+    sudo apt -y remove kubeadm kubelet kubectl 
+    sudo apt -y autoremove

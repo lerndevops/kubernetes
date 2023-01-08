@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-mongodb-ingress-from-springapp
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: mongodb
+  policyTypes:
+   - Ingress
+  ingress:
+   - from:
+      #- ipBlock:
+      #    cidr: 0.0.0.0/0
+      #- namespaceSelector:
+      - podSelector:
+          matchLabels:
+            app: myapp
