@@ -13,7 +13,7 @@ sudo bash /tmp/installK8S.sh
 
 ## Initialize kubernetes Master Node
 
-   sudo kubeadm init --cri-socket --ignore-preflight-errors=all
+   sudo kubeadm init --ignore-preflight-errors=all
 
    sudo mkdir -p $HOME/.kube
    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
