@@ -31,8 +31,8 @@ spec:
   ports:
     - port: 2379
       targetPort: 2379
- ---
- # Backup ETCD DB Using JOB Controller
+---
+# Backup ETCD DB Using JOB Controller
 kind: Job
 apiVersion: batch/v1
 metadata:
