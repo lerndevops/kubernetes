@@ -1,4 +1,4 @@
-# Elastice Kubernetes Service (AWS-EKS)
+# Elastic Kubernetes Service (AWS-EKS)
 
 ### Refer: https://github.com/lerndevops/eks
 
@@ -6,6 +6,6 @@
 
 ### Refer: https://github.com/lerndevops/gke
 
-# Azarue Kubernetes Service (AKS)
+# Azure Kubernetes Service (AKS)
 
 ### Refer: https://github.com/lerndevops/aks 
