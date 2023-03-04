@@ -19,6 +19,14 @@ sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/scripts/insta
 sudo chmod 755 /tmp/installK8S.sh
 sudo bash /tmp/installK8S.sh
 
+# Validate 
+
+   11  docker -v
+   12  cri-dockerd --version
+   13  kubeadm version -o short
+   14  kubelet --version
+   15  kubectl version --short --client
+
 ## Initialize kubernetes Master Node
  
    sudo kubeadm init --cri-socket unix:///var/run/cri-dockerd.sock --ignore-preflight-errors=all
@@ -56,6 +64,15 @@ sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/scripts/insta
 sudo chmod 755 /tmp/installK8S.sh
 sudo bash /tmp/installK8S.sh
 
+
+# Validate 
+
+   11  docker -v
+   12  cri-dockerd --version
+   13  kubeadm version -o short
+   14  kubelet --version
+   15  kubectl version --short --client
+   
 ## Run Below on Master Node to get join token 
 
 kubeadm token create --print-join-command 
