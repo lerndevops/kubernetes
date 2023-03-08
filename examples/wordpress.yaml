@@ -38,7 +38,7 @@ metadata:
   labels:
     app: mysql
 spec:
-  ClusterIP: None
+  clusterIP: None
   ports:
     - port: 3306
       targetPort: 3306
@@ -79,7 +79,7 @@ spec:
             - name: wp-mysql-persistent-storage
               mountPath: /var/lib/mysql
       volumes:
-        - name: mysql-persistent-storage
+        - name: wp-mysql-persistent-storage
           persistentVolumeClaim:
             claimName: wp-mysql-claim
 ---
