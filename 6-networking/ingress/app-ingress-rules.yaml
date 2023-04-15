@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: apps-ingress-rule
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: nginx-custom-default-backend
+              port:
+                number: 80
+        - path: /unapp
+          pathType: Prefix
+          backend:
+            service:
+              name: unapp-svc
+              port:
+                number: 80
+        - path: /pyapp
+          pathType: Prefix
+          backend:
+            service:
+              name: pyapp-svc
+              port:
+                number: 80
+        - path: /petclinic
+          pathType: Prefix
+          backend:
+            service:
+              name: petclinic-svc
+              port:
+                number: 80
