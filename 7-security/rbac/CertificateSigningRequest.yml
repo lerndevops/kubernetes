@@ -11,7 +11,9 @@ spec:
   #expirationSeconds: 86400
   usages:
   - client auth
-
+  - server auth
+  - digital signation
+  - key encipherment
 
 # openssl genrsa -out user1.key 2048
 # openssl req -config csr.conf -new -key user1.key -nodes -out user1.csr
