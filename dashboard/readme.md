@@ -1,6 +1,6 @@
 # deploy insecure dashboard
 ```
-   kubectl apply -f dashboard-insecurev2.7.0.yml
+   kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/dashboard/dashboard-insecure-v2.7.0.yaml
 ```
 
 ### Access UI
