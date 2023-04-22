@@ -1,6 +1,6 @@
 # deploy insecure dashboard
 ```
-   kubectl apply -f dashboard-insecurev2.4.0.yml
+   kubectl apply -f dashboard-insecurev2.7.0.yml
 ```
 
 ### Access UI
