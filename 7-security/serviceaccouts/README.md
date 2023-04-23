@@ -10,7 +10,7 @@
 
 ```
 kubectl create sa testsa
-kubectl get testsa
+kubectl get sa testsa
 ```
 
 ### Map ServiceAccount to Pod 
