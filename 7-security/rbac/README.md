@@ -133,3 +133,5 @@ that the **Common Name (CN)** field is set correctly as **system:kube-\<COMPONEN
 *     Ensure the Common Name Field (CN) is set accurately as per your IP address / service name or DNS
 *     Sign the CSR with root CA private key and root CA certificate to generate the client certificate
 *     Distribute the Client certificate to the corresponding application 
+
+[mkdnlink]: http://daringfireball.net/projects/markdown

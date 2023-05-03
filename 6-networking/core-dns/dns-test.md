@@ -44,7 +44,7 @@ service/mynginx      ClusterIP   10.102.183.125   <none>        80/TCP   10m    
 ```
 # Create
 
-kubectl -n testns run dnstest --image=lerndevops/netshoot --rm -it -- /bin/bash
+kubectl -n testns run dnstest --image=lerndevops/samples:netshoot --rm -it -- /bin/bash
 
 the above command will create new pod called dnstest in testns namespace & get you insideit, from inside pod we can try accessing pods using their service dns & pod dns 
 ```

@@ -1,18 +1,18 @@
 kind: Secret
 apiVersion: v1
 metadata:
-   name: mysql
+   name: wp-mysql
 data:
    password: "YWRtaW4="
 ---
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-   name: mysql-pv
+   name: wp-mysql-pv
 spec:
   storageClassName: manual
   hostPath:
-    path: /tmp/mysql-data
+    path: /opt/mysql-data
   accessModes:
     - ReadWriteOnce
   capacity:
@@ -21,10 +21,10 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: mysql-volumeclaim
+  name: wp-mysql-claim
 spec:
   storageClassName: manual 
-  volumeName: mysql-pv
+  volumeName: wp-mysql-pv
   accessModes:
     - ReadWriteOnce
   resources:
@@ -34,53 +34,54 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql
+  name: wp-mysql-svc
   labels:
     app: mysql
 spec:
-  type: ClusterIP
+  clusterIP: None
   ports:
     - port: 3306
+      targetPort: 3306
   selector:
-    app: mysql
+    app: wp-mysql
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: wp-mysql
   labels:
-    app: mysql
+    app: wp-mysql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql
+      app: wp-mysql
   template:
     metadata:
       labels:
-        app: mysql
+        app: wp-mysql
     spec:
       containers:
         - image: mysql:8
           name: mysql
-          args:
-            - "--default-authentication-plugin=mysql_native_password"
+          #args:
+          #  - "--default-authentication-plugin=mysql_native_password"
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                   name: mysql
+                   name: wp-mysql
                    key: password
           ports:
             - containerPort: 3306
-              name: mysql
+              name: wp-mysql
           volumeMounts:
-            - name: mysql-persistent-storage
+            - name: wp-mysql-persistent-storage
               mountPath: /var/lib/mysql
       volumes:
-        - name: mysql-persistent-storage
+        - name: wp-mysql-persistent-storage
           persistentVolumeClaim:
-            claimName: mysql-volumeclaim
+            claimName: wp-mysql-claim
 ---
 apiVersion: v1
 kind: Service
@@ -118,17 +119,12 @@ spec:
           name: wordpress
           env:
           - name: WORDPRESS_DB_HOST
-            value: mysql:3306
+            value: wp-mysql-svc
           - name: WORDPRESS_DB_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: mysql
+                name: wp-mysql
                 key: password
-          - name: WORDPRESS_CONFIG_EXTRA
-            value: |
-              define('FORCE_SSL_ADMIN', true);
-              if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
-              $_SERVER['HTTPS']='on';
           ports:
             - containerPort: 80
               name: wordpress

@@ -1,0 +1,59 @@
+# Deploy ETCD Server
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: etcd-server
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: etcdserver
+  template:
+    metadata:
+      labels:
+        app: etcdserver
+    spec:
+      terminationGracePeriodSeconds: 0   # the default value 30sec # 0 means force delete
+      restartPolicy: Always
+      containers:
+       - name: etcd
+         image: lerndevops/samples:etcd-server
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: etcdserver
+spec:
+  type: ClusterIP
+  selector:
+    app: etcdserver
+  ports:
+    - port: 2379
+      targetPort: 2379
+---
+# Backup ETCD DB Using JOB Controller
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: backup-etcd-job
+  namespace: default
+spec:
+  backoffLimit: 4
+  template:
+    metadata:
+      labels:
+        app: etcd
+    spec:
+      restartPolicy: Never
+      volumes:
+        - name: hpvol
+          hostPath:
+            path: /opt/etcd-backup
+      containers:
+        - name: etcd
+          image: lerndevops/samples:etcdctl
+          command: ["sh", "-c", 'ETCDCTL_API=3 etcdctl --endpoints=etcdserver:2379 snapshot save "etcd-snapshot-latest-`date +"%d-%m-%Y-%H-%M"`.db"']
+          volumeMounts:
+            - name: hpvol
+              mountPath: /opt/etcd-backup
