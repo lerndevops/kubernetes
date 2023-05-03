@@ -21,11 +21,11 @@ sudo bash /tmp/installK8S.sh
 
 # Validate 
 
-   11  docker -v
-   12  cri-dockerd --version
-   13  kubeadm version -o short
-   14  kubelet --version
-   15  kubectl version --short --client
+   docker -v
+   cri-dockerd --version
+   kubeadm version -o short
+   kubelet --version
+   kubectl version --short --client
 
 ## Initialize kubernetes Master Node
  
@@ -67,11 +67,11 @@ sudo bash /tmp/installK8S.sh
 
 # Validate 
 
-   11  docker -v
-   12  cri-dockerd --version
-   13  kubeadm version -o short
-   14  kubelet --version
-   15  kubectl version --short --client
+   docker -v
+   cri-dockerd --version
+   kubeadm version -o short
+   kubelet --version
+   kubectl version --short --client
    
 ## Run Below on Master Node to get join token 
 
