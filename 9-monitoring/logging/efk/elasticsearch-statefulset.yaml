@@ -5,7 +5,7 @@ metadata:
   namespace: kube-logging
 spec:
   serviceName: elasticsearch
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: elasticsearch
@@ -40,9 +40,9 @@ spec:
               fieldRef:
                 fieldPath: metadata.name
           - name: discovery.zen.ping.unicast.hosts
-            value: "es-cluster-0.elasticsearch,es-cluster-1.elasticsearch,es-cluster-2.elasticsearch"
+            value: "es-cluster-0.elasticsearch"
           - name: discovery.zen.minimum_master_nodes
-            value: "2"
+            value: "1"
           - name: ES_JAVA_OPTS
             value: "-Xms512m -Xmx512m"
       initContainers:
@@ -65,7 +65,8 @@ spec:
         securityContext:
           privileged: true
   volumeClaimTemplates:
-  - metadata:
-      name: es-pvc
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
+    - metadata:
+        name: es-pvc
+      spec:
+        accessModes: 
+          - ReadWriteOnce
