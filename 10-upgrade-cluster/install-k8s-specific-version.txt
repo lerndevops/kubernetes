@@ -1,0 +1,32 @@
+#### Install Kubernetes specific version kubeadm/kubelet/kubectl
+
+   sudo apt-get update
+   sudo apt-get install -y apt-transport-https ca-certificates curl
+   sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+   echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+   sudo apt-get update
+   sudo apt-get install -y kubelet=1.23.4-00 kubeadm=1.23.4-00 kubectl=1.23.4-00
+   sudo apt-mark hold kubeadm kubelet kubectl
+
+## we also need to choose a specific version of kubernetes API & other components 
+    -- API Server
+    -- Schedular 
+    -- Controller Manager
+    -- kube proxy 
+
+vi kubernetes-components-version.yaml
+
+    apiVersion: kubeadm.k8s.io/v1beta3
+    kind: ClusterConfiguration
+    kubernetesVersion: v1.23.4
+
+init the kube config with custom configurations 
+
+    kubeadm init --config kubernetes-components-version.yaml
+
+validate:
+
+    kubectl exec kube-apiserver-smaster -n kube-system -- kube-apiserver --version
+    kubectl exec kube-controller-manager-smaster -n kube-system -- kube-controller-manager --version
+    kubectl exec kube-proxy-g2n6z -n kube-system -- kube-proxy --version
+    kubectl exec kube-scheduler-smaster -n kube-system -- kube-scheduler --version

@@ -1,0 +1,13 @@
+kind: InitConfiguration
+apiVersion: kubeadm.k8s.io/v1beta3
+nodeRegistration:
+  criSocket: unix:///var/run/cri-dockerd.sock
+---
+kind: ClusterConfiguration
+apiVersion: kubeadm.k8s.io/v1beta3
+kubernetesVersion: 1.26.1
+#apiServer:
+#controllerManager:
+#scheduler:
+#etcd:
+#networking:
