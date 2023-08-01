@@ -7,18 +7,18 @@
 
 ## Deploy three different Apps on k8s cluster
 
-`kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/6-networking/ingress/deploy-app.yml`
+```kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/6-networking/ingress/deploy-app.yml```
 
 
 ## Deploy Ingress Controller 
 
-`kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/baremetal/deploy.yaml`
+```kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/baremetal/deploy.yaml```
 
 
 
 ## Deploy Ingress Resource(rules)
 
-`kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/6-networking/ingress/ingress-rule1.yml`
+```kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/6-networking/ingress/ingress-rule1.yml```
 
 
 ## Get Ingress Controller Service NodePort 
