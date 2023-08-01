@@ -7,7 +7,7 @@
 
 ## Deploy three different Apps on k8s cluster
 
-`https://raw.githubusercontent.com/lerndevops/educka/master/6-networking/ingress/deploy-app.yml`
+`kubectl apply -f https://raw.githubusercontent.com/lerndevops/educka/master/6-networking/ingress/deploy-app.yml`
 
 
 ## Deploy Ingress Controller 
