@@ -1,0 +1,99 @@
+
+   16  kubectl get all --all-namespaces
+   17  kubectl get nodes
+   18  kubectl componentStatus
+   19  kubectl get componentStatus
+   20  kubectl version
+   21  kubectl get all --all-namespaces
+   22  kubectl run ravi --image nginx
+   23  kubectl delete deploy ravi
+   24  kubectl run ravi --image httpd --generator=run-pod/v1
+   25  kubectl get pods -o wide
+   26  alias k = kubectl
+   27  kubectl run redis --image=redis --generator=run-pod/v1 -o yaml
+   28  kubectl run tomcat --image=tomcat --restart=Never--generator=run-pod/v1 --dry-run -o yaml
+   29  kubectl run tomcat --image=tomcat --restart=Never --generator=run-pod/v1 --dry-run -o yaml
+   30  vi a.yml
+   31  kubectl apply -f a.yml 
+   32  kubectl delete pods --all
+   33  kubectl run test --image nginx --expose --port 80 -o --dry-run -o yaml
+   34  kubectl run test --image nginx --expose --port 80 --generator=run-pod/v1 --dry-run -o yaml
+   35  kubectl run test --image nginx --expose --port 80 --type NodePort --generator=run-pod/v1 --dry-run -o yaml
+   36  kubectl run test --image nginx --expose --port 80 --type=NodePort --generator=run-pod/v1 --dry-run -o yaml
+   37  kubectl run test --image nginx expose --port 80 --type=NodePort --generator=run-pod/v1 --dry-run -o yaml
+   38  kubectl run test --image nginx --expose --port=80 --type=NodePort --generator=run-pod/v1 --dry-run -o yaml
+   39  kubectl run ravi1 --image httpd --generator=run-pod/v1 -l env=prod -l ver=v1 --dry-run -o yaml
+   40  kubectl run ravi1 --image httpd --generator=run-pod/v1 --label=env=prod -l ver=v1 --dry-run -o yaml
+   41  kubectl run ravi1 --image httpd --generator=run-pod/v1 --labels=env=prod -l ver=v1 --dry-run -o yaml
+   42  kubectl run ravi1 --image httpd --generator=run-pod/v1 --labels env=prod -l ver=v1 --dry-run -o yaml
+   43  kubectl run ravi1 --image httpd --generator=run-pod/v1 --labels env=prod,ver=v1 --dry-run -o yaml
+   44  kubectl run ravi1 --image httpd --generator=run-pod/v1 --labels env=prod,ver=v1 --expose --port 80 --dry-run -o yaml
+   45  kubectl run ravi1 --image httpd --generator=run-pod/v1 --labels env=prod,ver=v1 --expose --port 80 --limits cpu=100m,memory=256Mi --dry-run -o yaml
+   46  kubectl get pods
+   47  kubectl get pods test -o yaml
+   48  kubectl get pods test-bc989d778-9cf9c -o yaml
+   49  kubectl create deployment --image tomcat --replicas=2 --port=8080 --dry-run -o yaml
+   50  kubectl run  test123 --image tomcat --replicas=2 --port=8080 --dry-run -o yaml
+   51  kubectl run  test123 --image tomcat --replicas=2 --port=8080 --dry-run -o yaml > ravi.yml
+   52  more ravi.yml 
+   53  kubectl get deploy
+   54  kubectl expose deployment test --port=8080 --target-port=8080 --type=NodePort --node=port=30001 --dry-run -o yaml
+   55  kubectl --expose deployment test --port=8080 --target-port=8080 --type=NodePort --node=port=30001 --dry-run -o yaml
+   56  kubectl create service ravi  deployment test --port=8080 --target-port=8080 --type=NodePort --node=port=30001 --dry-run -o yaml
+   57  kubectl get pods
+   58  history
+   59  kubectl get deploy
+   60  kubectl run ravi --image nginx --generator=run-pod/v1 -o yaml
+   61  kubectl get pods
+   62  kubectl expose pod ravi --port=80 --target-port=80 --type=NodePort 
+   63  kubectl expose pod ravi --port=80 --target-port=80 --type=NodePort --dry-run =o yaml
+   64  kubectl expose pod ravi --port=80 --target-port=80 --type=NodePort --dry-run -o yaml
+   65  kubectl get svc
+   66  kubectl describe svc ravi 
+   67  kubectl get pods -o wide
+   68  kubectl run abcd --image kodekloud/webapp-color --replicas=3 
+   69  kubectl get deploy
+   70  kibectl get pods
+   71  kubectl get pods
+   72  kubectl describe  abcd-7b4f6546bf-csqds
+   73  kubectl describe pod  abcd-7b4f6546bf-csqds
+   74  kubetl expose deploy abcd --port=80 --target-port=80 --tupe=NodePort 
+   75  kubectl expose deploy abcd --port=80 --target-port=80 --tupe=NodePort 
+   76  kubectl expose deploy abcd --port=80 --target-port=80 --type=NodePort 
+   77  kubetl svc
+   78  kubetl get svc
+   79  kubectl get svc
+   80  kubectl describe svc abcd
+   81  kubectl scale deployment abcd --replicas=5
+   82  kubectl delete all
+   83  kubectl delete pods all
+   84  kubectl delete pod --all
+   85  kubectl delete deploy --all
+   86  kubectl delete svc --all
+   87  kubectl version
+   88  kubectl get nodes
+   89  alias k="kubectl"
+   90  alias kgn="kubectl get nodes -o wide"
+   91  alias kgp="kubectl get pods -o wide" 
+   92  alias kgd="kubectl get deployment -o wide"
+   93  alias kgs="kubectl get svc -o wide"
+   94  kgp
+   95  alias kdp="kubectl describe pod"
+   96  alias kdd="kubectl describe deployment" 
+   97  alias kds="kubectl describe service"
+   98  alias kdn="kubectl describe node"
+   99  kubectl get nodes
+  100  kubectl describe node node
+  101  kubectl label node node env=dev
+  102  kubectl describe node node
+  103  kubectl taint node node env=dev:NoSchedule
+  104  kubectl describe node node
+  105  kubectl taint node node env=dev:NoSchedule-
+  106  kubectl describe node node
+  107  kubectl describe node master
+  108  kubectl run new --image nginx --generator=run-pod/v1 --dry-run -o yaml
+  109  kubectl run new --image nginx --generator=run-pod/v1  -o yaml
+  110  kubectl edit pod new
+  111  kgp
+  112  kubectl exec -it new -- sh
+  113  history > imperative_commands

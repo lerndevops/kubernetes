@@ -1,0 +1,27 @@
+curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/0.14.1/install.sh | bash -s 0.14.1
+   kubectl create -f https://operatorhub.io/install/open-liberty.yaml
+   kubectl get pods
+  kubectl get ns
+  vi test.yaml
+  
+  
+apiVersion: openliberty.io/v1beta1
+kind: OpenLibertyApplication
+metadata:
+  name: demo-app
+spec:
+  replicas: 1
+  applicationImage: 'openliberty/open-liberty:full-java8-openj9-ubi'
+  expose: true
+  
+  
+  
+  
+ kubectl create -f test.yaml
+    kubectl get pods
+   kubectl get deploy
+    kubectl get svc
+    kubectl edit svc demo-app # edit service for NodePort
+   kubectl get svc
+   
+  # Access the app with Nodeport by using node IP

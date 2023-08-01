@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myschedulerdemo
+  labels:
+    name: multischeduler-example
+spec:
+  schedulerName: my-scheduler
+  containers:
+  - name: cont
+    image: nginx
+    ports:
+      - containerPort: 80

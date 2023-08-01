@@ -1,0 +1,27 @@
+kubectl create -f https://operatorhub.io/install/splunk.yaml
+kubectl get ns
+  kubectl get pods my-splunk
+  kubectl get pods -n my-splunk
+  kubectl get sts -n my-splunk
+ kubectl get deploy -n my-splunk
+ 
+ 
+ cat <<EOF | kubectl -n my-splunk apply -f -
+apiVersion: enterprise.splunk.com/v1alpha2
+kind: Standalone
+metadata:
+  name: s1
+  finalizers:
+  - enterprise.splunk.com/delete-pvc
+EOF
+
+
+ kubectl get sts -n my-splunk
+ kubectl get svc -n my-splunk
+ kubectl get pods -n my-splunk
+ kubectl port-forward splunk-s1-standalone-0 8000 -n my-splunk
+ 
+ kubectl get secret splunk-s1-standalone-secrets -o jsonpath='{.data.password}' | base64 --decode # to get the pwd
+ 
+ 
+ Now use 8000 port to acces page # user= admin, password get from above cmd

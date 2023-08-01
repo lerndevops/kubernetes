@@ -1,0 +1,72 @@
+check the Versions:
+	kubectl version --short --client 
+	kubeadm version -o short 
+	kubelet --version
+	kubectl exec kube-apiserver-master -n kube-system -- kube-apiserver --version
+	kubectl exec etcd-master -n kube-system -- etcd --version
+	kubectl exec kube-controller-manager-master -n kube-system -- kube-controller-manager --version
+	kubectl exec kube-scheduler-master -n kube-system -- kube-scheduler --version
+	kubectl exec kube-proxy-j5xjf -n kube-system -- kube-proxy --version
+
+
+Upgrade Kubernetes Componentes: 
+
+# Always first master node:
+
+	remove any hold on the packages:
+		sudo apt-mark unhold kubeadm kubelet kubectl 
+
+	upgrade the kubeadm & hold:
+		sudo apt install -y kubeadm=1.23.11-00
+		kubeadm version -o short 
+
+	Plan the upgrade of all the controller components:
+		sudo kubeadm upgrade plan
+		
+	Upgrade the controller components:
+		sudo kubeadm upgrade apply v1.23.11
+
+	Upgrade kubectl & kubelet :
+		sudo apt install -y kubectl=1.23.11-00 kubelet=1.23.11-00
+
+	apply hold on the packages:
+		sudo apt-mark hold kubeadm kubelet kubectl
+
+
+# Worker Node1
+
+	Drain/cordon Node - disable scheduling of pods -- execute below command on master node 
+		sudo kubectl drain worker1 --ignore-daemonsets
+	
+	Login(ssh) to Worker Nodes: 
+
+	remove any hold on the packages:
+		sudo apt-mark unhold kubeadm kubelet kubectl 
+
+	upgrade the kubeadm & hold:
+		sudo apt install -y kubeadm=1.23.11-00 kubelet=1.23.11-00 kubectl=1.23.11-00
+		kubeadm version -o short 
+		kubelet --version 
+		sudo apt-mark hold kubeadm kubelet kubectl
+
+	Drain/cordon Node - disable scheduling of pods -- execute below command on master node 
+		sudo kubectl uncordon worker1
+
+# Worker Node1
+
+	Drain/cordon Node - disable scheduling of pods -- execute below command on master node 
+		sudo kubectl drain worker2 --ignore-daemonsets
+	
+	Login(ssh) to Worker Nodes: 
+
+	remove any hold on the packages:
+		sudo apt-mark unhold kubeadm kubelet kubectl 
+
+	upgrade the kubeadm & hold:
+		sudo apt install -y kubeadm=1.23.11-00 kubelet=1.23.11-00 kubectl=1.23.11-00
+		kubeadm version -o short 
+		kubelet --version 
+		sudo apt-mark hold kubeadm kubelet kubectl
+
+	Drain/cordon Node - disable scheduling of pods -- execute below command on master node 
+		sudo kubectl uncordon worker2

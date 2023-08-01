@@ -2,7 +2,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: kibana
-  namespace: kube-logging
   labels:
     app: kibana
 spec:
@@ -16,7 +15,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kibana
-  namespace: kube-logging
   labels:
     app: kibana
 spec:
@@ -31,7 +29,9 @@ spec:
     spec:
       containers:
       - name: kibana
-        image: docker.elastic.co/kibana/kibana-oss:6.4.3
+        image: docker.elastic.co/kibana/kibana-oss:6.8.23
+        #image: docker.elastic.co/kibana/kibana-oss:6.4.3
+        #image: docker.elastic.co/kibana/kibana-oss:7.10.2
         resources:
           limits:
             cpu: 1000m
