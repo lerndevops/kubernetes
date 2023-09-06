@@ -3,7 +3,7 @@
 ### Setp1: create a user user1
 
 ```
-mkdir -p /home/certs
+mkdir -p $home/certs
 cd /home/certs
 ```
 
