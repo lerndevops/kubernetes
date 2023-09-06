@@ -4,7 +4,7 @@
 
 ```
 mkdir -p $home/certs
-cd /home/certs
+cd $home/certs
 ```
 
 ### Setp2: Create The User Credentials
