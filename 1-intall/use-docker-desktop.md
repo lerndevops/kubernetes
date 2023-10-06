@@ -72,16 +72,9 @@ kubectl get nodes
 ```
 
 ## Step-06: Verify if our k8s Cluster is functional with a Sample Application
-- [StackSimplify Docker Images](https://github.com/stacksimplify?tab=packages)
-- [Docker Image used in this Demo](https://github.com/users/stacksimplify/packages/container/package/kubenginxhelm)
 ```t
 # Review Kubernetes Manifests
-Folder: kube-manifests
-deployment.yaml
-service.yaml
-
-# Deploy k8s Resources to Docker Desktop k8s Cluster
-kubectl apply -f kube-manifests/
+kubectl apply -f https://raw.githubusercontent.com/lerndevops/kubernetes/master/3-controllers/deployments/deployment-ex2.yml
 
 # List k8s Deployments
 kubectl get deploy
@@ -98,7 +91,7 @@ or
 http://127.0.0.1:31300
 
 # Uninstall k8s Resources from Docker Desktop k8s cluster
-kubectl delete -f kube-manifests/
+kubectl delete -f https://raw.githubusercontent.com/lerndevops/kubernetes/master/3-controllers/deployments/deployment-ex2.yml
 
 # List pods, svc, deploy
 kubectl get pods
