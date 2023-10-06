@@ -1,12 +1,12 @@
-## Setup Kubernetes Cluster version v1.24 & above with Docker Container Runtime
+## Setup Kubernetes Cluster with Docker Container Runtime
+>> #### Note: the document sets up the latest kubernetes version always 
 
 > **[install-kubernetes-with-docker-on-ubuntu-debian](https://github.com/lerndevops/kubernetes/blob/master/1-intall/install-kubernetes-v1.24-ubuntu-debian.md)**
 
 > **[install-kubernetes-with-docker-on-centos-amzn-redhat](https://github.com/lerndevops/kubernetes/blob/master/1-intall/install-kubernetes-v1.24-centos-amzn-redhat.md)**
 
 ## Setup Kubernetes Cluster with Containerd Container Runtime
-
-#### Note: the document sets up the latest kubernetes version always 
+>> #### Note: the document sets up the latest kubernetes version always 
 
 > **[install-kubernetes-with-containerd-ubuntu](https://github.com/lerndevops/kubernetes/blob/master/1-intall/install-kubernetes-containerd-ubuntu.md)**
 
