@@ -14,7 +14,7 @@
 
 ## Use Docker Desktop to enable kubernetes single node cluster
 
-> **[docker-desktop](https://github.com/lerndevops/kubernetes/blob/master/1-intall/use-docker-desktop.md)
+> **[docker-desktop-setup](https://github.com/lerndevops/kubernetes/blob/master/1-intall/use-docker-desktop.md)**
 
 ## Setup Kubernetes Cluster version v1.23 & below with Docker Container Runtime
 
