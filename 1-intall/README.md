@@ -4,12 +4,6 @@
 
 > **[install-kubernetes-with-docker-on-centos-amzn-redhat](https://github.com/lerndevops/kubernetes/blob/master/1-intall/install-kubernetes-v1.24-centos-amzn-redhat.md)**
 
-## Setup Kubernetes Cluster version v1.23 & below with Docker Container Runtime
-
-> **[install-kubernetes-on-ubuntu-debian](https://github.com/lerndevops/kubernetes/blob/master/1-intall/install-kubernetes-on-ubuntu-debian.md)**
-
-> **[install-kubernetes-on-centos-amzn-redhat](https://github.com/lerndevops/kubernetes/blob/master/1-intall/install-kubernetes-on-centos-amzn-redhat.md)**
-
 ## Setup Kubernetes Cluster with Containerd Container Runtime
 
 #### Note: the document sets up the latest kubernetes version always 
@@ -17,6 +11,16 @@
 > **[install-kubernetes-with-containerd-ubuntu](https://github.com/lerndevops/kubernetes/blob/master/1-intall/install-kubernetes-containerd-ubuntu.md)**
 
 > **[install-kubernetes-with-containerd-centos-amzn](https://github.com/lerndevops/kubernetes/blob/master/1-intall/install-kubernetes-containerd-centos-amzn.md)**
+
+## Use Docker Desktop to enable kubernetes single node cluster
+
+> **[docker-desktop](https://github.com/lerndevops/kubernetes/blob/master/1-intall/use-docker-desktop.md)
+
+## Setup Kubernetes Cluster version v1.23 & below with Docker Container Runtime
+
+> **[install-kubernetes-on-ubuntu-debian](https://github.com/lerndevops/kubernetes/blob/master/1-intall/install-kubernetes-on-ubuntu-debian.md)**
+
+> **[install-kubernetes-on-centos-amzn-redhat](https://github.com/lerndevops/kubernetes/blob/master/1-intall/install-kubernetes-on-centos-amzn-redhat.md)**
 
 ## Setup Kubernetes Cluster on VirutalBox vms with Docker Container Runtime
 
