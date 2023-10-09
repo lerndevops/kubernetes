@@ -25,7 +25,7 @@ sudo bash /tmp/installK8S.sh
    cri-dockerd --version
    kubeadm version -o short
    kubelet --version
-   kubectl version --short --client
+   kubectl version --client
 
 ## Initialize kubernetes Master Node
  
@@ -71,7 +71,7 @@ sudo bash /tmp/installK8S.sh
    cri-dockerd --version
    kubeadm version -o short
    kubelet --version
-   kubectl version --short --client
+   kubectl version --client
    
 ## Run Below on Master Node to get join token 
 
