@@ -124,7 +124,7 @@ spec:
     spec:
       containers:
         - name: petclinic
-          image: lerndevops/samples:petclinic
+          image: lerndevops/samples:petclinic-v1
           ports:
             - containerPort: 8080
 ---
