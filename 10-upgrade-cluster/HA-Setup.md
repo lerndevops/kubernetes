@@ -1,15 +1,3 @@
-kubeadm init --upload-certs
-
-To add another control plane (master) node, a user can run the following command.
-
-kubeadm join ${API_SERVER_PROXY_IP}:${API_SERVER_PROXY_PORT} \
-    --control-plane \
-    --certificate-key=${ENCRYPTION_KEY} \
-    --token ${KUBEADM_TOKEN} \
-    --discovery-token-ca-cert-hash ${APISERVER_CA_CERT_HASH}
-
-===========
-
 ### Setup the Load Balancer config as below
 ---
 ```sh
@@ -72,4 +60,18 @@ kubeadm init --config $HOME/init-config.yaml --upload-certs
 kubeadm join 172.31.10.237:6443 --token gjlgud.gkyc42ps0jhfq2gf \
 --discovery-token-ca-cert-hash sha256:25f1ccba123333fc888d28f7b099a2af46434fdd75efb329303c495976c06558 \
 --control-plane --certificate-key f11f7879e167aafe60c66947061e7eed96289769a550164aca9b201613dd07ae
+```
+### commands
+---
+```sh
+
+kubeadm init --upload-certs
+
+## To add another control plane (master) node, a user can run the following command.
+
+kubeadm join ${API_SERVER_PROXY_IP}:${API_SERVER_PROXY_PORT} \
+    --control-plane \
+    --certificate-key=${ENCRYPTION_KEY} \
+    --token ${KUBEADM_TOKEN} \
+    --discovery-token-ca-cert-hash ${APISERVER_CA_CERT_HASH}
 ```
