@@ -1,9 +1,9 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    kubernetes.io/metadata.name: testapp-system
-  name: testapp-system
+#apiVersion: v1
+#kind: Namespace
+#metadata:
+#  labels:
+#    kubernetes.io/metadata.name: testapp-system
+#  name: testapp-system
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -16,7 +16,7 @@ metadata:
     app.kubernetes.io/name: serviceaccount
     app.kubernetes.io/part-of: testapp
   name: testapp-controller-manager
-  namespace: testapp-system
+  namespace: default
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -29,7 +29,7 @@ metadata:
     app.kubernetes.io/name: role
     app.kubernetes.io/part-of: testapp
   name: testapp-leader-election-role
-  namespace: testapp-system
+  namespace: default
 rules:
 - apiGroups:
   - ""
@@ -167,7 +167,7 @@ metadata:
     app.kubernetes.io/name: rolebinding
     app.kubernetes.io/part-of: testapp
   name: testapp-leader-election-rolebinding
-  namespace: testapp-system
+  namespace: default
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -175,7 +175,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: testapp-controller-manager
-  namespace: testapp-system
+  namespace: default
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -195,7 +195,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: testapp-controller-manager
-  namespace: testapp-system
+  namespace: default
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -215,7 +215,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: testapp-controller-manager
-  namespace: testapp-system
+  namespace: default
 ---
 apiVersion: v1
 kind: Service
@@ -229,7 +229,7 @@ metadata:
     app.kubernetes.io/part-of: testapp
     control-plane: controller-manager
   name: testapp-controller-manager-metrics-service
-  namespace: testapp-system
+  namespace: default
 spec:
   ports:
   - name: https
@@ -252,7 +252,7 @@ metadata:
     app.kubernetes.io/part-of: testapp
     control-plane: controller-manager
   name: testapp-controller-manager
-  namespace: testapp-system
+  namespace: default
 spec:
   replicas: 1
   selector:
