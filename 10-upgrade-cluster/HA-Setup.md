@@ -1,6 +1,17 @@
 ### Setup the Load Balancer config as below
 ---
 ```sh
+## Create a vm with min 1cpu 2gb ram to run a proxy/load balancer on any Cloud
+
+## Install the Docker on the vm created above
+
+## Install Docker
+sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/scripts/installDocker.sh -P /tmp
+sudo chmod 755 /tmp/installDocker.sh
+sudo bash /tmp/installDocker.sh
+sudo systemctl restart docker.service
+```
+```sh
 vim /etc/nginx/nginx.conf
 ```
 ```sh
