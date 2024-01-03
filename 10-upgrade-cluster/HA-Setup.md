@@ -37,7 +37,7 @@ stream {
 }
 ```
 ```sh
-## run the web server using nginx image
+## run the proxy server using nginx image
 	
 docker run --name proxy -v /etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro -p 443:443 -d nginx
 ```
