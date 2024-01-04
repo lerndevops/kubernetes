@@ -1,7 +1,34 @@
-## Operators in Kubernetes
+## What is an Operator?
+> Whenever we deploy our application on Kubernetes we leverage multiple Kubernetes objects like deployment, service, role, ingress, config map, etc. 
 
-> Kubernetes is designed for automation. Out of the box, you get lots of built-in automation from the core of Kubernetes. You can use Kubernetes to automate deploying and running workloads, and you can automate how Kubernetes does that.
-Kubernetes’ controllers concept lets you extend the cluster’s behaviour without modifying the code of Kubernetes itself. Operators are clients of the Kubernetes API that act as controllers for a Custom Resource.
+> As our application gets complex and our requirements become non-generic, managing our application only with the help of native Kubernetes objects becomes difficult and we often need to introduce manual intervention or some other form of automation to make up for it.
+
+> Operators solve this problem by making our application first class Kubernetes objects that is we no longer deploy our application as a set of native Kubernetes objects but a custom object/resource of its kind
+
+> **Operators combine crds and custom controllers and intend to eliminate the requirement for manual intervention (human operator) while performing tasks like an upgrade, handling failure recovery, scaling in case of complex (often stateful) applications and make them more resilient and self-sufficient.**
+
+## How to Build Operators ?
+
+> For building and managing operators we mostly leverage the [Operator Framework](https://github.com/operator-framework) which is an open source tool kit allowing us to build operators in a highly automated, scalable and effective way.  
+
+> **Operator framework comprises of two subcomponents:**
+
+1. **`Operator SDK:`** Operator SDK is the most important component of the operator framework. It allows us to bootstrap our operator project in minutes. It exposes higher level APIs and abstraction and saves developers the time to dig deeper into kubernetes APIs and focus more on building the operational logic. It performs common tasks like getting the controller to watch the custom resource (cr) for changes etc as part of the project setup process.
+
+2. **`Operator Lifecycle Manager:`**  Operators also run on the same kubernetes clusters in which they manage applications and more often than not we create multiple operators for multiple applications. Operator lifecycle manager (OLM) provides us a declarative way to install, upgrade and manage all the operators and their dependencies in our cluster.
+
+## Types of Operators
+
+>> **Currently there are three different types of operator we can build:**
+
+1. **`Helm based operators:`** Helm based operators allow us to use our existing Helm charts and build operators using them. Helm based operators are quite easy to build and are preferred to deploy a stateless application using operator pattern.
+
+2. **`Ansible based Operator:`** Ansible based operator allows us to use our existing ansible playbooks and roles and build operators using them. There are also easy to build and generally preferred for stateless applications.
+
+3. **`Go based operators:`** Go based operators are built to solve the most complex use cases and are generally preferred for stateful applications. In case of an golang based operator, we build the controller logic ourselves providing it with all our custom requirements. This type of operators is also relatively complex to build.
+
+
+![Operator Maturity Model](https://github.com/lerndevops/kubernetes/blob/master/static/operator.webp)
 
 ### An example Operator
 

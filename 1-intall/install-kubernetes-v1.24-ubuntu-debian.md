@@ -25,7 +25,7 @@ sudo bash /tmp/installK8S.sh
    cri-dockerd --version
    kubeadm version -o short
    kubelet --version
-   kubectl version --short --client
+   kubectl version --client
 
 ## Initialize kubernetes Master Node
  
@@ -71,14 +71,17 @@ sudo bash /tmp/installK8S.sh
    cri-dockerd --version
    kubeadm version -o short
    kubelet --version
-   kubectl version --short --client
+   kubectl version --client
    
 ## Run Below on Master Node to get join token 
 
 kubeadm token create --print-join-command 
 
-    copy the kubeadm join token from master & ensure to add --cri-socket unix:///var/run/cri-dockerd.sock as below & then run on worker nodes
+    copy the kubeadm join token from master &
+           ensure to add --cri-socket unix:///var/run/cri-dockerd.sock as below &
+           ensure to add sudo 
+           then run on worker nodes
 
-    Ex: kubeadm join 10.128.15.231:6443 --cri-socket unix:///var/run/cri-dockerd.sock --token mks3y2.v03tyyru0gy12mbt \
-           --discovery-token-ca-cert-hash sha256:3de23d42c7002be0893339fbe558ee75e14399e11f22e3f0b34351077b7c4b56
+    Ex: sudo kubeadm join 10.128.15.231:6443  --token mks3y2.v03tyyru0gy12mbt \
+           --discovery-token-ca-cert-hash sha256:3de23d42c7002be0893339fbe558ee75e14399e11f22e3f0b34351077b7c4b56 --cri-socket unix:///var/run/cri-dockerd.sock
 ```

@@ -1,0 +1,6 @@
+apiVersion: demo.testapp.com/v1
+kind: TestApp
+metadata:
+  name: testapp1
+  namespace: default
+spec: {}

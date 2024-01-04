@@ -3,8 +3,8 @@
 ### Setp1: create a user user1
 
 ```
-mkdir -p /home/certs
-cd /home/certs
+mkdir -p $HOME/certs
+cd $HOME/certs
 ```
 
 ### Setp2: Create The User Credentials

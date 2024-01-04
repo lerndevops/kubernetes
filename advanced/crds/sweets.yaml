@@ -1,0 +1,47 @@
+kind: Sweet
+apiVersion: indian.made/v1
+metadata:
+   name: badam-halwa
+spec: 
+  maker: almond-house
+  quantity: 20
+  ingrediants: 
+    sugar: yes
+    maida: yes 
+    eggless: yes
+---
+kind: Sweet
+apiVersion: indian.made/v1
+metadata:
+   name: dryfruit-laddu
+spec: 
+  maker: almond-house
+  quantity: 40
+  ingrediants: 
+    sugar: yes
+    maida: no 
+    eggless: yes
+---
+kind: Sweet
+apiVersion: indian.made/v1
+metadata:
+   name: rasmalai
+spec: 
+  maker: almond-house
+  quantity: 100
+  ingrediants: 
+    sugar: yes
+    maida: no
+    eggless: yes
+---
+kind: Sweet
+apiVersion: indian.made/v1
+metadata:
+   name: malpuri
+spec: 
+  maker: pulla-reddy
+  quantity: 50
+  ingrediants: 
+    sugar: yes
+    maida: yes 
+    eggless: yes

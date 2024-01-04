@@ -277,6 +277,7 @@ spec:
   http:
   - match:
     - port: 80
+    #timeout: 1s
     route:
     - destination:
         host: 2oujlno5e4.execute-api.us-east-1.amazonaws.com

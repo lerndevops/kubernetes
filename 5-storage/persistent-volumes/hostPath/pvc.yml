@@ -9,3 +9,6 @@ spec:
   resources:
     requests:
       storage: 500Mi
+
+
+#### use  storageClassName: "" if you are using GKE ####

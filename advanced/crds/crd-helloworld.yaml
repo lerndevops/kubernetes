@@ -28,6 +28,7 @@ spec:
                 message:
                   type: string
 ---
+# Deploy CRD 
 apiVersion: lernkube.io/v1
 kind: HelloWorld
 metadata:
