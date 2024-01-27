@@ -13,7 +13,7 @@
 ## Deploy Ingress Controller 
 
 ```kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/baremetal/deploy.yaml```
-
+```kubectl -n ingress-nginx patch service/ingress-nginx-controller -p '{"spec":{"type":"LoadBalancer"}}'```
 
 
 ## Deploy Ingress Resource(rules)
