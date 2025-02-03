@@ -1,0 +1,14 @@
+# named this stage as builder ----------------------
+FROM ubuntu AS builder         
+ARG DEBIAN_FRONTEND=noninteractive   
+# Install golang
+RUN apt-get update && apt-get install -y golang-go   
+# Copy source code
+COPY app.go .                                             
+RUN CGO_ENABLED=0 go build app.go
+
+# new stage -------------------
+FROM alpine
+# Copy artifact from builder stage                   
+COPY --from=builder /app .   
+CMD ["./app"]
