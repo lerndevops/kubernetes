@@ -5,7 +5,7 @@ metadata:
   labels:
     app: nfs-provisioner
   # replace with namespace where provisioner is deployed
-  namespace: default
+  namespace: kube-system
 spec:
   replicas: 1
   strategy:
