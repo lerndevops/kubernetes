@@ -3,7 +3,7 @@ kind: ServiceAccount
 metadata:
   name: nfs-provisioner
   # replace with namespace where provisioner is deployed
-  namespace: default
+  namespace: kube-system
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -34,7 +34,7 @@ subjects:
   - kind: ServiceAccount
     name: nfs-provisioner
     # replace with namespace where provisioner is deployed
-    namespace: default
+    namespace: kube-system
 roleRef:
   kind: ClusterRole
   name: nfs-provisioner
@@ -45,7 +45,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: nfs-provisioner
   # replace with namespace where provisioner is deployed
-  namespace: default
+  namespace: kube-system
 rules:
   - apiGroups: [""]
     resources: ["endpoints"]
@@ -56,12 +56,12 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: nfs-provisioner
   # replace with namespace where provisioner is deployed
-  namespace: default
+  namespace: kube-system
 subjects:
   - kind: ServiceAccount
     name: nfs-provisioner
     # replace with namespace where provisioner is deployed
-    namespace: default
+    namespace: kube-system
 roleRef:
   kind: Role
   name: nfs-provisioner
