@@ -23,7 +23,7 @@
 
 3. _Its significance lies in its ability to manage and decrypt Sealed Secrets securely, ensuring that only the cluster with the corresponding private key can access the original secret content._
 
-![sealed-secret](static/sealed-secret.png)
+![sealed-secret](https://github.com/lerndevops/kubernetes/blob/master/static/sealed-secret.png)
 
 ### [how to manage kubernetes secrets more ways](https://akuity.io/blog/how-to-manage-kubernetes-secrets-gitops)
 
