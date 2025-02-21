@@ -25,7 +25,8 @@
 
 ![sealed-secret](https://github.com/lerndevops/kubernetes/blob/master/static/sealed-secret.png)
 
+---
 ### [how to manage kubernetes secrets more ways](https://akuity.io/blog/how-to-manage-kubernetes-secrets-gitops)
-
-
+---
 ### [click here to Install kubeseal client & controller](https://github.com/bitnami-labs/sealed-secrets/releases)
+---
