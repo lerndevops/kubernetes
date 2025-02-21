@@ -13,3 +13,11 @@
 ### [Distribute Credentials Securely Using Secrets](https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/)
 
 ### [MORE INFO](https://kubernetes.io/docs/concepts/configuration/secret/)
+
+## data vs stringData in a secret
+
+> You can specify the data and/or the stringData field when creating a configuration file for a Secret. The data and the stringData fields are optional. 
+
+> The values for all keys in the data field have to be base64-encoded strings. 
+
+> If the conversion to base64 string is not desirable, you can choose to specify the stringData field instead, which accepts arbitrary strings as values.
