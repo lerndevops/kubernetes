@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-app-of-apps
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: test-app-of-apps
+spec:
+  project: test-project
+  source:
+    path: argocd-apps/test-apps/
+    repoURL: https://github.com/lerndevops/myrepo.git
+    targetRevision: main
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+    - allowEmpty=true
+    - CreateNamespace=true
+  ignoreDifferences:
+   - kind: Application
+     group: argoproj.io
+     jsonPointers:
+      - /status

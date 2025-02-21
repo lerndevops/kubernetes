@@ -1,0 +1,24 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  labels:
+    app.kubernetes.io/name: argocd-rbac-cm
+    app.kubernetes.io/part-of: argocd
+  name: argocd-rbac-cm
+  namespace: argocd
+data:
+  policy.csv: |
+    # test-user user
+    p, role:test-user-role, projects, get, test-user, allow
+    p, role:test-user-role, projects, delete, test-user, deny
+    p, role:test-user-role, applicationsets, *, test-user/*, allow
+    p, role:test-user-role, applicationsets, delete, test-user/*, deny
+    p, role:test-user-role, applications, *, test-user/*, allow
+    p, role:test-user-role, applications, delete, test-user/*, deny
+    p, role:test-user-role, clusters, *, *, allow
+    p, role:test-user-role, repositories, *, *, allow
+    p, role:test-user-role, repositories, delete, *, deny
+    p, role:test-user-role, repositories, update, *, deny
+    p, role:test-user-role, logs, get, *, allow
+    g, vas-test-user, role:test-user-role
+  policy.default: role:''

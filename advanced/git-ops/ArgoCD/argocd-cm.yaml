@@ -1,0 +1,17 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: argocd-cm
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  accounts.test-user1: login
+  accounts.test-user2: login
+  accounts.test-user3: login
+  accounts.readuser: login
+  application.resourceTrackingMethod: annotation
+  kustomize.buildOptions: --enable-alpha-plugins --enable-helm --load-restrictor=LoadRestrictionsNone
+  resource.compareoptions: |
+    ignoreAggregatedRoles: true

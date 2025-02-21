@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: myrepo
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  url: https://github.com/lerndevops/myrepo.git
+  name: "myrepo"
+  password: ""
+  username: ""
+  insecure: "true" # Ignore validity of server's TLS certificate. Defaults to "false"
+  forceHttpBasicAuth: "true" # Skip auth method negotiation and force usage of HTTP basic auth. Defaults to "false"
+  enableLfs: "true" # Enable git-lfs for this repository. Defaults to "false"
