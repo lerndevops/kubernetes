@@ -64,6 +64,12 @@ sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/scripts/insta
 sudo chmod 755 /tmp/installK8S.sh
 sudo bash /tmp/installK8S.sh
 
+to enable network features on worker nodes
+
+sudo modprobe br_netfilter
+sudo echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
+sudo echo 1 > /proc/sys/net/ipv4/ip_forward
+
 
 # Validate 
 
